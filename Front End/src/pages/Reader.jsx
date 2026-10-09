@@ -1,3 +1,4 @@
+import { publicAsset } from "../publicAsset.js";
 import { useEffect, useMemo, useRef, useState } from "react";
 import {
   ArrowRight,
@@ -563,8 +564,14 @@ export function Reader({ surahId, ayah }) {
             </p>
             <p>
               النص المتاح لقارئ الشاشة:{" "}
-              <a href="/licenses/quran-json-README.md">Quran JSON 3.1.2</a> ·{" "}
-              <a href="/licenses/quran-json-LICENSE.txt">CC BY-SA 4.0</a>.
+              <a href={publicAsset("/licenses/quran-json-README.md")}>
+                Quran JSON 3.1.2
+              </a>{" "}
+              ·{" "}
+              <a href={publicAsset("/licenses/quran-json-LICENSE.txt")}>
+                CC BY-SA 4.0
+              </a>
+              .
             </p>
           </details>
         </Modal>

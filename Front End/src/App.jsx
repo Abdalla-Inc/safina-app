@@ -1,3 +1,5 @@
+import { demoOnly } from "./connected/launchConfig.js";
+import { publicAsset } from "./publicAsset.js";
 import { useState, useEffect, useRef } from "react";
 import { useAccount } from "./connected/context.js";
 import { AccountPage, ConnectedRoute } from "./connected/Pages.jsx";
@@ -160,7 +162,7 @@ export default function App() {
   useEffect(() => {
     let active = true;
     setQuranError(false);
-    fetch("/data/quran.json")
+    fetch(publicAsset("/data/quran.json"))
       .then((r) => {
         if (!r.ok) throw Error();
         return r.json();
@@ -202,7 +204,7 @@ export default function App() {
     retryQuran: () => setLoadKey((k) => k + 1),
   };
   const render = () => {
-    if (page === "account") return <AccountPage />;
+    if (page === "account") return demoOnly ? <Today /> : <AccountPage />;
     if (account.mode === "connected")
       return <ConnectedRoute page={page} route={route} />;
     switch (page) {
@@ -357,7 +359,8 @@ export default function App() {
                   "اليوم"}
               </strong>
             </div>
-            {account.localPreviewEnabled &&
+            {!demoOnly &&
+              account.localPreviewEnabled &&
               (account.mode === "preview" ||
                 account.session?.mode === "sandbox" ||
                 account.me?.permissions?.superAdmin === true) && (
@@ -384,11 +387,18 @@ export default function App() {
                     : "المعاينة الكاملة · أمثلة"}
                 </button>
               )}
-            <button className="demo-badge" onClick={() => navigate("account")}>
+            <button
+              className="demo-badge"
+              onClick={() =>
+                demoOnly ? setModal({ type: "demo" }) : navigate("account")
+              }
+            >
               <span />
-              {account.mode === "connected"
-                ? "حسابي"
-                : "المعاينة · تسجيل الدخول"}
+              {demoOnly
+                ? "نسخة تجريبية · على جهازك"
+                : account.mode === "connected"
+                  ? "حسابي"
+                  : "المعاينة · تسجيل الدخول"}
               <Info size={14} />
             </button>
           </header>

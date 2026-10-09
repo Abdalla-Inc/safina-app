@@ -1,3 +1,4 @@
+import { publicAsset } from "../publicAsset.js";
 import { useEffect, useRef } from "react";
 import { X, ArrowLeft, Check, Bookmark, Play } from "lucide-react";
 import { useApp } from "../context.jsx";
@@ -147,7 +148,7 @@ export function DemoVideo({
         preload="metadata"
         playsInline
         aria-label="مقطع مرئي تجريبي بلا صوت"
-        poster={poster}
+        poster={publicAsset(poster)}
         onEnded={onEnded}
         onLoadedMetadata={(event) => {
           if (
@@ -158,10 +159,10 @@ export function DemoVideo({
         }}
         onTimeUpdate={savePosition}
       >
-        <source src="/demo.webm" type="video/webm" />
+        <source src={publicAsset("/demo.webm")} type="video/webm" />
         <track
           kind="captions"
-          src="/demo.vtt"
+          src={publicAsset("/demo.vtt")}
           srcLang="ar"
           label="العربية"
           default

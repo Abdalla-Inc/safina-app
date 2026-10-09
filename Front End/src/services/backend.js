@@ -1,4 +1,6 @@
+import { demoOnly } from "../connected/launchConfig.js";
 export async function backendGet(path, signal) {
+  if (demoOnly) throw Error("DEMO_ONLY");
   const response = await fetch(`/api/local${path}`, {
     headers: { "X-Safina-Preview": "1" },
     cache: "no-store",

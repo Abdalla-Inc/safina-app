@@ -1,3 +1,4 @@
+import { demoOnly } from "../connected/launchConfig.js";
 import { localBuildProgress } from "../features/safina/localBuildProgress.js";
 import { useState, useEffect } from "react";
 import {
@@ -68,7 +69,7 @@ export function Journey() {
   const [shipPreview, setShipPreview] = useState("full");
   const [remote, setRemote] = useState({ status: "idle", data: null });
   const [refresh, setRefresh] = useState(0);
-  const live = state.journeySource === "backend";
+  const live = !demoOnly && state.journeySource === "backend";
   useEffect(() => {
     if (!live) {
       setRemote({ status: "idle", data: null });
@@ -153,14 +154,16 @@ export function Journey() {
       <div className="journey-topline">
         <h1>رحلتي</h1>
         <div className="journey-source">
-          <select
-            aria-label="مصدر سجل الرحلة"
-            value={live ? "backend" : "prototype"}
-            onChange={(e) => update({ journeySource: e.target.value })}
-          >
-            <option value="prototype">عرض تجريبي</option>
-            <option value="backend">الخادم · BJ2 تجريبي</option>
-          </select>
+          {!demoOnly && (
+            <select
+              aria-label="مصدر سجل الرحلة"
+              value={live ? "backend" : "prototype"}
+              onChange={(e) => update({ journeySource: e.target.value })}
+            >
+              <option value="prototype">عرض تجريبي</option>
+              <option value="backend">الخادم · BJ2 تجريبي</option>
+            </select>
+          )}
           <IconButton label="عن سجل الرحلة" onClick={() => setInfo(true)}>
             <Info size={18} />
           </IconButton>

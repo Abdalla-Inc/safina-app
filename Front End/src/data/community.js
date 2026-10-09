@@ -1,3 +1,4 @@
+import { publicAsset } from "../publicAsset.js";
 import { customReadings, istighfarForDay } from "./dailyActivity.js";
 import { wirdRows } from "./wird.js";
 import { checkinTier } from "./communityLevels.js";
@@ -197,7 +198,7 @@ export function exampleCheckins(day, instant = new Date()) {
         name: `استغفار ${new Intl.NumberFormat("ar-EG").format([100, 500, 1000, 75, 200, 1500, 10000][i % 7])} مرة`,
       },
     ],
-    avatar: `/community/portrait-${(i % 7) + 1}.svg`,
+    avatar: publicAsset(`/community/portrait-${(i % 7) + 1}.svg`),
     heartCount: p.hearts,
     complete: true,
     day,

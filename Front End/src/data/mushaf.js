@@ -1,3 +1,4 @@
+import { publicAsset } from "../publicAsset.js";
 import metadata from "./mushaf-metadata.js";
 
 export const { pageStarts, surahPages, juzPages, verseCounts } = metadata;
@@ -52,7 +53,9 @@ export function versesOnPage(quran, page) {
 }
 
 export function pageImage(page) {
-  return `/mushaf/madani-v8/page${String(page).padStart(3, "0")}.png`;
+  return publicAsset(
+    `/mushaf/madani-v8/page${String(page).padStart(3, "0")}.png`,
+  );
 }
 
 // The next leaf of an Arabic book is turned to the right. Vertical motion,

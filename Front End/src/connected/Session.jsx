@@ -1,4 +1,8 @@
-import { localPreviewEnabled } from "./launchConfig.js";
+import {
+  demoOnly,
+  initialAccountMode,
+  localPreviewEnabled,
+} from "./launchConfig.js";
 import { useEffect, useState, useCallback, useRef } from "react";
 import {
   request,
@@ -9,9 +13,7 @@ import {
 import { AccountContext as Context } from "./context.js";
 export function AccountProvider({ children }) {
   const [mode, setMode] = useState(() =>
-    localPreviewEnabled
-      ? localStorage.getItem("safina-mode") || "preview"
-      : "connected",
+    initialAccountMode(localStorage.getItem("safina-mode")),
   );
   const [session, setSession] = useState(null),
     [me, setMe] = useState(null),
@@ -20,6 +22,7 @@ export function AccountProvider({ children }) {
     [error, setError] = useState("");
   const epoch = useRef(0);
   const reload = useCallback(async () => {
+    if (demoOnly) return;
     const current = epoch.current;
     const [profile, day] = await Promise.all([
       request("/me"),
@@ -41,6 +44,7 @@ export function AccountProvider({ children }) {
     if (!localPreviewEnabled) setMode("connected");
   }, []);
   const signIn = async (value) => {
+    if (demoOnly) return;
     acceptSession(value);
     setSession(value);
     await reload();
@@ -50,6 +54,7 @@ export function AccountProvider({ children }) {
     localStorage.setItem("safina-account-event", crypto.randomUUID());
   };
   const load = useCallback(async () => {
+    if (demoOnly) return;
     setError("");
     setStatus("loading");
     try {
@@ -73,7 +78,7 @@ export function AccountProvider({ children }) {
   useEffect(() => {
     const expired = () => discard(false);
     const changed = (e) => {
-      if (e.key === "safina-account-event") {
+      if (!demoOnly && e.key === "safina-account-event") {
         discard();
         if (localStorage.getItem("safina-mode") === "connected") load();
       }
@@ -98,6 +103,7 @@ export function AccountProvider({ children }) {
     };
   }, [status, mode, reload]);
   const chooseMode = (value) => {
+    if (demoOnly) return;
     if (
       value === "preview" &&
       !localPreviewEnabled &&

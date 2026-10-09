@@ -1,3 +1,4 @@
+import { publicAsset } from "../publicAsset.js";
 const titles = [
   "مساحة للقرآن في يومك",
   "خطوة صغيرة تدوم",
@@ -17,7 +18,7 @@ export const courses = [
     shortTitle: "سفينة النور",
     badge: "VIP",
     format: "برنامج أسبوعي",
-    thumbnail: "/courses/safina.svg",
+    thumbnail: publicAsset("/courses/safina.svg"),
     description: "المنهج الكامل، أسبوعًا بعد أسبوع.",
     modules: titles.map((title, i) => ({
       id: `week-${i + 1}`,
@@ -27,14 +28,14 @@ export const courses = [
         {
           id: `lesson-${i + 1}`,
           title,
-          thumbnail: `/courses/lesson-${i + 1}.svg`,
+          thumbnail: publicAsset(`/courses/lesson-${i + 1}.svg`),
         },
         ...(i === 0
           ? [
               {
                 id: "welcome",
                 title: "كيف تستخدم مساحة التعلّم",
-                thumbnail: "/courses/welcome.svg",
+                thumbnail: publicAsset("/courses/welcome.svg"),
               },
             ]
           : []),
@@ -60,7 +61,7 @@ export const courses = [
     shortTitle: "دورة الصحة",
     badge: "CLASS",
     format: "محاضرة واحدة",
-    thumbnail: "/courses/health.svg",
+    thumbnail: publicAsset("/courses/health.svg"),
     description: "محاضرة متكاملة في مكان واحد.",
     modules: [
       {
@@ -71,7 +72,7 @@ export const courses = [
           {
             id: "full-class",
             title: "دورة الصحة — المحاضرة الكاملة",
-            thumbnail: "/courses/health-lesson.svg",
+            thumbnail: publicAsset("/courses/health-lesson.svg"),
           },
         ],
         questions: [

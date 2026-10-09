@@ -1,5 +1,11 @@
 # Safina launch setup
 
+## GitHub Pages demo
+
+`.github/workflows/pages.yml` publishes only the compiled frontend to https://abdalla-inc.github.io/safina-app/. It sets `VITE_DEMO_ONLY=true`, `VITE_ENABLE_LOCAL_PREVIEW=true` and Vite base `/safina-app/`. Demo mode always opens the illustrative preview, prevents connected login/API operations, and keeps activity in each browser. No backend, private database or generated password is included. Hash routes support direct links and refresh under the repository prefix. A relative web manifest and icons provide home-screen support; no service worker or offline guarantee is included.
+
+The remaining sections describe the separate full account-backed deployment.
+
 The owner demonstration runs locally at http://127.0.0.1:5178/#/account. Owner credentials and 14 example accounts are in `Back End/local/owner-demo-access.json` (private and Git-ignored). Owner email: gubaraabdalla@gmail.com. Use `python3 -m scripts.seed_owner_demo` from `Back End` to prepare or refresh the local examples. Backend: `python3 -m safina.connected_cli serve --port 8766`. Frontend: `npm run dev` from `Front End`.
 
 There is no public deployment yet. GitHub stores the source; a host runs the application. The root Dockerfile builds the approved React interface and runs Caddy plus the loopback Python API. The live database is `/data/live.sqlite3`; keep one instance with a persistent disk. Do not copy the local sandbox database into that disk.

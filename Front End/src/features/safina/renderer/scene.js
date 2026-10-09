@@ -1,3 +1,4 @@
+import { publicAsset } from "../../../publicAsset.js";
 import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { Reflector } from "three/addons/objects/Reflector.js";
@@ -52,7 +53,11 @@ void main(){vec2 p=vWorld.xz;float e=.07;vec3 n=normalize(vec3((height(p-vec2(e,
 };
 export function createScene(
   container,
-  { reducedMotion = false, onError = () => {}, moonUrl = "/assets/moon-lroc-2k.jpg" } = {},
+  {
+    reducedMotion = false,
+    onError = () => {},
+    moonUrl = publicAsset("/assets/moon-lroc-2k.jpg"),
+  } = {},
 ) {
   const renderer = new THREE.WebGLRenderer({
     antialias: true,

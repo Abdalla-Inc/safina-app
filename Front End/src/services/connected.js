@@ -1,3 +1,4 @@
+import { demoOnly } from "../connected/launchConfig.js";
 /** Same-origin account API. Session and provider credentials never enter browser storage. */
 let session = null;
 let generation = 0;
@@ -23,6 +24,8 @@ export async function request(
   path,
   { method = "GET", body, retry = true } = {},
 ) {
+  if (demoOnly)
+    throw new ApiError("هذه نسخة تجريبية على جهازك فقط.", "DEMO_ONLY", 0);
   const epoch = generation;
   let response;
   try {

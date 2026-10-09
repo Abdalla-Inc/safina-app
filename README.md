@@ -7,6 +7,12 @@ Arabic Quran wird and community application with email/Google identity integrati
 - `Coordination/`: frontend/backend delivery notes and current verification status.
 - `deploy/`, `Dockerfile`, `render.yaml`: prepared single-instance deployment.
 
+## Shareable mobile demo
+
+The GitHub Pages workflow publishes the isolated demo to https://abdalla-inc.github.io/safina-app/. It opens without a password, uses fictional examples, and stores changes only in the visitor’s browser. It does not create real accounts or share activity between visitors. Open the link on mobile; use the browser’s Add to Home Screen option for a standalone shortcut. Offline use is not promised.
+
+This static demo is separate from the production backend deployment below.
+
 ## Local owner demonstration
 
 From `Back End`, install `requirements.txt`, run `python3 -m scripts.seed_owner_demo`, then `python3 -m safina.connected_cli serve --port 8766`.

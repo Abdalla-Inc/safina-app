@@ -1,0 +1,51 @@
+name: Publish mobile demo
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'Front End/**'
+      - '.github/workflows/pages.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: read
+concurrency:
+  group: github-pages
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: Front End/package-lock.json
+      - uses: actions/configure-pages@v5
+      - run: npm ci
+        working-directory: Front End
+      - run: npm test
+        working-directory: Front End
+      - name: Build the isolated public demo
+        run: npm run build -- --base=/safina-app/
+        working-directory: Front End
+        env:
+          VITE_DEMO_ONLY: 'true'
+          VITE_ENABLE_LOCAL_PREVIEW: 'true'
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: Front End/dist
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publish demo
+        id: deployment
+        uses: actions/deploy-pages@v4

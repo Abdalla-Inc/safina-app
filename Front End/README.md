@@ -74,3 +74,11 @@ Connected launch UI uses contract0.6. See `../Coordination/FRONTEND_STATUS.md` f
 ## Release verification — 9 October 2026
 
 Production build succeeds and all 104 frontend tests pass. Backend owns the combined GitHub upload and hosting setup. See [the frontend release check](docs/RELEASE_CHECK_2026-10-09.md) for scope and remaining live verification.
+
+## Temporary public mobile demo (GitHub Pages)
+
+The Pages workflow builds with `VITE_DEMO_ONLY=true VITE_ENABLE_LOCAL_PREVIEW=true npm run build -- --base=/safina-app/`. This static edition always opens the illustrative preview, ignores a previously stored connected mode, hides sign-in and the development backend selector, and blocks account/API calls. Ordinary combined deployments omit `VITE_DEMO_ONLY` and retain real account mode.
+
+Demo readings, reactions and settings stay in that browser; community members are examples. The manifest supports adding the demo to a phone home screen. It does not provide offline caching or real accounts. All Quran pages, thumbnails, example videos, portraits and ship textures use the deployment base path.
+
+Verified the built Pages edition at a 390×844 viewport: custom surah/istighfar submission, Quran index and page50, course thumbnails, ship scene and calendar. Production demo build and all104 frontend tests pass.
