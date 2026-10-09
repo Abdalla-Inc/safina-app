@@ -1,0 +1,38 @@
+.learning-tabs {
+  display: flex;
+  gap: 6px;
+  width: fit-content;
+  padding: 5px;
+  border-radius: 32px;
+  background: #e9ede2;
+  margin: 0 0 28px;
+}
+.learning-tabs a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 9px;
+  min-height: 46px;
+  min-width: 128px;
+  padding: 8px 22px;
+  color: #65745b;
+  border-radius: 26px;
+  font-size: 14px;
+}
+.learning-tabs a[aria-current="page"] {
+  background: #fffef9;
+  color: #294e3f;
+  box-shadow: 0 2px 5px #243a2007;
+}
+.learning-tabs a:hover {
+  color: #294e3f;
+}
+@media (max-width: 700px) {
+  .learning-tabs {
+    width: 100%;
+  }
+  .learning-tabs a {
+    flex: 1;
+    min-width: 0;
+  }
+}

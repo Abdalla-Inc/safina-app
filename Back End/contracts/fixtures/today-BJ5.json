@@ -1,0 +1,175 @@
+{
+  "schema": "Today",
+  "contractVersion": "0.3.0",
+  "fixture": {
+    "assignment": {
+      "memberId": "BJ5",
+      "date": "2026-09-16",
+      "tier": "BJ5",
+      "tierLabel": "BJ5",
+      "colorToken": "level.BJ5",
+      "patternToken": "level-pattern.BJ5",
+      "cadence": "weekly",
+      "cycle": {
+        "id": "weekly:2026-09-13",
+        "cadence": "weekly",
+        "start": "2026-09-13",
+        "end": "2026-09-19"
+      },
+      "timezone": "Australia/Brisbane",
+      "commitmentId": "7fee9004-5e1b-52a7-8886-913cc1b813c0",
+      "ruleVersion": "founder-core-2026-09-28.v1",
+      "referenceVersion": "hafs-tanzil-1.0-20260928",
+      "scheduleVersion": "founder-core-2026-09-28.v1:confirmed-templates",
+      "status": "awaiting_policy",
+      "freeDay": false,
+      "components": [],
+      "ranges": [],
+      "openPolicies": [
+        {
+          "code": "RULE_NOT_APPROVED",
+          "policy": "weekly_day_credit",
+          "question": "What approved personal daily target earns a full credit for flexible weekly reading?",
+          "ruleVersion": "founder-core-2026-09-28.v1"
+        }
+      ],
+      "id": "as_6f23e6c0b757606313b41dba6e1360d3"
+    },
+    "segments": [
+      {
+        "memberId": "BJ5",
+        "date": "2026-09-16",
+        "tier": "BJ5",
+        "tierLabel": "BJ5",
+        "colorToken": "level.BJ5",
+        "patternToken": "level-pattern.BJ5",
+        "cadence": "weekly",
+        "cycle": {
+          "id": "weekly:2026-09-13",
+          "cadence": "weekly",
+          "start": "2026-09-13",
+          "end": "2026-09-19"
+        },
+        "timezone": "Australia/Brisbane",
+        "commitmentId": "7fee9004-5e1b-52a7-8886-913cc1b813c0",
+        "ruleVersion": "founder-core-2026-09-28.v1",
+        "referenceVersion": "hafs-tanzil-1.0-20260928",
+        "scheduleVersion": "founder-core-2026-09-28.v1:confirmed-templates",
+        "status": "awaiting_policy",
+        "freeDay": false,
+        "components": [],
+        "ranges": [],
+        "openPolicies": [
+          {
+            "code": "RULE_NOT_APPROVED",
+            "policy": "weekly_day_credit",
+            "question": "What approved personal daily target earns a full credit for flexible weekly reading?",
+            "ruleVersion": "founder-core-2026-09-28.v1"
+          }
+        ],
+        "id": "as_6f23e6c0b757606313b41dba6e1360d3"
+      }
+    ],
+    "evaluation": {
+      "date": "2026-09-16",
+      "status": "no_entry",
+      "actualReadingStatus": "no_entry",
+      "uniqueCoverage": [],
+      "uniqueVerseCount": 0,
+      "repeatedActs": [],
+      "assignedFulfilment": {
+        "ranges": [],
+        "matchedVerses": 0,
+        "targetVerses": 0,
+        "complete": null
+      },
+      "supplementalReading": null,
+      "dayCredit": 0,
+      "creditState": "resolved",
+      "openPolicies": [
+        {
+          "code": "RULE_NOT_APPROVED",
+          "policy": "weekly_day_credit",
+          "question": "What approved personal daily target earns a full credit for flexible weekly reading?",
+          "ruleVersion": "founder-core-2026-09-28.v1"
+        }
+      ],
+      "assignmentIds": [
+        "as_6f23e6c0b757606313b41dba6e1360d3"
+      ],
+      "historicalLevels": [
+        {
+          "tier": "BJ5",
+          "label": "BJ5",
+          "colorToken": "level.BJ5",
+          "patternToken": "level-pattern.BJ5"
+        }
+      ],
+      "sourceActs": [],
+      "elapsedTime": null,
+      "inputHash": "01320628e6891c0d1a9d1bc41b35249df24d435c4474c5b9802b24f398cbcaf5",
+      "corrected": false,
+      "readerObservedTrace": []
+    },
+    "khatmaCoverage": {
+      "id": "weekly:2026-09-13",
+      "cadence": "weekly",
+      "start": "2026-09-13",
+      "end": "2026-09-19",
+      "status": "incomplete",
+      "uniqueCoverage": [],
+      "coveredVerses": 0,
+      "totalVerses": 6236,
+      "remainingRanges": [
+        {
+          "start": "1:1",
+          "end": "114:6"
+        }
+      ],
+      "nextUnreadVerse": "1:1",
+      "completedJuz": [],
+      "proofHash": null,
+      "completionDate": null,
+      "ordinal": null,
+      "sourceActRevisions": [],
+      "additionalKhatmas": {
+        "status": "awaiting_policy",
+        "policy": {
+          "code": "RULE_NOT_APPROVED",
+          "policy": "repeat_khatma",
+          "question": "How are explicit repeat acts attributed to multiple khatmas?",
+          "ruleVersion": "founder-core-2026-09-28.v1"
+        }
+      },
+      "excludedFreeDayActs": [],
+      "openPolicies": []
+    },
+    "nextUnreadVerse": "1:1",
+    "dataProvenance": {
+      "primary": "https://tanzil.net/res/text/metadata/quran-data.xml",
+      "primaryVersion": "1.0",
+      "primaryLicenseDeclared": "cc-by",
+      "primaryCopyright": "(C) 2008-2009 Tanzil.info",
+      "primarySha256": "8867c1d88191472adec9db694b3cd9f135b1a2ef580574d32cf888dcb22c5c7a",
+      "crossCheck": "https://api.alquran.cloud/v1/meta",
+      "crossCheckSha256": "9444749ea0b261054d4f744d4aec38286e666b25f1cf8aa78ce0a24f789caa5c",
+      "checkedAt": "2026-09-28",
+      "matchingSurahs": 114,
+      "matchingJuz": 30,
+      "matchingPages": 604,
+      "independenceLimit": "Separate published providers; underlying metadata may share Tanzil ancestry.",
+      "textAvailable": false,
+      "wordMapAvailable": false
+    },
+    "queuedChanges": [],
+    "readerText": {
+      "status": "unavailable",
+      "openPolicy": {
+        "code": "RULE_NOT_APPROVED",
+        "policy": "quran_assets",
+        "question": "Which text, word map, fonts and audio editions and rights are approved?",
+        "ruleVersion": "founder-core-2026-09-28.v1"
+      }
+    }
+  }
+}

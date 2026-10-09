@@ -1,0 +1,116 @@
+{
+  "schema": "ReadingMutationResult",
+  "contractVersion": "0.3.0",
+  "fixture": {
+    "act": {
+      "id": "26ad84bb-3454-5187-be71-a60c63fcfd32",
+      "memberId": "BJ2",
+      "revision": 1,
+      "revisionOf": null,
+      "retracted": false,
+      "occurrenceDate": "2026-09-01",
+      "occurredAt": "2026-09-01T09:00:00+10:00",
+      "timezone": "Australia/Brisbane",
+      "utcOffsetMinutes": 600,
+      "source": "manual_physical",
+      "assignmentId": "as_460359176a6d101ee8c4215bc56ede59",
+      "ruleVersion": "founder-core-2026-09-28.v1",
+      "referenceVersion": "hafs-tanzil-1.0-20260928",
+      "ranges": [
+        {
+          "start": "2:1",
+          "end": "2:286"
+        }
+      ],
+      "repeatOfActId": null,
+      "traceId": null,
+      "cycleId": "monthly:2026-09-01",
+      "freeDay": false,
+      "createdAt": "2026-10-01T02:00:00+00:00",
+      "updatedAt": "2026-10-01T02:00:00+00:00",
+      "mutationId": "19ab50e6-522c-51de-984c-cbdb2408202a",
+      "confirmationState": "member_confirmed"
+    },
+    "evaluation": {
+      "date": "2026-09-01",
+      "status": "completed",
+      "actualReadingStatus": "member_confirmed",
+      "uniqueCoverage": [
+        {
+          "start": "2:1",
+          "end": "2:286"
+        }
+      ],
+      "uniqueVerseCount": 286,
+      "repeatedActs": [],
+      "assignedFulfilment": {
+        "ranges": [
+          {
+            "start": "2:1",
+            "end": "2:286"
+          }
+        ],
+        "matchedVerses": 286,
+        "targetVerses": 286,
+        "complete": true
+      },
+      "supplementalReading": [],
+      "dayCredit": 1,
+      "creditState": "resolved",
+      "openPolicies": [],
+      "assignmentIds": [
+        "as_460359176a6d101ee8c4215bc56ede59"
+      ],
+      "historicalLevels": [
+        {
+          "tier": "BJ2",
+          "label": "BJ2",
+          "colorToken": "level.BJ2",
+          "patternToken": "level-pattern.BJ2"
+        }
+      ],
+      "sourceActs": [
+        {
+          "id": "26ad84bb-3454-5187-be71-a60c63fcfd32",
+          "revision": 1
+        }
+      ],
+      "elapsedTime": null,
+      "inputHash": "2f776eb43e580dfaeb01f265e903e9320209be6b04f4a03f07e3000c31bf2966",
+      "corrected": false,
+      "readerObservedTrace": []
+    },
+    "shipProgress": {
+      "visibility": "private",
+      "approvedCredits": 1,
+      "creditsPerShip": 30,
+      "periods": [
+        {
+          "month": "2026-09",
+          "approvedCredits": 1,
+          "completedShipsWithinPeriod": 0
+        }
+      ],
+      "completedShipsWithinPeriods": 0,
+      "currentShip": null,
+      "lifetimeShipCount": null,
+      "presentationStatus": "awaiting_policy",
+      "openPolicies": [
+        {
+          "code": "RULE_NOT_APPROVED",
+          "policy": "ship_carry",
+          "question": "Does unfinished construction continue across periods or remain a dated unfinished ship?",
+          "ruleVersion": "founder-core-2026-09-28.v1"
+        }
+      ],
+      "unresolvedDayCredits": [],
+      "ledger": [
+        {
+          "date": "2026-09-01",
+          "credit": 1,
+          "inputHash": "2f776eb43e580dfaeb01f265e903e9320209be6b04f4a03f07e3000c31bf2966"
+        }
+      ]
+    }
+  }
+}

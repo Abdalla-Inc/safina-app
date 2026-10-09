@@ -1,0 +1,175 @@
+{
+  "schema": "Today",
+  "contractVersion": "0.3.0",
+  "fixture": {
+    "assignment": {
+      "memberId": "feb",
+      "date": "2026-02-28",
+      "tier": "BJ1",
+      "tierLabel": "BJ1",
+      "colorToken": "level.BJ1",
+      "patternToken": "level-pattern.BJ1",
+      "cadence": "monthly",
+      "cycle": {
+        "id": "monthly:2026-02-01",
+        "cadence": "monthly",
+        "start": "2026-02-01",
+        "end": "2026-02-28"
+      },
+      "timezone": "Australia/Brisbane",
+      "commitmentId": "f47ce135-2f43-5b02-8422-ac09dc1a4cae",
+      "ruleVersion": "founder-core-2026-09-28.v1",
+      "referenceVersion": "hafs-tanzil-1.0-20260928",
+      "scheduleVersion": "founder-core-2026-09-28.v1:confirmed-templates",
+      "status": "awaiting_policy",
+      "freeDay": false,
+      "components": [],
+      "ranges": [],
+      "openPolicies": [
+        {
+          "code": "SCHEDULE_NOT_PUBLISHED",
+          "policy": "february_grid",
+          "question": "Which February dates carry the remaining portions?",
+          "ruleVersion": "founder-core-2026-09-28.v1"
+        }
+      ],
+      "id": "as_d3184ae2adb8bd98c78cbc9c3210bc32"
+    },
+    "segments": [
+      {
+        "memberId": "feb",
+        "date": "2026-02-28",
+        "tier": "BJ1",
+        "tierLabel": "BJ1",
+        "colorToken": "level.BJ1",
+        "patternToken": "level-pattern.BJ1",
+        "cadence": "monthly",
+        "cycle": {
+          "id": "monthly:2026-02-01",
+          "cadence": "monthly",
+          "start": "2026-02-01",
+          "end": "2026-02-28"
+        },
+        "timezone": "Australia/Brisbane",
+        "commitmentId": "f47ce135-2f43-5b02-8422-ac09dc1a4cae",
+        "ruleVersion": "founder-core-2026-09-28.v1",
+        "referenceVersion": "hafs-tanzil-1.0-20260928",
+        "scheduleVersion": "founder-core-2026-09-28.v1:confirmed-templates",
+        "status": "awaiting_policy",
+        "freeDay": false,
+        "components": [],
+        "ranges": [],
+        "openPolicies": [
+          {
+            "code": "SCHEDULE_NOT_PUBLISHED",
+            "policy": "february_grid",
+            "question": "Which February dates carry the remaining portions?",
+            "ruleVersion": "founder-core-2026-09-28.v1"
+          }
+        ],
+        "id": "as_d3184ae2adb8bd98c78cbc9c3210bc32"
+      }
+    ],
+    "evaluation": {
+      "date": "2026-02-28",
+      "status": "no_entry",
+      "actualReadingStatus": "no_entry",
+      "uniqueCoverage": [],
+      "uniqueVerseCount": 0,
+      "repeatedActs": [],
+      "assignedFulfilment": {
+        "ranges": [],
+        "matchedVerses": 0,
+        "targetVerses": 0,
+        "complete": null
+      },
+      "supplementalReading": null,
+      "dayCredit": 0,
+      "creditState": "resolved",
+      "openPolicies": [
+        {
+          "code": "SCHEDULE_NOT_PUBLISHED",
+          "policy": "february_grid",
+          "question": "Which February dates carry the remaining portions?",
+          "ruleVersion": "founder-core-2026-09-28.v1"
+        }
+      ],
+      "assignmentIds": [
+        "as_d3184ae2adb8bd98c78cbc9c3210bc32"
+      ],
+      "historicalLevels": [
+        {
+          "tier": "BJ1",
+          "label": "BJ1",
+          "colorToken": "level.BJ1",
+          "patternToken": "level-pattern.BJ1"
+        }
+      ],
+      "sourceActs": [],
+      "elapsedTime": null,
+      "inputHash": "5f09a89f2c03cd0ac9a20b72c2dd81f9697ea43ae3724f633ea6c4378117a31d",
+      "corrected": false,
+      "readerObservedTrace": []
+    },
+    "khatmaCoverage": {
+      "id": "monthly:2026-02-01",
+      "cadence": "monthly",
+      "start": "2026-02-01",
+      "end": "2026-02-28",
+      "status": "incomplete",
+      "uniqueCoverage": [],
+      "coveredVerses": 0,
+      "totalVerses": 6236,
+      "remainingRanges": [
+        {
+          "start": "1:1",
+          "end": "114:6"
+        }
+      ],
+      "nextUnreadVerse": "1:1",
+      "completedJuz": [],
+      "proofHash": null,
+      "completionDate": null,
+      "ordinal": null,
+      "sourceActRevisions": [],
+      "additionalKhatmas": {
+        "status": "awaiting_policy",
+        "policy": {
+          "code": "RULE_NOT_APPROVED",
+          "policy": "repeat_khatma",
+          "question": "How are explicit repeat acts attributed to multiple khatmas?",
+          "ruleVersion": "founder-core-2026-09-28.v1"
+        }
+      },
+      "excludedFreeDayActs": [],
+      "openPolicies": []
+    },
+    "nextUnreadVerse": "1:1",
+    "dataProvenance": {
+      "primary": "https://tanzil.net/res/text/metadata/quran-data.xml",
+      "primaryVersion": "1.0",
+      "primaryLicenseDeclared": "cc-by",
+      "primaryCopyright": "(C) 2008-2009 Tanzil.info",
+      "primarySha256": "8867c1d88191472adec9db694b3cd9f135b1a2ef580574d32cf888dcb22c5c7a",
+      "crossCheck": "https://api.alquran.cloud/v1/meta",
+      "crossCheckSha256": "9444749ea0b261054d4f744d4aec38286e666b25f1cf8aa78ce0a24f789caa5c",
+      "checkedAt": "2026-09-28",
+      "matchingSurahs": 114,
+      "matchingJuz": 30,
+      "matchingPages": 604,
+      "independenceLimit": "Separate published providers; underlying metadata may share Tanzil ancestry.",
+      "textAvailable": false,
+      "wordMapAvailable": false
+    },
+    "queuedChanges": [],
+    "readerText": {
+      "status": "unavailable",
+      "openPolicy": {
+        "code": "RULE_NOT_APPROVED",
+        "policy": "quran_assets",
+        "question": "Which text, word map, fonts and audio editions and rights are approved?",
+        "ruleVersion": "founder-core-2026-09-28.v1"
+      }
+    }
+  }
+}

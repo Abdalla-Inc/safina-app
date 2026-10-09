@@ -1,0 +1,2759 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Safina connected app",
+    "version": "0.4.0",
+    "description": "Same-origin, cookie-authenticated API. Sandbox and live databases must be separate. Legacy v0.3 bearer API remains isolated."
+  },
+  "servers": [
+    {
+      "url": "/api/v1"
+    }
+  ],
+  "security": [
+    {
+      "sessionCookie": []
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "sessionCookie": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "safina_session"
+      }
+    }
+  },
+  "paths": {
+    "/health": {
+      "get": {
+        "operationId": "get_health",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/OperationalResult"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Stable error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/auth/register": {
+      "post": {
+        "operationId": "post_auth_register",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/AuthState"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Stable error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "parameters": [
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "./connected.schema.json#/$defs/Register"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "operationId": "post_auth_login",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Session"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Stable error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "parameters": [
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "./connected.schema.json#/$defs/Login"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/verify": {
+      "post": {
+        "operationId": "post_auth_verify",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Session"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Stable error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "parameters": [
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "./connected.schema.json#/$defs/Verify"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/recover": {
+      "post": {
+        "operationId": "post_auth_recover",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/AuthState"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Stable error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "parameters": [
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "./connected.schema.json#/$defs/Recover"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/reset-password": {
+      "post": {
+        "operationId": "post_auth_reset_password",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/AuthState"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Stable error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "parameters": [
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "./connected.schema.json#/$defs/Reset"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/session": {
+      "get": {
+        "operationId": "get_auth_session",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Session"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Stable error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/refresh": {
+      "post": {
+        "operationId": "post_auth_refresh",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Session"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Stable error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "./connected.schema.json#/$defs/EmptyBody"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/logout": {
+      "post": {
+        "operationId": "post_auth_logout",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/AuthState"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Stable error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "./connected.schema.json#/$defs/EmptyBody"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/google": {
+      "post": {
+        "operationId": "post_auth_google",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Redirect"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Stable error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "parameters": [
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "./connected.schema.json#/$defs/GoogleStart"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/google/callback": {
+      "get": {
+        "operationId": "get_auth_google_callback",
+        "responses": {
+          "200": {
+            "description": "Binary image or authorized redirect"
+          },
+          "default": {
+            "description": "Stable error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "parameters": [
+          {
+            "name": "code",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/me": {
+      "get": {
+        "operationId": "get_me",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Me"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Stable error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "patch_me",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Me"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Stable error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "./connected.schema.json#/$defs/ProfilePatch"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/me/profile": {
+      "patch": {
+        "operationId": "patch_me_profile",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Me"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Stable error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "./connected.schema.json#/$defs/ProfilePatch"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/me/avatar": {
+      "put": {
+        "operationId": "put_me_avatar",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Me"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Stable error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "./connected.schema.json#/$defs/AvatarPut"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "delete_me_avatar",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Me"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Stable error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "./connected.schema.json#/$defs/RevisionMutation"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/assets/avatar/{assetId}": {
+      "get": {
+        "operationId": "get_assets_avatar_assetId",
+        "responses": {
+          "200": {
+            "description": "Binary image or authorized redirect"
+          },
+          "default": {
+            "description": "Stable error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "assetId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/me/commitment": {
+      "get": {
+        "operationId": "get_me_commitment",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/CommitmentView"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Stable error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "post_me_commitment",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/ReadingMutationResult"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Stable error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "./connected.schema.json#/$defs/CommitmentChangeRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/me/commitment-history": {
+      "get": {
+        "operationId": "get_me_commitment_history",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/CommitmentView"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Stable error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/commitment-changes": {
+      "post": {
+        "operationId": "post_commitment_changes",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/ReadingMutationResult"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Stable error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "./connected.schema.json#/$defs/CommitmentChangeRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/program-rules": {
+      "get": {
+        "operationId": "get_program_rules",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/OperationalResult"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Stable error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/today": {
+      "get": {
+        "operationId": "get_today",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Today"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Stable error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "date",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/today/components/{componentId}": {
+      "put": {
+        "operationId": "put_today_components_componentId",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/ReadingResult"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Stable error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "componentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "./connected.schema.json#/$defs/ComponentPut"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/today/partial": {
+      "post": {
+        "operationId": "post_today_partial",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/ReadingResult"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Stable error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "./connected.schema.json#/$defs/PartialPost"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/me/reading-acts": {
+      "get": {
+        "operationId": "get_me_reading_acts",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/ReadingList"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Stable error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "day",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/reading-acts/{actId}": {
+      "patch": {
+        "operationId": "patch_reading_acts_actId",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/ReadingMutationResult"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Stable error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "actId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "./connected.schema.json#/$defs/ReadingPatch"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reading-acts/{actId}/retract": {
+      "post": {
+        "operationId": "post_reading_acts_actId_retract",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/ReadingMutationResult"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Stable error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "actId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "./connected.schema.json#/$defs/Retract"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/calendar": {
+      "get": {
+        "operationId": "get_calendar",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Calendar"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Stable error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "start",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/ship-progress": {
+      "get": {
+        "operationId": "get_ship_progress",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/ShipProgress"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Stable error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/khatmas": {
+      "get": {
+        "operationId": "get_khatmas",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Khatmas"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Stable error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reader": {
+      "get": {
+        "operationId": "get_reader",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Reader"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Stable error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "operationId": "put_reader",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Reader"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Stable error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "./connected.schema.json#/$defs/ReaderPut"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/quran/reference": {
+      "get": {
+        "operationId": "get_quran_reference",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/QuranReferenceVersion"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Stable error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/community/context": {
+      "get": {
+        "operationId": "get_community_context",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Context"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Stable error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/community/daily": {
+      "get": {
+        "operationId": "get_community_daily",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/DailyFeed"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Stable error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "day",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        ]
+      }
+    },
+    "/community/weekly": {
+      "get": {
+        "operationId": "get_community_weekly",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/WeeklyFeed"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Stable error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "weekStart",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        ]
+      }
+    },
+    "/community/changes": {
+      "get": {
+        "operationId": "get_community_changes",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Changes"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Stable error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "after",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        ]
+      }
+    },
+    "/me/community/daily": {
+      "get": {
+        "operationId": "get_me_community_daily",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/OwnDaily"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Stable error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "day",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/me/community/weeks": {
+      "get": {
+        "operationId": "get_me_community_weeks",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/OwnWeeks"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Stable error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "before",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        ]
+      }
+    },
+    "/me/community/weeks/{weekStart}/days": {
+      "get": {
+        "operationId": "get_me_community_weeks_weekStart_days",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/OwnDays"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Stable error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "weekStart",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/community/daily/{targetId}/reaction": {
+      "put": {
+        "operationId": "put_community_daily_targetId_reaction",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Reaction"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Stable error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "targetId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "./connected.schema.json#/$defs/ReactionPut"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/community/weekly/{targetId}/reaction": {
+      "put": {
+        "operationId": "put_community_weekly_targetId_reaction",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Reaction"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Stable error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "targetId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "./connected.schema.json#/$defs/ReactionPut"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/community/reports": {
+      "post": {
+        "operationId": "post_community_reports",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/OperationalResult"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Stable error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "./connected.schema.json#/$defs/ReportPost"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/moderation/reports": {
+      "get": {
+        "operationId": "get_moderation_reports",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/OperationalResult"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Stable error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/moderation/actions": {
+      "post": {
+        "operationId": "post_moderation_actions",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/OperationalResult"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Stable error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "./connected.schema.json#/$defs/ModerationPost"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/learning/courses": {
+      "get": {
+        "operationId": "get_learning_courses",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Catalog"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Stable error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        ]
+      }
+    },
+    "/learning/courses/{courseId}": {
+      "get": {
+        "operationId": "get_learning_courses_courseId",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Course"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Stable error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "courseId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/learning/courses/{courseId}/lessons/{lessonId}": {
+      "get": {
+        "operationId": "get_learning_courses_courseId_lessons_lessonId",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Lesson"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Stable error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "courseId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "lessonId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/learning/courses/{courseId}/lessons/{lessonId}/progress": {
+      "put": {
+        "operationId": "put_learning_courses_courseId_lessons_lessonId_progress",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/LearningResult"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Stable error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "courseId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "lessonId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "./connected.schema.json#/$defs/ProgressPut"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/learning/courses/{courseId}/lessons/{lessonId}/note": {
+      "put": {
+        "operationId": "put_learning_courses_courseId_lessons_lessonId_note",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/LearningResult"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Stable error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "courseId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "lessonId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "./connected.schema.json#/$defs/NotePut"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/learning/courses/{courseId}/lessons/{lessonId}/bookmark": {
+      "put": {
+        "operationId": "put_learning_courses_courseId_lessons_lessonId_bookmark",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/LearningResult"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Stable error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "courseId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "lessonId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "./connected.schema.json#/$defs/BookmarkPut"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/learning/courses/{courseId}/modules/{moduleId}/answers": {
+      "put": {
+        "operationId": "put_learning_courses_courseId_modules_moduleId_answers",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/LearningResult"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Stable error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "courseId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "moduleId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "./connected.schema.json#/$defs/AnswersPut"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/learning/courses/{courseId}/modules/{moduleId}/answers/submit": {
+      "post": {
+        "operationId": "post_learning_courses_courseId_modules_moduleId_answers_submit",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/LearningResult"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Stable error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "courseId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "moduleId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "./connected.schema.json#/$defs/AnswersPut"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/learning/library": {
+      "get": {
+        "operationId": "get_learning_library",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Library"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Stable error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        ]
+      }
+    },
+    "/learning/courses/{courseId}/lessons/{lessonId}/resources/{resourceId}": {
+      "get": {
+        "operationId": "get_learning_courses_courseId_lessons_lessonId_resources_resourceId",
+        "responses": {
+          "200": {
+            "description": "Binary image or authorized redirect"
+          },
+          "default": {
+            "description": "Stable error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "courseId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "lessonId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "resourceId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/media/playback": {
+      "get": {
+        "operationId": "get_media_playback",
+        "responses": {
+          "200": {
+            "description": "Binary image or authorized redirect"
+          },
+          "default": {
+            "description": "Stable error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "ticket",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/me/export": {
+      "get": {
+        "operationId": "get_me_export",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Export"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Stable error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/me/deletion": {
+      "post": {
+        "operationId": "post_me_deletion",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/OperationalResult"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Stable error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./connected.schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "./connected.schema.json#/$defs/DeletionPost"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

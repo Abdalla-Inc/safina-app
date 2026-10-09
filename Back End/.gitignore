@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+local/
+*.sqlite3*
+.venv/
+.DS_Store
+.coverage
+
+.env
+.env.*
+!.env.example

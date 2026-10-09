@@ -1,0 +1,316 @@
+.safina-scene {
+  position: relative;
+  width: 100%;
+  border-radius: 26px;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 60% 15%, #203649, #06121e 65%);
+  color: #f0f4f2;
+  isolation: isolate;
+  margin-bottom: 25px;
+}
+.safina-viewport {
+  width: 100%;
+  height: clamp(360px, 53vh, 570px);
+  direction: ltr;
+}
+.safina-viewport canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: pan-y;
+}
+.safina-scene-caption {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  padding: 19px 24px 40px;
+  background: linear-gradient(#071725c9, transparent);
+  pointer-events: none;
+  font-size: 12px;
+}
+.safina-scene-caption strong {
+  font-weight: 500;
+  font-size: 13px;
+}
+.safina-controls {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid #ffffff30;
+  background: #091b2dbb;
+  border-radius: 30px;
+  backdrop-filter: blur(12px);
+}
+.safina-controls button {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 0;
+  background: transparent;
+  color: #f1f3ef;
+  display: grid;
+  place-items: center;
+}
+.safina-controls button:hover {
+  background: #ffffff19;
+}
+.safina-controls button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+.safina-fallback {
+  position: absolute;
+  inset: 75px 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 13px;
+  background: #091b2bd9;
+  border-radius: 18px;
+}
+.safina-fallback button {
+  min-height: 44px;
+  border-radius: 20px;
+  border: 1px solid #b9d7d3;
+  color: #f2f8f7;
+  background: transparent;
+  padding: 8px 20px;
+}
+.safina-preview-select {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0 0 12px;
+}
+.safina-preview-select select {
+  min-height: 44px;
+  max-width: 100%;
+  border: 1px solid #d6e0d9;
+  border-radius: 22px;
+  background: #fafcf8;
+  color: #3e5d52;
+  padding: 4px 13px;
+  font-size: 12px;
+}
+.safina-calendar {
+  padding: 22px;
+  background: #fffefb;
+  border: 1px solid #e0e7df;
+  border-radius: 24px;
+  min-width: 0;
+}
+.safina-calendar > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.safina-calendar h2 {
+  font-size: 17px;
+  font-weight: 600;
+  margin: 0;
+  color: #26483e;
+}
+.safina-calendar > header > div {
+  display: flex;
+}
+.safina-calendar > header button {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  border: 0;
+  color: #456c5d;
+}
+.safina-calendar > header button:disabled {
+  opacity: 0.3;
+}
+.safina-month-stats {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 20px;
+  margin: 12px 0 23px;
+  padding: 13px 0;
+  border-bottom: 1px solid #e5e9e0;
+  color: #466655;
+}
+.safina-month-stats > span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+}
+.safina-month-stats strong {
+  font-size: 19px;
+  color: #1b7355;
+  font-weight: 600;
+}
+.safina-month-stats > span:last-child svg {
+  color: #c57624;
+}
+.safina-calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 7px;
+}
+.safina-weekday {
+  text-align: center;
+  font-size: 10px;
+  padding-bottom: 8px;
+  color: #626f5f;
+}
+.safina-day {
+  min-width: 0;
+  min-height: 55px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+  background: #f5f6f3;
+  border: 1px solid transparent;
+  border-radius: 11px;
+  color: #718073;
+  font-size: 15px;
+  font-weight: 500;
+  position: relative;
+}
+.safina-day small {
+  font-size: 12px;
+  line-height: 12px;
+  min-height: 12px;
+}
+.safina-day.complete,
+.safina-calendar-legend i.complete {
+  background: #13835f;
+  color: #fff;
+  box-shadow: 0 3px 9px #14855f23;
+}
+.safina-day.partial,
+.safina-calendar-legend i.partial {
+  background: #f8cb65;
+  color: #69480b;
+}
+.safina-day.missed,
+.safina-calendar-legend i.missed {
+  background: #f4c6ca;
+  color: #8a3345;
+}
+.safina-day.rest,
+.safina-calendar-legend i.rest {
+  background: #e0e8f1;
+  color: #5b6b80;
+}
+.safina-day.future,
+.safina-day.unassigned {
+  background: #f4f5f1;
+  color: #788471;
+}
+.safina-day.unknown {
+  background: repeating-linear-gradient(
+    135deg,
+    #eef1eb,
+    #eef1eb 5px,
+    #e4e8e0 5px,
+    #e4e8e0 7px
+  );
+  color: #566651;
+}
+.safina-day.open {
+  border: 1px dashed #97afa0;
+  color: #466957;
+  background: #f9fcf6;
+}
+.safina-day.selected {
+  outline: 2px solid #254f43;
+  outline-offset: 2px;
+}
+.safina-day[aria-current="date"]::after {
+  content: "";
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3px;
+  height: 3px;
+  background: currentColor;
+  border-radius: 50%;
+}
+.safina-calendar-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px 14px;
+  margin-top: 22px;
+  font-size: 10px;
+  color: #5e6c59;
+}
+.safina-calendar-legend span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.safina-calendar-legend i {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+}
+.safina-calendar-note {
+  display: block;
+  font-size: 10px;
+  margin-top: 13px;
+  color: #6d7863;
+}
+.safina-connected-detail {
+  margin-top: 15px;
+  padding: 20px;
+  border: 1px solid #dce5db;
+  border-radius: 22px;
+  background: #fffefb;
+}
+.safina-connected-detail h3 {
+  font-size: 15px;
+}
+@media (max-width: 600px) {
+  .safina-scene {
+    border-radius: 20px;
+  }
+  .safina-viewport {
+    height: 400px;
+  }
+  .safina-scene-caption {
+    padding: 16px 16px 35px;
+    font-size: 10px;
+  }
+  .safina-scene-caption strong {
+    font-size: 11px;
+  }
+  .safina-calendar {
+    padding: 16px;
+  }
+  .safina-calendar-grid {
+    gap: 5px;
+  }
+  .safina-day {
+    min-height: 48px;
+    font-size: 13px;
+    border-radius: 9px;
+  }
+  .safina-weekday {
+    font-size: 9px;
+  }
+  .safina-month-stats {
+    gap: 8px 14px;
+  }
+}

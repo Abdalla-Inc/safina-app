@@ -1,0 +1,4275 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://safina.local/contracts/0.3.0/schema.json",
+  "$defs": {
+    "Range": {
+      "type": "object",
+      "properties": {
+        "start": {
+          "type": "string",
+          "pattern": "^\\d{1,3}:\\d{1,3}$"
+        },
+        "end": {
+          "type": "string",
+          "pattern": "^\\d{1,3}:\\d{1,3}$"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "additionalProperties": false
+    },
+    "OpenPolicy": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "enum": [
+            "RULE_NOT_APPROVED",
+            "SCHEDULE_NOT_PUBLISHED"
+          ]
+        },
+        "policy": {
+          "type": "string"
+        },
+        "question": {
+          "type": "string"
+        },
+        "ruleVersion": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "code",
+        "policy",
+        "question",
+        "ruleVersion"
+      ],
+      "additionalProperties": false
+    },
+    "Cycle": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "cadence": {
+          "enum": [
+            "monthly",
+            "weekly"
+          ]
+        },
+        "start": {
+          "type": "string",
+          "format": "date"
+        },
+        "end": {
+          "type": "string",
+          "format": "date"
+        }
+      },
+      "required": [
+        "id",
+        "cadence",
+        "start",
+        "end"
+      ],
+      "additionalProperties": false
+    },
+    "Commitment": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "tier": {
+          "enum": [
+            "B",
+            "BI",
+            "BJ1",
+            "BJ2",
+            "BJ3",
+            "BJ4",
+            "BJ5"
+          ]
+        },
+        "effectiveAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "timezone": {
+          "type": "string"
+        },
+        "initial": {
+          "type": "boolean"
+        },
+        "previousId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "requestedAt": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "tier",
+        "effectiveAt",
+        "timezone",
+        "initial"
+      ],
+      "additionalProperties": false
+    },
+    "AssignmentSnapshot": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "memberId": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string",
+          "format": "date"
+        },
+        "tier": {
+          "enum": [
+            "B",
+            "BI",
+            "BJ1",
+            "BJ2",
+            "BJ3",
+            "BJ4",
+            "BJ5"
+          ]
+        },
+        "tierLabel": {
+          "type": "string"
+        },
+        "colorToken": {
+          "type": "string"
+        },
+        "patternToken": {
+          "type": "string"
+        },
+        "cadence": {
+          "enum": [
+            "daily",
+            "monthly",
+            "weekly"
+          ]
+        },
+        "cycle": {
+          "$ref": "#/$defs/Cycle"
+        },
+        "timezone": {
+          "type": "string"
+        },
+        "commitmentId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "ruleVersion": {
+          "type": "string"
+        },
+        "referenceVersion": {
+          "type": "string"
+        },
+        "scheduleVersion": {
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "published",
+            "free_day",
+            "awaiting_policy"
+          ]
+        },
+        "freeDay": {
+          "type": "boolean"
+        },
+        "components": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "label": {
+                "type": "string"
+              },
+              "ranges": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/Range"
+                }
+              },
+              "reportMeaning": {
+                "enum": [
+                  "member_self_report"
+                ]
+              }
+            },
+            "required": [
+              "id",
+              "label",
+              "ranges",
+              "reportMeaning"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "ranges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Range"
+          }
+        },
+        "openPolicies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/OpenPolicy"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "memberId",
+        "date",
+        "tier",
+        "tierLabel",
+        "colorToken",
+        "patternToken",
+        "cadence",
+        "cycle",
+        "timezone",
+        "commitmentId",
+        "ruleVersion",
+        "referenceVersion",
+        "scheduleVersion",
+        "status",
+        "freeDay",
+        "components",
+        "ranges",
+        "openPolicies"
+      ],
+      "additionalProperties": false
+    },
+    "AssignmentSegment": {
+      "type": "object",
+      "properties": {
+        "assignmentId": {
+          "type": "string"
+        },
+        "commitmentId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "date": {
+          "type": "string",
+          "format": "date"
+        },
+        "effectiveAt": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "assignmentId",
+        "commitmentId",
+        "date",
+        "effectiveAt"
+      ],
+      "additionalProperties": false
+    },
+    "HistoricalLevel": {
+      "type": "object",
+      "properties": {
+        "tier": {
+          "enum": [
+            "B",
+            "BI",
+            "BJ1",
+            "BJ2",
+            "BJ3",
+            "BJ4",
+            "BJ5"
+          ]
+        },
+        "label": {
+          "type": "string"
+        },
+        "colorToken": {
+          "type": "string"
+        },
+        "patternToken": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "tier",
+        "label",
+        "colorToken",
+        "patternToken"
+      ],
+      "additionalProperties": false
+    },
+    "ActRevisionKey": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "id",
+        "revision"
+      ],
+      "additionalProperties": false
+    },
+    "ReaderTrace": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "memberId": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "occurrenceDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "occurredAt": {
+          "type": "string"
+        },
+        "timezone": {
+          "type": "string"
+        },
+        "utcOffsetMinutes": {
+          "type": "integer"
+        },
+        "referenceVersion": {
+          "type": "string"
+        },
+        "observations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "enum": [
+                  "exposed",
+                  "navigated",
+                  "page_opened",
+                  "audio_played"
+                ]
+              },
+              "ranges": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/Range"
+                }
+              }
+            },
+            "required": [
+              "kind",
+              "ranges"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "suggestedRanges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Range"
+          }
+        },
+        "state": {
+          "enum": [
+            "reader_suggestion"
+          ]
+        },
+        "discarded": {
+          "type": "boolean"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "credit": {
+          "enum": [
+            0
+          ]
+        },
+        "explanation": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "memberId",
+        "revision",
+        "occurrenceDate",
+        "occurredAt",
+        "timezone",
+        "utcOffsetMinutes",
+        "referenceVersion",
+        "observations",
+        "suggestedRanges",
+        "state",
+        "discarded",
+        "updatedAt",
+        "createdAt",
+        "credit",
+        "explanation"
+      ],
+      "additionalProperties": false
+    },
+    "ReadingAct": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "memberId": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "revisionOf": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "retracted": {
+          "type": "boolean"
+        },
+        "occurrenceDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "occurredAt": {
+          "type": "string"
+        },
+        "timezone": {
+          "type": "string"
+        },
+        "utcOffsetMinutes": {
+          "type": "integer"
+        },
+        "source": {
+          "enum": [
+            "manual",
+            "manual_physical",
+            "reader_confirmed",
+            "component_self_report"
+          ]
+        },
+        "assignmentId": {
+          "type": "string"
+        },
+        "ruleVersion": {
+          "type": "string"
+        },
+        "referenceVersion": {
+          "type": "string"
+        },
+        "ranges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Range"
+          }
+        },
+        "repeatOfActId": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "uuid"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "traceId": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "uuid"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "cycleId": {
+          "type": "string"
+        },
+        "freeDay": {
+          "type": "boolean"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "mutationId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "confirmationState": {
+          "enum": [
+            "member_confirmed"
+          ]
+        },
+        "revisionReason": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "memberId",
+        "revision",
+        "revisionOf",
+        "retracted",
+        "occurrenceDate",
+        "occurredAt",
+        "timezone",
+        "utcOffsetMinutes",
+        "source",
+        "assignmentId",
+        "ruleVersion",
+        "referenceVersion",
+        "ranges",
+        "repeatOfActId",
+        "traceId",
+        "cycleId",
+        "freeDay",
+        "createdAt",
+        "updatedAt",
+        "mutationId",
+        "confirmationState"
+      ],
+      "additionalProperties": false
+    },
+    "ReadingRevision": {
+      "$ref": "#/$defs/ReadingAct"
+    },
+    "DayEvaluation": {
+      "type": "object",
+      "properties": {
+        "date": {
+          "type": "string",
+          "format": "date"
+        },
+        "status": {
+          "enum": [
+            "completed",
+            "partial",
+            "supplemental_only",
+            "no_entry",
+            "free_day",
+            "recorded_awaiting_policy",
+            "paused"
+          ]
+        },
+        "actualReadingStatus": {
+          "enum": [
+            "member_confirmed",
+            "no_entry"
+          ]
+        },
+        "uniqueCoverage": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Range"
+          }
+        },
+        "uniqueVerseCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "repeatedActs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "assignedFulfilment": {
+          "type": "object",
+          "properties": {
+            "ranges": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Range"
+              }
+            },
+            "matchedVerses": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "targetVerses": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "complete": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "ranges",
+            "matchedVerses",
+            "targetVerses",
+            "complete"
+          ],
+          "additionalProperties": false
+        },
+        "supplementalReading": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Range"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "dayCredit": {
+          "enum": [
+            0,
+            1,
+            null
+          ]
+        },
+        "creditState": {
+          "enum": [
+            "resolved",
+            "awaiting_policy"
+          ]
+        },
+        "openPolicies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/OpenPolicy"
+          }
+        },
+        "assignmentIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "historicalLevels": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/HistoricalLevel"
+          }
+        },
+        "sourceActs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ActRevisionKey"
+          }
+        },
+        "elapsedTime": {
+          "type": "null"
+        },
+        "inputHash": {
+          "type": "string"
+        },
+        "corrected": {
+          "type": "boolean"
+        },
+        "readerObservedTrace": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ReaderTrace"
+          }
+        }
+      },
+      "required": [
+        "date",
+        "status",
+        "actualReadingStatus",
+        "uniqueCoverage",
+        "uniqueVerseCount",
+        "repeatedActs",
+        "assignedFulfilment",
+        "supplementalReading",
+        "dayCredit",
+        "creditState",
+        "openPolicies",
+        "assignmentIds",
+        "historicalLevels",
+        "sourceActs",
+        "elapsedTime",
+        "inputHash",
+        "corrected",
+        "readerObservedTrace"
+      ],
+      "additionalProperties": false
+    },
+    "KhatmaRecord": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "cadence": {
+          "enum": [
+            "monthly",
+            "weekly"
+          ]
+        },
+        "start": {
+          "type": "string",
+          "format": "date"
+        },
+        "end": {
+          "type": "string",
+          "format": "date"
+        },
+        "status": {
+          "enum": [
+            "complete",
+            "incomplete",
+            "awaiting_policy"
+          ]
+        },
+        "uniqueCoverage": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Range"
+          }
+        },
+        "coveredVerses": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "totalVerses": {
+          "enum": [
+            6236
+          ]
+        },
+        "remainingRanges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Range"
+          }
+        },
+        "nextUnreadVerse": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "completedJuz": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 30
+          }
+        },
+        "proofHash": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "completionDate": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ordinal": {
+          "enum": [
+            1,
+            null
+          ]
+        },
+        "sourceActRevisions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ActRevisionKey"
+          }
+        },
+        "additionalKhatmas": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "enum": [
+                "awaiting_policy"
+              ]
+            },
+            "policy": {
+              "$ref": "#/$defs/OpenPolicy"
+            }
+          },
+          "required": [
+            "status",
+            "policy"
+          ],
+          "additionalProperties": false
+        },
+        "excludedFreeDayActs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "openPolicies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/OpenPolicy"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "cadence",
+        "start",
+        "end",
+        "status",
+        "uniqueCoverage",
+        "coveredVerses",
+        "totalVerses",
+        "remainingRanges",
+        "nextUnreadVerse",
+        "completedJuz",
+        "proofHash",
+        "completionDate",
+        "ordinal",
+        "sourceActRevisions",
+        "additionalKhatmas",
+        "excludedFreeDayActs",
+        "openPolicies"
+      ],
+      "additionalProperties": false
+    },
+    "Khatmas": {
+      "type": "object",
+      "properties": {
+        "visibility": {
+          "enum": [
+            "private"
+          ]
+        },
+        "referenceVersion": {
+          "type": "string"
+        },
+        "cycles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/KhatmaRecord"
+          }
+        }
+      },
+      "required": [
+        "visibility",
+        "referenceVersion",
+        "cycles"
+      ],
+      "additionalProperties": false
+    },
+    "ShipProgress": {
+      "type": "object",
+      "properties": {
+        "visibility": {
+          "enum": [
+            "private"
+          ]
+        },
+        "approvedCredits": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "creditsPerShip": {
+          "enum": [
+            30
+          ]
+        },
+        "periods": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "month": {
+                "type": "string"
+              },
+              "approvedCredits": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "completedShipsWithinPeriod": {
+                "type": "integer",
+                "minimum": 0
+              }
+            },
+            "required": [
+              "month",
+              "approvedCredits",
+              "completedShipsWithinPeriod"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "completedShipsWithinPeriods": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "currentShip": {
+          "type": "null"
+        },
+        "lifetimeShipCount": {
+          "type": "null"
+        },
+        "presentationStatus": {
+          "enum": [
+            "awaiting_policy"
+          ]
+        },
+        "openPolicies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/OpenPolicy"
+          }
+        },
+        "unresolvedDayCredits": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "date"
+          }
+        },
+        "ledger": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "date": {
+                "type": "string",
+                "format": "date"
+              },
+              "credit": {
+                "enum": [
+                  0,
+                  1,
+                  null
+                ]
+              },
+              "inputHash": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "date",
+              "credit",
+              "inputHash"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "visibility",
+        "approvedCredits",
+        "creditsPerShip",
+        "periods",
+        "completedShipsWithinPeriods",
+        "currentShip",
+        "lifetimeShipCount",
+        "presentationStatus",
+        "openPolicies",
+        "unresolvedDayCredits",
+        "ledger"
+      ],
+      "additionalProperties": false
+    },
+    "ShipLedger": {
+      "$ref": "#/$defs/ShipProgress"
+    },
+    "CalendarDay": {
+      "type": "object",
+      "properties": {
+        "date": {
+          "type": "string",
+          "format": "date"
+        },
+        "status": {
+          "enum": [
+            "completed",
+            "partial",
+            "supplemental_only",
+            "no_entry",
+            "free_day",
+            "recorded_awaiting_policy",
+            "paused"
+          ]
+        },
+        "actualReadingStatus": {
+          "enum": [
+            "member_confirmed",
+            "no_entry"
+          ]
+        },
+        "uniqueCoverage": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Range"
+          }
+        },
+        "uniqueVerseCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "repeatedActs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "assignedFulfilment": {
+          "type": "object",
+          "properties": {
+            "ranges": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Range"
+              }
+            },
+            "matchedVerses": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "targetVerses": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "complete": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "ranges",
+            "matchedVerses",
+            "targetVerses",
+            "complete"
+          ],
+          "additionalProperties": false
+        },
+        "supplementalReading": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Range"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "dayCredit": {
+          "enum": [
+            0,
+            1,
+            null
+          ]
+        },
+        "creditState": {
+          "enum": [
+            "resolved",
+            "awaiting_policy"
+          ]
+        },
+        "openPolicies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/OpenPolicy"
+          }
+        },
+        "assignmentIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "historicalLevels": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/HistoricalLevel"
+          }
+        },
+        "sourceActs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ActRevisionKey"
+          }
+        },
+        "elapsedTime": {
+          "type": "null"
+        },
+        "inputHash": {
+          "type": "string"
+        },
+        "corrected": {
+          "type": "boolean"
+        },
+        "readerObservedTrace": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ReaderTrace"
+          }
+        },
+        "khatmaMarks": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "date",
+        "status",
+        "actualReadingStatus",
+        "uniqueCoverage",
+        "uniqueVerseCount",
+        "repeatedActs",
+        "assignedFulfilment",
+        "supplementalReading",
+        "dayCredit",
+        "creditState",
+        "openPolicies",
+        "assignmentIds",
+        "historicalLevels",
+        "sourceActs",
+        "elapsedTime",
+        "inputHash",
+        "corrected",
+        "readerObservedTrace",
+        "khatmaMarks"
+      ],
+      "additionalProperties": false
+    },
+    "Calendar": {
+      "type": "object",
+      "properties": {
+        "visibility": {
+          "enum": [
+            "private"
+          ]
+        },
+        "days": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/CalendarDay"
+          }
+        }
+      },
+      "required": [
+        "visibility",
+        "days"
+      ],
+      "additionalProperties": false
+    },
+    "Provenance": {
+      "type": "object",
+      "properties": {
+        "primary": {
+          "type": "string"
+        },
+        "primaryVersion": {
+          "type": "string"
+        },
+        "primaryLicenseDeclared": {
+          "type": "string"
+        },
+        "primaryCopyright": {
+          "type": "string"
+        },
+        "primarySha256": {
+          "type": "string"
+        },
+        "crossCheck": {
+          "type": "string"
+        },
+        "crossCheckSha256": {
+          "type": "string"
+        },
+        "checkedAt": {
+          "type": "string",
+          "format": "date"
+        },
+        "matchingSurahs": {
+          "enum": [
+            114
+          ]
+        },
+        "matchingJuz": {
+          "enum": [
+            30
+          ]
+        },
+        "matchingPages": {
+          "enum": [
+            604
+          ]
+        },
+        "independenceLimit": {
+          "type": "string"
+        },
+        "textAvailable": {
+          "enum": [
+            false
+          ]
+        },
+        "wordMapAvailable": {
+          "enum": [
+            false
+          ]
+        }
+      },
+      "required": [
+        "primary",
+        "primaryVersion",
+        "primaryLicenseDeclared",
+        "primaryCopyright",
+        "primarySha256",
+        "crossCheck",
+        "crossCheckSha256",
+        "checkedAt",
+        "matchingSurahs",
+        "matchingJuz",
+        "matchingPages",
+        "independenceLimit",
+        "textAvailable",
+        "wordMapAvailable"
+      ],
+      "additionalProperties": false
+    },
+    "Today": {
+      "type": "object",
+      "properties": {
+        "assignment": {
+          "$ref": "#/$defs/AssignmentSnapshot"
+        },
+        "segments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/AssignmentSnapshot"
+          }
+        },
+        "evaluation": {
+          "$ref": "#/$defs/DayEvaluation"
+        },
+        "khatmaCoverage": {
+          "$ref": "#/$defs/KhatmaRecord"
+        },
+        "nextUnreadVerse": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "dataProvenance": {
+          "$ref": "#/$defs/Provenance"
+        },
+        "queuedChanges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Commitment"
+          }
+        },
+        "readerText": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "enum": [
+                "unavailable"
+              ]
+            },
+            "openPolicy": {
+              "$ref": "#/$defs/OpenPolicy"
+            }
+          },
+          "required": [
+            "status",
+            "openPolicy"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "assignment",
+        "segments",
+        "evaluation",
+        "khatmaCoverage",
+        "nextUnreadVerse",
+        "dataProvenance",
+        "queuedChanges",
+        "readerText"
+      ],
+      "additionalProperties": false
+    },
+    "ReadingMutationResult": {
+      "type": "object",
+      "properties": {
+        "act": {
+          "$ref": "#/$defs/ReadingAct"
+        },
+        "evaluation": {
+          "$ref": "#/$defs/DayEvaluation"
+        },
+        "shipProgress": {
+          "$ref": "#/$defs/ShipProgress"
+        },
+        "explanation": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "act",
+        "evaluation",
+        "shipProgress"
+      ],
+      "additionalProperties": false
+    },
+    "TraceResult": {
+      "type": "object",
+      "properties": {
+        "trace": {
+          "$ref": "#/$defs/ReaderTrace"
+        },
+        "confirmedActIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      },
+      "required": [
+        "trace"
+      ],
+      "additionalProperties": false
+    },
+    "ProgramRule": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "confirmed",
+            "proposed",
+            "open",
+            "superseded"
+          ]
+        },
+        "text": {
+          "type": "string"
+        },
+        "question": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "sourceVersion": {
+          "type": "string"
+        },
+        "supersededBy": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "status",
+        "source",
+        "sourceVersion"
+      ],
+      "additionalProperties": false
+    },
+    "RuleRegistry": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "string"
+        },
+        "authority": {
+          "enum": [
+            "founder"
+          ]
+        },
+        "evidence": {
+          "type": "string"
+        },
+        "rules": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ProgramRule"
+          }
+        }
+      },
+      "required": [
+        "version",
+        "authority",
+        "evidence",
+        "rules"
+      ],
+      "additionalProperties": false
+    },
+    "MushafPageMap": {
+      "type": "object",
+      "properties": {
+        "edition": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "starts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "edition",
+        "version",
+        "starts"
+      ],
+      "additionalProperties": false
+    },
+    "QuranReferenceVersion": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "string"
+        },
+        "verseCounts": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "juzStarts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "pageMap": {
+          "$ref": "#/$defs/MushafPageMap"
+        },
+        "provenance": {
+          "$ref": "#/$defs/Provenance"
+        }
+      },
+      "required": [
+        "version",
+        "verseCounts",
+        "juzStarts",
+        "pageMap",
+        "provenance"
+      ],
+      "additionalProperties": false
+    },
+    "OfflineSnapshot": {
+      "type": "object",
+      "properties": {
+        "payload": {
+          "type": "object",
+          "properties": {
+            "version": {
+              "enum": [
+                1
+              ]
+            },
+            "memberId": {
+              "type": "string"
+            },
+            "assignment": {
+              "$ref": "#/$defs/AssignmentSnapshot"
+            },
+            "reference": {
+              "$ref": "#/$defs/QuranReferenceVersion"
+            },
+            "rules": {
+              "$ref": "#/$defs/RuleRegistry"
+            }
+          },
+          "required": [
+            "version",
+            "memberId",
+            "assignment",
+            "reference",
+            "rules"
+          ],
+          "additionalProperties": false
+        },
+        "algorithm": {
+          "enum": [
+            "HMAC-SHA256"
+          ]
+        },
+        "signature": {
+          "type": "string"
+        },
+        "verification": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "payload",
+        "algorithm",
+        "signature",
+        "verification"
+      ],
+      "additionalProperties": false
+    },
+    "Page": {
+      "type": "object",
+      "properties": {
+        "edition": {
+          "type": "string"
+        },
+        "mapVersion": {
+          "type": "string"
+        },
+        "page": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "referenceVersion": {
+          "type": "string"
+        },
+        "ranges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Range"
+          }
+        }
+      },
+      "required": [
+        "edition",
+        "mapVersion",
+        "page",
+        "referenceVersion",
+        "ranges"
+      ],
+      "additionalProperties": false
+    },
+    "Error": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "type": "string"
+            },
+            "message": {
+              "type": "string"
+            },
+            "policy": {
+              "type": "string"
+            },
+            "question": {
+              "type": "string"
+            },
+            "ruleVersion": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "code",
+            "message"
+          ],
+          "additionalProperties": true
+        }
+      },
+      "required": [
+        "error"
+      ],
+      "additionalProperties": false
+    },
+    "ReadingCreate": {
+      "type": "object",
+      "properties": {
+        "mutationId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "logicalActId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "occurrenceDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "occurredAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "timezone": {
+          "type": "string"
+        },
+        "utcOffsetMinutes": {
+          "type": "integer",
+          "minimum": -840,
+          "maximum": 840
+        },
+        "ranges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Range"
+          },
+          "minItems": 1,
+          "maxItems": 200
+        },
+        "source": {
+          "enum": [
+            "manual",
+            "manual_physical",
+            "reader_confirmed",
+            "component_self_report"
+          ]
+        },
+        "assignmentId": {
+          "type": "string"
+        },
+        "ruleVersion": {
+          "type": "string"
+        },
+        "referenceVersion": {
+          "type": "string"
+        },
+        "repeatOfActId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "traceId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "componentId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "mutationId",
+        "logicalActId",
+        "occurrenceDate",
+        "occurredAt",
+        "timezone",
+        "utcOffsetMinutes",
+        "ranges",
+        "source",
+        "assignmentId",
+        "ruleVersion",
+        "referenceVersion"
+      ],
+      "additionalProperties": false
+    },
+    "ReadingPatch": {
+      "type": "object",
+      "properties": {
+        "mutationId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expectedRevision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "reason": {
+          "type": "string"
+        },
+        "ranges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Range"
+          },
+          "minItems": 1
+        },
+        "ruleVersion": {
+          "type": "string"
+        },
+        "referenceVersion": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "mutationId",
+        "expectedRevision",
+        "reason",
+        "ranges",
+        "ruleVersion",
+        "referenceVersion"
+      ],
+      "additionalProperties": false
+    },
+    "Retract": {
+      "type": "object",
+      "properties": {
+        "mutationId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expectedRevision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "reason": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "mutationId",
+        "expectedRevision",
+        "reason"
+      ],
+      "additionalProperties": false
+    },
+    "CommitmentChangeRequest": {
+      "type": "object",
+      "properties": {
+        "mutationId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "tier": {
+          "enum": [
+            "B",
+            "BI",
+            "BJ1",
+            "BJ2",
+            "BJ3",
+            "BJ4",
+            "BJ5"
+          ]
+        },
+        "expectedCommitmentId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "ruleVersion": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "mutationId",
+        "tier",
+        "expectedCommitmentId",
+        "ruleVersion"
+      ],
+      "additionalProperties": false
+    },
+    "CommitmentChange": {
+      "type": "object",
+      "properties": {
+        "change": {
+          "$ref": "#/$defs/Commitment"
+        },
+        "creditPolicy": {
+          "$ref": "#/$defs/OpenPolicy"
+        }
+      },
+      "required": [
+        "change",
+        "creditPolicy"
+      ],
+      "additionalProperties": false
+    },
+    "TracePut": {
+      "type": "object",
+      "properties": {
+        "mutationId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expectedRevision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "occurrenceDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "occurredAt": {
+          "type": "string"
+        },
+        "timezone": {
+          "type": "string"
+        },
+        "utcOffsetMinutes": {
+          "type": "integer"
+        },
+        "observations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "enum": [
+                  "exposed",
+                  "navigated",
+                  "page_opened",
+                  "audio_played"
+                ]
+              },
+              "ranges": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/Range"
+                }
+              }
+            },
+            "required": [
+              "kind",
+              "ranges"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "referenceVersion": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "mutationId",
+        "expectedRevision",
+        "occurrenceDate",
+        "occurredAt",
+        "timezone",
+        "utcOffsetMinutes",
+        "observations",
+        "referenceVersion"
+      ],
+      "additionalProperties": false
+    },
+    "TraceDiscard": {
+      "type": "object",
+      "properties": {
+        "mutationId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expectedRevision": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "mutationId",
+        "expectedRevision"
+      ],
+      "additionalProperties": false
+    },
+    "MonthlySchedule": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "ruleVersion": {
+          "type": "string"
+        },
+        "referenceVersion": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string",
+          "format": "date"
+        },
+        "tier": {
+          "enum": [
+            "B",
+            "BI",
+            "BJ1",
+            "BJ2",
+            "BJ3",
+            "BJ4",
+            "BJ5"
+          ]
+        },
+        "ranges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Range"
+          }
+        },
+        "status": {
+          "enum": [
+            "published",
+            "free_day",
+            "awaiting_policy"
+          ]
+        },
+        "approvalSource": {
+          "type": "string"
+        },
+        "openPolicies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/OpenPolicy"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "ruleVersion",
+        "referenceVersion",
+        "date",
+        "tier",
+        "ranges",
+        "status",
+        "approvalSource",
+        "openPolicies"
+      ],
+      "additionalProperties": false
+    },
+    "WeeklyCycle": {
+      "$ref": "#/$defs/Cycle"
+    },
+    "ReminderPreference": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "localTime": {
+          "type": "string"
+        },
+        "timezone": {
+          "type": "string"
+        },
+        "deliveryStatus": {
+          "enum": [
+            "not_implemented"
+          ]
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "mutationId": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "required": [
+        "enabled",
+        "deliveryStatus"
+      ],
+      "additionalProperties": false
+    },
+    "ReminderPut": {
+      "type": "object",
+      "properties": {
+        "mutationId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "localTime": {
+          "type": "string"
+        },
+        "timezone": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "mutationId",
+        "enabled",
+        "localTime",
+        "timezone"
+      ],
+      "additionalProperties": false
+    },
+    "DhikrGoalRequest": {
+      "type": "object",
+      "properties": {
+        "mutationId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expectedRevision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "label": {
+          "type": "string"
+        },
+        "target": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "mutationId",
+        "id",
+        "expectedRevision",
+        "label",
+        "target"
+      ],
+      "additionalProperties": false
+    },
+    "DhikrCountRequest": {
+      "type": "object",
+      "properties": {
+        "mutationId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expectedRevision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "goalId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "date": {
+          "type": "string",
+          "format": "date"
+        },
+        "count": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "mutationId",
+        "id",
+        "expectedRevision",
+        "goalId",
+        "date",
+        "count"
+      ],
+      "additionalProperties": false
+    },
+    "DhikrGoal": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "label": {
+          "type": "string"
+        },
+        "target": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "memberId": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "readingCredit": {
+          "enum": [
+            0
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "target",
+        "revision",
+        "memberId",
+        "updatedAt",
+        "readingCredit"
+      ],
+      "additionalProperties": false
+    },
+    "DhikrCount": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "goalId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "date": {
+          "type": "string",
+          "format": "date"
+        },
+        "count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "memberId": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "readingCredit": {
+          "enum": [
+            0
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "goalId",
+        "date",
+        "count",
+        "revision",
+        "memberId",
+        "updatedAt",
+        "readingCredit"
+      ],
+      "additionalProperties": false
+    },
+    "Dhikr": {
+      "type": "object",
+      "properties": {
+        "goals": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/DhikrGoal"
+          }
+        },
+        "counts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/DhikrCount"
+          }
+        },
+        "readingCredit": {
+          "enum": [
+            0
+          ]
+        }
+      },
+      "required": [
+        "goals",
+        "counts",
+        "readingCredit"
+      ],
+      "additionalProperties": false
+    },
+    "DhikrResult": {
+      "type": "object",
+      "properties": {
+        "record": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/DhikrGoal"
+            },
+            {
+              "$ref": "#/$defs/DhikrCount"
+            }
+          ]
+        }
+      },
+      "required": [
+        "record"
+      ],
+      "additionalProperties": false
+    },
+    "Entitlements": {
+      "type": "object",
+      "properties": {
+        "freeCapabilities": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "ads": {
+          "enum": [
+            false
+          ]
+        },
+        "paidCapabilities": {
+          "type": "null"
+        },
+        "status": {
+          "enum": [
+            "awaiting_policy"
+          ]
+        },
+        "price": {
+          "type": "null"
+        }
+      },
+      "required": [
+        "freeCapabilities",
+        "ads",
+        "paidCapabilities",
+        "status",
+        "price"
+      ],
+      "additionalProperties": false
+    },
+    "VerifiedSnapshot": {
+      "type": "object",
+      "properties": {
+        "valid": {
+          "enum": [
+            true
+          ]
+        },
+        "assignmentId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "valid",
+        "assignmentId"
+      ],
+      "additionalProperties": false
+    },
+    "ActHistory": {
+      "type": "object",
+      "properties": {
+        "act": {
+          "$ref": "#/$defs/ReadingAct"
+        },
+        "revisions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ReadingAct"
+          }
+        }
+      },
+      "required": [
+        "act",
+        "revisions"
+      ],
+      "additionalProperties": false
+    },
+    "Event": {
+      "type": "object",
+      "properties": {
+        "sequence": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "member_id": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "entity_id": {
+          "type": "string"
+        },
+        "payload": {
+          "type": "object"
+        },
+        "created_at": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "sequence",
+        "id",
+        "member_id",
+        "kind",
+        "entity_id",
+        "payload",
+        "created_at"
+      ],
+      "additionalProperties": false
+    },
+    "Events": {
+      "type": "object",
+      "properties": {
+        "events": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Event"
+          }
+        },
+        "visibility": {
+          "enum": [
+            "private"
+          ]
+        }
+      },
+      "required": [
+        "events",
+        "visibility"
+      ],
+      "additionalProperties": false
+    },
+    "ClassroomCourseDraftInput": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "weeks": {
+          "enum": [
+            10
+          ]
+        },
+        "entitlementKey": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "title",
+        "weeks",
+        "entitlementKey"
+      ],
+      "additionalProperties": false
+    },
+    "ClassroomCourseDraft": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "status": {
+          "enum": [
+            "draft"
+          ]
+        },
+        "publicationStatus": {
+          "enum": [
+            "blocked"
+          ]
+        },
+        "data": {
+          "$ref": "#/$defs/ClassroomCourseDraftInput"
+        }
+      },
+      "required": [
+        "id",
+        "revision",
+        "status",
+        "publicationStatus",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "ClassroomCourse": {
+      "$ref": "#/$defs/ClassroomCourseDraft"
+    },
+    "ClassroomLessonDraftInput": {
+      "type": "object",
+      "properties": {
+        "courseId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "week": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10
+        },
+        "sequence": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "title": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "sourceVideo": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "type": "string"
+            },
+            "provider": {
+              "type": "string"
+            },
+            "rightsReviewId": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "url",
+            "provider",
+            "rightsReviewId"
+          ],
+          "additionalProperties": false
+        },
+        "prerequisiteIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "courseId",
+        "week",
+        "sequence",
+        "title",
+        "sourceVideo",
+        "prerequisiteIds"
+      ],
+      "additionalProperties": false
+    },
+    "ClassroomLessonDraft": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "status": {
+          "enum": [
+            "draft"
+          ]
+        },
+        "publicationStatus": {
+          "enum": [
+            "blocked"
+          ]
+        },
+        "data": {
+          "$ref": "#/$defs/ClassroomLessonDraftInput"
+        }
+      },
+      "required": [
+        "id",
+        "revision",
+        "status",
+        "publicationStatus",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "ClassroomLesson": {
+      "$ref": "#/$defs/ClassroomLessonDraft"
+    },
+    "LessonNotesDraftInput": {
+      "type": "object",
+      "properties": {
+        "lessonId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "authorId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "body": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "sourceVersion": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "lessonId",
+        "authorId",
+        "body",
+        "sourceVersion"
+      ],
+      "additionalProperties": false
+    },
+    "LessonNotesDraft": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "status": {
+          "enum": [
+            "draft"
+          ]
+        },
+        "publicationStatus": {
+          "enum": [
+            "blocked"
+          ]
+        },
+        "data": {
+          "$ref": "#/$defs/LessonNotesDraftInput"
+        }
+      },
+      "required": [
+        "id",
+        "revision",
+        "status",
+        "publicationStatus",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "LessonNotes": {
+      "$ref": "#/$defs/LessonNotesDraft"
+    },
+    "SavedNoteDraftInput": {
+      "type": "object",
+      "properties": {
+        "lessonId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "noteVersion": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "body": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "lessonId",
+        "noteVersion",
+        "body"
+      ],
+      "additionalProperties": false
+    },
+    "SavedNoteDraft": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "status": {
+          "enum": [
+            "draft"
+          ]
+        },
+        "publicationStatus": {
+          "enum": [
+            "blocked"
+          ]
+        },
+        "data": {
+          "$ref": "#/$defs/SavedNoteDraftInput"
+        }
+      },
+      "required": [
+        "id",
+        "revision",
+        "status",
+        "publicationStatus",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "SavedNote": {
+      "$ref": "#/$defs/SavedNoteDraft"
+    },
+    "QuizDraftInput": {
+      "type": "object",
+      "properties": {
+        "lessonId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "questions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "kind": {
+                "enum": [
+                  "multiple_choice",
+                  "written_response"
+                ]
+              },
+              "prompt": {
+                "type": "string"
+              },
+              "options": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "text": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "text"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "answerKey": {
+                "anyOf": [
+                  {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "id",
+              "kind",
+              "prompt",
+              "options",
+              "answerKey"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "gradingPolicyVersion": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "lessonId",
+        "questions",
+        "gradingPolicyVersion"
+      ],
+      "additionalProperties": false
+    },
+    "QuizDraft": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "status": {
+          "enum": [
+            "draft"
+          ]
+        },
+        "publicationStatus": {
+          "enum": [
+            "blocked"
+          ]
+        },
+        "data": {
+          "$ref": "#/$defs/QuizDraftInput"
+        }
+      },
+      "required": [
+        "id",
+        "revision",
+        "status",
+        "publicationStatus",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "Quiz": {
+      "$ref": "#/$defs/QuizDraft"
+    },
+    "WrittenResponseDraftInput": {
+      "type": "object",
+      "properties": {
+        "lessonId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "promptId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "body": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "lessonId",
+        "promptId",
+        "body"
+      ],
+      "additionalProperties": false
+    },
+    "WrittenResponseDraft": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "status": {
+          "enum": [
+            "draft"
+          ]
+        },
+        "publicationStatus": {
+          "enum": [
+            "blocked"
+          ]
+        },
+        "data": {
+          "$ref": "#/$defs/WrittenResponseDraftInput"
+        }
+      },
+      "required": [
+        "id",
+        "revision",
+        "status",
+        "publicationStatus",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "WrittenResponse": {
+      "$ref": "#/$defs/WrittenResponseDraft"
+    },
+    "ClassroomAssignmentDraftInput": {
+      "type": "object",
+      "properties": {
+        "lessonId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "instructions": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "submissionKind": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "lessonId",
+        "instructions",
+        "submissionKind"
+      ],
+      "additionalProperties": false
+    },
+    "ClassroomAssignmentDraft": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "status": {
+          "enum": [
+            "draft"
+          ]
+        },
+        "publicationStatus": {
+          "enum": [
+            "blocked"
+          ]
+        },
+        "data": {
+          "$ref": "#/$defs/ClassroomAssignmentDraftInput"
+        }
+      },
+      "required": [
+        "id",
+        "revision",
+        "status",
+        "publicationStatus",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "ClassroomAssignment": {
+      "$ref": "#/$defs/ClassroomAssignmentDraft"
+    },
+    "ClassroomFeedbackDraftInput": {
+      "type": "object",
+      "properties": {
+        "responseId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "authorId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "body": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "responseId",
+        "authorId",
+        "body"
+      ],
+      "additionalProperties": false
+    },
+    "ClassroomFeedbackDraft": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "status": {
+          "enum": [
+            "draft"
+          ]
+        },
+        "publicationStatus": {
+          "enum": [
+            "blocked"
+          ]
+        },
+        "data": {
+          "$ref": "#/$defs/ClassroomFeedbackDraftInput"
+        }
+      },
+      "required": [
+        "id",
+        "revision",
+        "status",
+        "publicationStatus",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "ClassroomFeedback": {
+      "$ref": "#/$defs/ClassroomFeedbackDraft"
+    },
+    "LessonProgressDraftInput": {
+      "type": "object",
+      "properties": {
+        "lessonId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "positionSeconds": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "completedComponents": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "lessonId",
+        "positionSeconds",
+        "completedComponents"
+      ],
+      "additionalProperties": false
+    },
+    "LessonProgressDraft": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "status": {
+          "enum": [
+            "draft"
+          ]
+        },
+        "publicationStatus": {
+          "enum": [
+            "blocked"
+          ]
+        },
+        "data": {
+          "$ref": "#/$defs/LessonProgressDraftInput"
+        }
+      },
+      "required": [
+        "id",
+        "revision",
+        "status",
+        "publicationStatus",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "LessonProgress": {
+      "$ref": "#/$defs/LessonProgressDraft"
+    },
+    "MediaResourceDraftInput": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "sourceUrl": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "provenance": {
+          "type": "object",
+          "properties": {
+            "provider": {
+              "type": "string"
+            },
+            "sourceId": {
+              "type": "string"
+            },
+            "retrievedAt": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "provider",
+            "sourceId",
+            "retrievedAt"
+          ],
+          "additionalProperties": false
+        },
+        "rights": {
+          "type": "object",
+          "properties": {
+            "host": {
+              "enum": [
+                "unreviewed",
+                "permitted",
+                "denied"
+              ]
+            },
+            "embed": {
+              "enum": [
+                "unreviewed",
+                "permitted",
+                "denied"
+              ]
+            },
+            "transcribe": {
+              "enum": [
+                "unreviewed",
+                "permitted",
+                "denied"
+              ]
+            },
+            "redistribute": {
+              "enum": [
+                "unreviewed",
+                "permitted",
+                "denied"
+              ]
+            }
+          },
+          "required": [
+            "host",
+            "embed",
+            "transcribe",
+            "redistribute"
+          ],
+          "additionalProperties": false
+        },
+        "transcript": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "version": {
+                  "type": "string"
+                },
+                "language": {
+                  "type": "string"
+                },
+                "segments": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "startSeconds": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "text": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "startSeconds",
+                      "text"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "required": [
+                "version",
+                "language",
+                "segments"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "review": {
+          "type": "object",
+          "properties": {
+            "reviewerId": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "reviewedAt": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "transcriptVersion": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "reviewerId",
+            "reviewedAt",
+            "transcriptVersion"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "title",
+        "sourceUrl",
+        "provenance",
+        "rights",
+        "transcript",
+        "tags",
+        "review"
+      ],
+      "additionalProperties": false
+    },
+    "MediaResourceDraft": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "status": {
+          "enum": [
+            "draft"
+          ]
+        },
+        "publicationStatus": {
+          "enum": [
+            "blocked"
+          ]
+        },
+        "data": {
+          "$ref": "#/$defs/MediaResourceDraftInput"
+        }
+      },
+      "required": [
+        "id",
+        "revision",
+        "status",
+        "publicationStatus",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "MediaResource": {
+      "$ref": "#/$defs/MediaResourceDraft"
+    },
+    "EntitlementDraftInput": {
+      "type": "object",
+      "properties": {
+        "capability": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "validFrom": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "validUntil": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "grantSource": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "policyVersion": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "capability",
+        "validFrom",
+        "validUntil",
+        "grantSource",
+        "policyVersion"
+      ],
+      "additionalProperties": false
+    },
+    "EntitlementDraft": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "status": {
+          "enum": [
+            "draft"
+          ]
+        },
+        "publicationStatus": {
+          "enum": [
+            "blocked"
+          ]
+        },
+        "data": {
+          "$ref": "#/$defs/EntitlementDraftInput"
+        }
+      },
+      "required": [
+        "id",
+        "revision",
+        "status",
+        "publicationStatus",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "Entitlement": {
+      "$ref": "#/$defs/EntitlementDraft"
+    },
+    "ReadingCircleDraftInput": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "moderationPolicyVersion": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "retentionPolicyVersion": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "chatEnabled": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name",
+        "moderationPolicyVersion",
+        "retentionPolicyVersion",
+        "chatEnabled"
+      ],
+      "additionalProperties": false
+    },
+    "ReadingCircleDraft": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "status": {
+          "enum": [
+            "draft"
+          ]
+        },
+        "publicationStatus": {
+          "enum": [
+            "blocked"
+          ]
+        },
+        "data": {
+          "$ref": "#/$defs/ReadingCircleDraftInput"
+        }
+      },
+      "required": [
+        "id",
+        "revision",
+        "status",
+        "publicationStatus",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "ReadingCircle": {
+      "$ref": "#/$defs/ReadingCircleDraft"
+    },
+    "CircleMembershipDraftInput": {
+      "type": "object",
+      "properties": {
+        "circleId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "memberId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "optInAt": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "revokedAt": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "circleId",
+        "memberId",
+        "optInAt",
+        "revokedAt"
+      ],
+      "additionalProperties": false
+    },
+    "CircleMembershipDraft": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "status": {
+          "enum": [
+            "draft"
+          ]
+        },
+        "publicationStatus": {
+          "enum": [
+            "blocked"
+          ]
+        },
+        "data": {
+          "$ref": "#/$defs/CircleMembershipDraftInput"
+        }
+      },
+      "required": [
+        "id",
+        "revision",
+        "status",
+        "publicationStatus",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "CircleMembership": {
+      "$ref": "#/$defs/CircleMembershipDraft"
+    },
+    "SharingConsentDraftInput": {
+      "type": "object",
+      "properties": {
+        "circleId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "memberId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "audience": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "detailLevel": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "authorizedAt": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "revokedAt": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "circleId",
+        "memberId",
+        "audience",
+        "detailLevel",
+        "authorizedAt",
+        "revokedAt"
+      ],
+      "additionalProperties": false
+    },
+    "SharingConsentDraft": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "status": {
+          "enum": [
+            "draft"
+          ]
+        },
+        "publicationStatus": {
+          "enum": [
+            "blocked"
+          ]
+        },
+        "data": {
+          "$ref": "#/$defs/SharingConsentDraftInput"
+        }
+      },
+      "required": [
+        "id",
+        "revision",
+        "status",
+        "publicationStatus",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "SharingConsent": {
+      "$ref": "#/$defs/SharingConsentDraft"
+    },
+    "GroupPublicationDraftInput": {
+      "type": "object",
+      "properties": {
+        "circleId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "actId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "actRevision": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "consentId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "publicationAuthorizationId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "correctionPolicyVersion": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "circleId",
+        "actId",
+        "actRevision",
+        "consentId",
+        "publicationAuthorizationId",
+        "correctionPolicyVersion"
+      ],
+      "additionalProperties": false
+    },
+    "GroupPublicationDraft": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "status": {
+          "enum": [
+            "draft"
+          ]
+        },
+        "publicationStatus": {
+          "enum": [
+            "blocked"
+          ]
+        },
+        "data": {
+          "$ref": "#/$defs/GroupPublicationDraftInput"
+        }
+      },
+      "required": [
+        "id",
+        "revision",
+        "status",
+        "publicationStatus",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "GroupPublication": {
+      "$ref": "#/$defs/GroupPublicationDraft"
+    },
+    "CircleReactionDraftInput": {
+      "type": "object",
+      "properties": {
+        "publicationId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "memberId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "reaction": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "publicationId",
+        "memberId",
+        "reaction"
+      ],
+      "additionalProperties": false
+    },
+    "CircleReactionDraft": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "status": {
+          "enum": [
+            "draft"
+          ]
+        },
+        "publicationStatus": {
+          "enum": [
+            "blocked"
+          ]
+        },
+        "data": {
+          "$ref": "#/$defs/CircleReactionDraftInput"
+        }
+      },
+      "required": [
+        "id",
+        "revision",
+        "status",
+        "publicationStatus",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "CircleReaction": {
+      "$ref": "#/$defs/CircleReactionDraft"
+    },
+    "ModerationEventDraftInput": {
+      "type": "object",
+      "properties": {
+        "circleId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "actorId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "action": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "circleId",
+        "actorId",
+        "action",
+        "reason"
+      ],
+      "additionalProperties": false
+    },
+    "ModerationEventDraft": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "status": {
+          "enum": [
+            "draft"
+          ]
+        },
+        "publicationStatus": {
+          "enum": [
+            "blocked"
+          ]
+        },
+        "data": {
+          "$ref": "#/$defs/ModerationEventDraftInput"
+        }
+      },
+      "required": [
+        "id",
+        "revision",
+        "status",
+        "publicationStatus",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "ModerationEvent": {
+      "$ref": "#/$defs/ModerationEventDraft"
+    },
+    "NotificationPreferenceDraftInput": {
+      "type": "object",
+      "properties": {
+        "circleId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "memberId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "enabled": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "circleId",
+        "memberId",
+        "enabled"
+      ],
+      "additionalProperties": false
+    },
+    "NotificationPreferenceDraft": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "status": {
+          "enum": [
+            "draft"
+          ]
+        },
+        "publicationStatus": {
+          "enum": [
+            "blocked"
+          ]
+        },
+        "data": {
+          "$ref": "#/$defs/NotificationPreferenceDraftInput"
+        }
+      },
+      "required": [
+        "id",
+        "revision",
+        "status",
+        "publicationStatus",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "NotificationPreference": {
+      "$ref": "#/$defs/NotificationPreferenceDraft"
+    },
+    "PauseDraftInput": {
+      "type": "object",
+      "properties": {
+        "startDate": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "endDate": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "policyVersion": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "startDate",
+        "endDate",
+        "policyVersion"
+      ],
+      "additionalProperties": false
+    },
+    "PauseDraft": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "status": {
+          "enum": [
+            "draft"
+          ]
+        },
+        "publicationStatus": {
+          "enum": [
+            "blocked"
+          ]
+        },
+        "data": {
+          "$ref": "#/$defs/PauseDraftInput"
+        }
+      },
+      "required": [
+        "id",
+        "revision",
+        "status",
+        "publicationStatus",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "Pause": {
+      "$ref": "#/$defs/PauseDraft"
+    },
+    "ListeningEventDraftInput": {
+      "type": "object",
+      "properties": {
+        "sourceEdition": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ranges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Range"
+          }
+        },
+        "occurredAt": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "sourceEdition",
+        "ranges",
+        "occurredAt"
+      ],
+      "additionalProperties": false
+    },
+    "ListeningEventDraft": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "status": {
+          "enum": [
+            "draft"
+          ]
+        },
+        "publicationStatus": {
+          "enum": [
+            "blocked"
+          ]
+        },
+        "data": {
+          "$ref": "#/$defs/ListeningEventDraftInput"
+        }
+      },
+      "required": [
+        "id",
+        "revision",
+        "status",
+        "publicationStatus",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "ListeningEvent": {
+      "$ref": "#/$defs/ListeningEventDraft"
+    }
+  }
+}

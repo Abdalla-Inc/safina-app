@@ -1,0 +1,8 @@
+{
+  "schema": "Library",
+  "fixture": {
+    "items": [],
+    "nextCursor": null,
+    "contentState": "no_matching_reviewed_content"
+  }
+}

@@ -1,0 +1,175 @@
+{
+  "schema": "Today",
+  "contractVersion": "0.3.0",
+  "fixture": {
+    "assignment": {
+      "memberId": "BJ3",
+      "date": "2026-09-16",
+      "tier": "BJ3",
+      "tierLabel": "BJ3",
+      "colorToken": "level.BJ3",
+      "patternToken": "level-pattern.BJ3",
+      "cadence": "monthly",
+      "cycle": {
+        "id": "monthly:2026-09-01",
+        "cadence": "monthly",
+        "start": "2026-09-01",
+        "end": "2026-09-30"
+      },
+      "timezone": "Australia/Brisbane",
+      "commitmentId": "317c2694-cc10-5f89-8f5a-4bb6d0ac4db0",
+      "ruleVersion": "founder-core-2026-09-28.v1",
+      "referenceVersion": "hafs-tanzil-1.0-20260928",
+      "scheduleVersion": "founder-core-2026-09-28.v1:confirmed-templates",
+      "status": "awaiting_policy",
+      "freeDay": false,
+      "components": [],
+      "ranges": [],
+      "openPolicies": [
+        {
+          "code": "SCHEDULE_NOT_PUBLISHED",
+          "policy": "monthly_continuation",
+          "question": "Which exact verse ranges follow the BJ2 day-one B fixture and define BJ3?",
+          "ruleVersion": "founder-core-2026-09-28.v1"
+        }
+      ],
+      "id": "as_1417914ddb51a7ab54f0ae3a1ce33944"
+    },
+    "segments": [
+      {
+        "memberId": "BJ3",
+        "date": "2026-09-16",
+        "tier": "BJ3",
+        "tierLabel": "BJ3",
+        "colorToken": "level.BJ3",
+        "patternToken": "level-pattern.BJ3",
+        "cadence": "monthly",
+        "cycle": {
+          "id": "monthly:2026-09-01",
+          "cadence": "monthly",
+          "start": "2026-09-01",
+          "end": "2026-09-30"
+        },
+        "timezone": "Australia/Brisbane",
+        "commitmentId": "317c2694-cc10-5f89-8f5a-4bb6d0ac4db0",
+        "ruleVersion": "founder-core-2026-09-28.v1",
+        "referenceVersion": "hafs-tanzil-1.0-20260928",
+        "scheduleVersion": "founder-core-2026-09-28.v1:confirmed-templates",
+        "status": "awaiting_policy",
+        "freeDay": false,
+        "components": [],
+        "ranges": [],
+        "openPolicies": [
+          {
+            "code": "SCHEDULE_NOT_PUBLISHED",
+            "policy": "monthly_continuation",
+            "question": "Which exact verse ranges follow the BJ2 day-one B fixture and define BJ3?",
+            "ruleVersion": "founder-core-2026-09-28.v1"
+          }
+        ],
+        "id": "as_1417914ddb51a7ab54f0ae3a1ce33944"
+      }
+    ],
+    "evaluation": {
+      "date": "2026-09-16",
+      "status": "no_entry",
+      "actualReadingStatus": "no_entry",
+      "uniqueCoverage": [],
+      "uniqueVerseCount": 0,
+      "repeatedActs": [],
+      "assignedFulfilment": {
+        "ranges": [],
+        "matchedVerses": 0,
+        "targetVerses": 0,
+        "complete": null
+      },
+      "supplementalReading": null,
+      "dayCredit": 0,
+      "creditState": "resolved",
+      "openPolicies": [
+        {
+          "code": "SCHEDULE_NOT_PUBLISHED",
+          "policy": "monthly_continuation",
+          "question": "Which exact verse ranges follow the BJ2 day-one B fixture and define BJ3?",
+          "ruleVersion": "founder-core-2026-09-28.v1"
+        }
+      ],
+      "assignmentIds": [
+        "as_1417914ddb51a7ab54f0ae3a1ce33944"
+      ],
+      "historicalLevels": [
+        {
+          "tier": "BJ3",
+          "label": "BJ3",
+          "colorToken": "level.BJ3",
+          "patternToken": "level-pattern.BJ3"
+        }
+      ],
+      "sourceActs": [],
+      "elapsedTime": null,
+      "inputHash": "665e50e95b4c71d2e4c27fc940170c6d75462025438a429da2d4cae76cf0db24",
+      "corrected": false,
+      "readerObservedTrace": []
+    },
+    "khatmaCoverage": {
+      "id": "monthly:2026-09-01",
+      "cadence": "monthly",
+      "start": "2026-09-01",
+      "end": "2026-09-30",
+      "status": "incomplete",
+      "uniqueCoverage": [],
+      "coveredVerses": 0,
+      "totalVerses": 6236,
+      "remainingRanges": [
+        {
+          "start": "1:1",
+          "end": "114:6"
+        }
+      ],
+      "nextUnreadVerse": "1:1",
+      "completedJuz": [],
+      "proofHash": null,
+      "completionDate": null,
+      "ordinal": null,
+      "sourceActRevisions": [],
+      "additionalKhatmas": {
+        "status": "awaiting_policy",
+        "policy": {
+          "code": "RULE_NOT_APPROVED",
+          "policy": "repeat_khatma",
+          "question": "How are explicit repeat acts attributed to multiple khatmas?",
+          "ruleVersion": "founder-core-2026-09-28.v1"
+        }
+      },
+      "excludedFreeDayActs": [],
+      "openPolicies": []
+    },
+    "nextUnreadVerse": "1:1",
+    "dataProvenance": {
+      "primary": "https://tanzil.net/res/text/metadata/quran-data.xml",
+      "primaryVersion": "1.0",
+      "primaryLicenseDeclared": "cc-by",
+      "primaryCopyright": "(C) 2008-2009 Tanzil.info",
+      "primarySha256": "8867c1d88191472adec9db694b3cd9f135b1a2ef580574d32cf888dcb22c5c7a",
+      "crossCheck": "https://api.alquran.cloud/v1/meta",
+      "crossCheckSha256": "9444749ea0b261054d4f744d4aec38286e666b25f1cf8aa78ce0a24f789caa5c",
+      "checkedAt": "2026-09-28",
+      "matchingSurahs": 114,
+      "matchingJuz": 30,
+      "matchingPages": 604,
+      "independenceLimit": "Separate published providers; underlying metadata may share Tanzil ancestry.",
+      "textAvailable": false,
+      "wordMapAvailable": false
+    },
+    "queuedChanges": [],
+    "readerText": {
+      "status": "unavailable",
+      "openPolicy": {
+        "code": "RULE_NOT_APPROVED",
+        "policy": "quran_assets",
+        "question": "Which text, word map, fonts and audio editions and rights are approved?",
+        "ruleVersion": "founder-core-2026-09-28.v1"
+      }
+    }
+  }
+}

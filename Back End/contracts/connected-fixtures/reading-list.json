@@ -1,0 +1,70 @@
+{
+  "schema": "ReadingList",
+  "fixture": {
+    "items": [
+      {
+        "assignmentDay": "2026-09-30",
+        "assignmentId": "as_1b9f02516c793096c12407809b0cc20f",
+        "communityDay": "2026-09-30",
+        "confirmationState": "member_confirmed",
+        "createdAt": "2026-09-30T12:00:00+00:00",
+        "cycleId": "monthly:2026-09-01",
+        "freeDay": false,
+        "id": "9e737682-e0b3-513c-900c-649bdd6f6939",
+        "memberId": "eeb21de8-e819-4972-a004-c66e39338237",
+        "mutationId": "b6a46100-7ebc-4b13-9665-683c6d8769eb",
+        "occurredAt": "2026-09-30T12:00:00+00:00",
+        "occurrenceDate": "2026-09-30",
+        "ranges": [
+          {
+            "end": "2:10",
+            "start": "2:1"
+          }
+        ],
+        "referenceVersion": "hafs-tanzil-1.0-20260928",
+        "repeatOfActId": null,
+        "retracted": false,
+        "revision": 1,
+        "revisionOf": null,
+        "ruleVersion": "founder-community-2026-09-29.v2",
+        "source": "manual_physical",
+        "timezone": "UTC",
+        "traceId": null,
+        "updatedAt": "2026-09-30T12:00:00+00:00",
+        "utcOffsetMinutes": 0
+      },
+      {
+        "assignmentDay": "2026-09-30",
+        "assignmentId": "as_1b9f02516c793096c12407809b0cc20f",
+        "communityDay": "2026-09-30",
+        "confirmationState": "member_confirmed",
+        "createdAt": "2026-09-30T12:00:00+00:00",
+        "cycleId": "monthly:2026-09-01",
+        "freeDay": false,
+        "id": "645bae95-47a3-547d-884d-43ec875ee238",
+        "memberId": "eeb21de8-e819-4972-a004-c66e39338237",
+        "mutationId": "62ec1044-72f6-4c84-83fe-4392226cdfd6",
+        "occurredAt": "2026-09-30T12:00:00+00:00",
+        "occurrenceDate": "2026-09-30",
+        "ranges": [
+          {
+            "end": "2:286",
+            "start": "2:11"
+          }
+        ],
+        "referenceVersion": "hafs-tanzil-1.0-20260928",
+        "repeatOfActId": null,
+        "retracted": false,
+        "revision": 1,
+        "revisionOf": null,
+        "ruleVersion": "founder-community-2026-09-29.v2",
+        "source": "manual_physical",
+        "timezone": "UTC",
+        "traceId": null,
+        "updatedAt": "2026-09-30T12:00:00+00:00",
+        "utcOffsetMinutes": 0
+      }
+    ],
+    "visibility": "private"
+  }
+}

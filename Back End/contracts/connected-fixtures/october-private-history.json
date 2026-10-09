@@ -1,0 +1,113 @@
+{
+  "schema": "OwnDays",
+  "fixture": {
+    "weekStart": "2026-09-27",
+    "days": [
+      {
+        "day": "2026-09-30",
+        "facts": [],
+        "istighfar": {
+          "complete": false,
+          "count": 0,
+          "day": "2026-09-30",
+          "occurredAt": "2026-09-30T12:00:00+00:00",
+          "revision": 2,
+          "target": 100,
+          "targetPinned": true,
+          "updatedAt": "2026-09-30T12:00:00+00:00"
+        },
+        "istighfarComplete": false,
+        "completeWird": false,
+        "assignmentDay": "2026-09-30",
+        "timeZone": "Asia/Riyadh",
+        "ranges": [],
+        "uniqueVerseCount": 0,
+        "completedComponents": [],
+        "assignedWirdComplete": false,
+        "completionState": "no_entry",
+        "levelSegments": [
+          {
+            "tier": "B",
+            "label": "B",
+            "colorToken": "level.B",
+            "patternToken": "level-pattern.B",
+            "effectiveFrom": "2026-09-30T12:00:00+00:00"
+          }
+        ],
+        "proofRefs": [],
+        "sourceProofHash": "da7e52a3343fbe5bab9c4595aefa7986cb26738896a29f06bde080c7c6abedcf",
+        "meaningfulAt": "2026-09-30T12:00:00+00:00",
+        "corrected": true,
+        "eligible": false,
+        "privateRevisionStates": [
+          {
+            "id": "73480c6b-c32e-56b0-8672-c55f67928eed",
+            "revision": 3,
+            "retracted": true
+          }
+        ],
+        "dailyPost": {
+          "assignedWirdComplete": false,
+          "assignmentDay": "2026-09-30",
+          "completeWird": false,
+          "completedComponents": [],
+          "completionState": "no_entry",
+          "corrected": true,
+          "day": "2026-09-30",
+          "eligible": false,
+          "facts": [],
+          "istighfar": {
+            "complete": false,
+            "count": 0,
+            "day": "2026-09-30",
+            "occurredAt": "2026-09-30T12:00:00+00:00",
+            "revision": 2,
+            "target": 100,
+            "targetPinned": true,
+            "updatedAt": "2026-09-30T12:00:00+00:00"
+          },
+          "istighfarComplete": false,
+          "levelSegments": [
+            {
+              "colorToken": "level.B",
+              "effectiveFrom": "2026-09-30T12:00:00+00:00",
+              "label": "B",
+              "patternToken": "level-pattern.B",
+              "tier": "B"
+            }
+          ],
+          "meaningfulAt": "2026-09-30T12:00:00+00:00",
+          "proofRefs": [],
+          "ranges": [],
+          "sourceProofHash": "da7e52a3343fbe5bab9c4595aefa7986cb26738896a29f06bde080c7c6abedcf",
+          "timeZone": "Asia/Riyadh",
+          "uniqueVerseCount": 0,
+          "id": "daily:bbe88750-4af6-40c2-8ee4-d5702d380d92:2026-09-30",
+          "member": {
+            "id": "bbe88750-4af6-40c2-8ee4-d5702d380d92",
+            "displayName": "عضو اختبار باسم طويل بلا صورة شخصية",
+            "avatarUrl": null,
+            "avatarVersion": 0,
+            "countryCode": "AU"
+          },
+          "revision": 5,
+          "projectionState": "ready",
+          "sourceSequence": 6,
+          "reactions": [
+            {
+              "emoji": "👏",
+              "count": 1
+            }
+          ],
+          "heartCount": 0,
+          "viewerReaction": "👏",
+          "viewerReacted": false,
+          "reactionRevision": 1,
+          "visibility": "withdrawn"
+        }
+      }
+    ],
+    "visibility": "private",
+    "projectionRevision": 11
+  }
+}

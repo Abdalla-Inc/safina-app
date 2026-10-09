@@ -1,0 +1,28 @@
+# GitHub design capability audit — gate 1
+
+**25 September 2026.** Public repository pages, release/changelog, README and installation instructions were inspected. No third-party code or agent pack was installed or executed. Review of repository text is not a security audit; pin an exact revision and inspect transitive dependencies before any adoption.
+
+## Ranked recommendations
+
+| Rank and exact repository | Maintainer / license / activity | Relevant files and installation | Benefit, limitation and adoption condition |
+|---|---|---|---|
+| 1. [`nextlevelbuilder/ui-ux-pro-max-skill`](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | NextLevelBuilder; MIT; [v2.15.0 release](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill/releases) shown 13 Aug 2026. Main `skill.json` may lag release version. | `.claude/skills/ui-ux-pro-max/SKILL.md`, `src/ui-ux-pro-max/scripts/search.py`, `skill.json`; README documents `uipro init --ai codex`, which writes an agent skill. Search script uses Python, described without external Python deps. | Useful structured prompts/search for multiple visual directions, typography and UX review. Its presets cannot validate Arabic, religious tone or user outcomes. **Condition:** pin a reviewed release commit; read skill, installer writes and search data first; use as read-only inspiration before considering integration. |
+| 2. [`ehmo/platform-design-skills`](https://github.com/ehmo/platform-design-skills) | ehmo; MIT; [CHANGELOG](https://github.com/ehmo/platform-design-skills/blob/main/CHANGELOG.md) records v1.1.1 March 2026. v1.1.0 corrected fabricated/deprecated API and touch-target references. | `skills/ios/SKILL.md`, `skills/android/SKILL.md`, per-platform `metadata.json` and `rules/`; README suggests `npx skills add ehmo/platform-design-skills`. | A useful platform pattern checklist for handoff across iOS and Android. Some Apple HIG material is scraped/compiled; source provenance and currency are concerns. **Condition:** pin version, inspect included assets and installer, check each claim against live [Apple](https://developer.apple.com/design/human-interface-guidelines/right-to-left), [Android](https://developer.android.com/guide/topics/ui/accessibility/apps) and [W3C](https://www.w3.org/TR/wcag/) guidance; avoid copying proprietary compiled text. |
+| 3. [`dadederk/iOS-Accessibility-Agent-Skill`](https://github.com/dadederk/iOS-Accessibility-Agent-Skill) | Daniel Devesa Derksen-Staats; MIT; three commits visible, no verified release date/tag; maintainer labels it work in progress. | `ios-accessibility/SKILL.md`; README gives `npx skills add dadederk/iOS-Accessibility-Agent-Skill --skill ios-accessibility` or manual placement. | Focused prompts for VoiceOver, Dynamic Type and reduced motion. **Condition:** use only if iOS is in scope, inspect exact revision, pair with Android/TalkBack testing and real Arabic screen-reader users; do not treat a prompt checklist as an audit. |
+
+## Conditional tools and rejected defaults
+
+| Repository | What it offers | Decision now |
+|---|---|---|
+| [`Community-Access/accessibility-agents`](https://github.com/Community-Access/accessibility-agents), MIT, [releases](https://github.com/Community-Access/accessibility-agents/releases) show v6.0 on 15 Jun 2026; README references v7 refactor | `skills/`, `scripts/install.mjs`, `mcp-server/`, package lock; `npm install` and installer dry-run; broader web accessibility agents and hooks. | Defer. Version/readme mismatch, global skill writes and hooks that can block edits/final responses demand a separate trust review. Web emphasis does not replace native Arabic VoiceOver/TalkBack tests. |
+| [`callstack/react-native-paper`](https://github.com/callstack/react-native-paper), MIT, actively released | React Native Material UI components, RTL support and native dependencies. | Conditional library only if engine/implementation team chooses React Native and the selected visual direction fits; assess bundle, theming, RTL and actual native behavior then. No stack is approved. |
+| [`vercel-labs/agent-skills`](https://github.com/vercel-labs/agent-skills) web design guidance; [`anthropics/skills`](https://github.com/anthropics/skills) accessibility-related examples | General web review prompts or WCAG-oriented checklists. | Do not rank as a mobile research capability merely because they are popular. Their live rules, device coverage and Arabic validation need separate verification. |
+
+## Integration plan for founder review
+
+1. Approve **read-only evaluation** of #1 and #2 at named commits, with exact source files, license and installer script review. No automatic third-party execution or replacement of platform documentation.
+2. Use #1 only to widen later visual exploration and #2 only as a checklist; compare recommendations against this brief, approved engine contract and current primary platform guidance. If iOS is confirmed, optionally review #3.
+3. Request repository access and target platform/stack from the implementation owner before selecting a UI library or adding dependencies. Prototype in the approved design tool without assuming React Native, Flutter or a 3D engine.
+4. Before any install, review file-writing scope, scripts/hooks, network calls, dependency lockfiles and licenses at a pinned revision. Founder sees the exact proposed integration and access needs first. No package can certify Qur’anic content, Arabic copy or devotional fit.
+
+Repositories and release pages were consulted on the audit date; their main branches and install commands can change. A recommendation here is permission to inspect, **not** permission to install.

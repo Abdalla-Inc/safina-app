@@ -1,0 +1,27 @@
+**
+!Dockerfile
+!Front End/
+!Front End/**
+!Back End/
+!Back End/requirements.txt
+!Back End/safina/
+!Back End/safina/**
+!Back End/migrations/
+!Back End/migrations/**
+!Back End/data/
+!Back End/data/**
+!deploy/
+!deploy/**
+**/.git
+**/.agents
+**/.codex
+**/node_modules
+**/dist
+**/local
+**/.env
+**/.env.*
+**/__pycache__
+**/*.sqlite*
+**/*.key
+**/*.pem
+**/*.log

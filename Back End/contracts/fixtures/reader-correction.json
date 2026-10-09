@@ -1,0 +1,161 @@
+{
+  "schema": "ReadingMutationResult",
+  "contractVersion": "0.3.0",
+  "fixture": {
+    "act": {
+      "assignmentId": "as_47a0905ed0e978e17733648c772a81b6",
+      "confirmationState": "member_confirmed",
+      "createdAt": "2026-10-01T02:00:00+00:00",
+      "cycleId": "monthly:2026-09-01",
+      "freeDay": false,
+      "id": "43483cbb-d044-537f-a8fa-3490fcaa6a28",
+      "memberId": "reader",
+      "mutationId": "4dad881f-ed34-512b-9ddd-8664d9770765",
+      "occurredAt": "2026-09-01T09:00:00+10:00",
+      "occurrenceDate": "2026-09-01",
+      "ranges": [
+        {
+          "start": "2:1",
+          "end": "2:100"
+        }
+      ],
+      "referenceVersion": "hafs-tanzil-1.0-20260928",
+      "repeatOfActId": null,
+      "retracted": false,
+      "revision": 2,
+      "revisionOf": 1,
+      "ruleVersion": "founder-core-2026-09-28.v1",
+      "source": "reader_confirmed",
+      "timezone": "Australia/Brisbane",
+      "traceId": "d211043d-3357-58f6-a7e2-ee0412e913bf",
+      "updatedAt": "2026-10-01T02:00:00+00:00",
+      "utcOffsetMinutes": 600,
+      "revisionReason": "Corrected my reported endpoint"
+    },
+    "explanation": "Your reading record was corrected. Day credit, ship accounting and khatma coverage have been recalculated from active reports.",
+    "evaluation": {
+      "date": "2026-09-01",
+      "status": "partial",
+      "actualReadingStatus": "member_confirmed",
+      "uniqueCoverage": [
+        {
+          "start": "2:1",
+          "end": "2:100"
+        }
+      ],
+      "uniqueVerseCount": 100,
+      "repeatedActs": [],
+      "assignedFulfilment": {
+        "ranges": [
+          {
+            "start": "2:1",
+            "end": "2:100"
+          }
+        ],
+        "matchedVerses": 100,
+        "targetVerses": 286,
+        "complete": null
+      },
+      "supplementalReading": [],
+      "dayCredit": null,
+      "creditState": "awaiting_policy",
+      "openPolicies": [
+        {
+          "code": "RULE_NOT_APPROVED",
+          "policy": "partial_credit",
+          "question": "Should partial reading earn fractional credit, and with which pinned word denominator?",
+          "ruleVersion": "founder-core-2026-09-28.v1"
+        }
+      ],
+      "assignmentIds": [
+        "as_47a0905ed0e978e17733648c772a81b6"
+      ],
+      "historicalLevels": [
+        {
+          "tier": "B",
+          "label": "B",
+          "colorToken": "level.B",
+          "patternToken": "level-pattern.B"
+        }
+      ],
+      "sourceActs": [
+        {
+          "id": "43483cbb-d044-537f-a8fa-3490fcaa6a28",
+          "revision": 2
+        }
+      ],
+      "elapsedTime": null,
+      "inputHash": "2e4ae97c321bf5ea96fba241f67e2bd34cfe3bf6b9764fe49861082fd051e1df",
+      "corrected": true,
+      "readerObservedTrace": [
+        {
+          "createdAt": "2026-10-01T02:00:00+00:00",
+          "credit": 0,
+          "discarded": false,
+          "explanation": "Observed ranges are a provisional suggestion. The member must confirm or replace them.",
+          "id": "d211043d-3357-58f6-a7e2-ee0412e913bf",
+          "memberId": "reader",
+          "observations": [
+            {
+              "kind": "exposed",
+              "ranges": [
+                {
+                  "end": "2:286",
+                  "start": "2:1"
+                }
+              ]
+            }
+          ],
+          "occurredAt": "2026-09-01T09:00:00+10:00",
+          "occurrenceDate": "2026-09-01",
+          "referenceVersion": "hafs-tanzil-1.0-20260928",
+          "revision": 1,
+          "state": "reader_suggestion",
+          "suggestedRanges": [
+            {
+              "end": "2:286",
+              "start": "2:1"
+            }
+          ],
+          "timezone": "Australia/Brisbane",
+          "updatedAt": "2026-10-01T02:00:00+00:00",
+          "utcOffsetMinutes": 600
+        }
+      ]
+    },
+    "shipProgress": {
+      "visibility": "private",
+      "approvedCredits": 0,
+      "creditsPerShip": 30,
+      "periods": [
+        {
+          "month": "2026-09",
+          "approvedCredits": 0,
+          "completedShipsWithinPeriod": 0
+        }
+      ],
+      "completedShipsWithinPeriods": 0,
+      "currentShip": null,
+      "lifetimeShipCount": null,
+      "presentationStatus": "awaiting_policy",
+      "openPolicies": [
+        {
+          "code": "RULE_NOT_APPROVED",
+          "policy": "ship_carry",
+          "question": "Does unfinished construction continue across periods or remain a dated unfinished ship?",
+          "ruleVersion": "founder-core-2026-09-28.v1"
+        }
+      ],
+      "unresolvedDayCredits": [
+        "2026-09-01"
+      ],
+      "ledger": [
+        {
+          "date": "2026-09-01",
+          "credit": null,
+          "inputHash": "2e4ae97c321bf5ea96fba241f67e2bd34cfe3bf6b9764fe49861082fd051e1df"
+        }
+      ]
+    }
+  }
+}

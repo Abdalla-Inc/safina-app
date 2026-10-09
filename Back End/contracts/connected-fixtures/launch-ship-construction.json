@@ -1,0 +1,22 @@
+{
+  "schema": "ShipVisual",
+  "fixture": {
+    "schemaVersion": "1.0.0-proposed",
+    "assetVersion": "0.5.0",
+    "vesselId": "433ca074-73c8-5cdf-9afa-5af4c7599fde",
+    "lifecyclePolicyId": "founder-ship-lifecycle-2026-10-01.v1",
+    "status": "ready",
+    "state": {
+      "phase": "construction",
+      "buildStep": 0,
+      "health": 100,
+      "maintenanceTimezone": "Asia/Riyadh",
+      "lastSettledMaintenanceDate": null,
+      "nextSettlementAt": null
+    },
+    "blockedReasons": [],
+    "earnedBuildStep": 0,
+    "revision": 1,
+    "generatedAt": "2026-10-01T08:00:00+00:00"
+  }
+}

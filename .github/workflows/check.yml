@@ -1,0 +1,31 @@
+name: Check Safina
+on: [push, pull_request]
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: Front End/package-lock.json
+      - run: python -m pip install -r requirements.txt
+        working-directory: Back End
+      - run: python -m unittest discover -s tests -q
+        working-directory: Back End
+      - run: npm ci
+        working-directory: Front End
+      - run: npm test
+        working-directory: Front End
+      - run: npm run build
+        working-directory: Front End
+  container:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build --tag safina:ci .
+      - run: docker run --rm safina:ci caddy validate --config /app/Caddyfile --adapter caddyfile

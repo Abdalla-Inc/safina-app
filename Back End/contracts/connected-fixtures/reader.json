@@ -1,0 +1,10 @@
+{
+  "schema": "Reader",
+  "fixture": {
+    "edition": "hafs-madani-604",
+    "mapVersion": "tanzil-pages-1.0",
+    "page": 1,
+    "bookmarks": [],
+    "revision": 0
+  }
+}

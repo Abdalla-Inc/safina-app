@@ -1,0 +1,170 @@
+{
+  "schema": "Calendar",
+  "contractVersion": "0.3.0",
+  "fixture": {
+    "visibility": "private",
+    "days": [
+      {
+        "date": "2026-09-01",
+        "status": "partial",
+        "actualReadingStatus": "member_confirmed",
+        "uniqueCoverage": [
+          {
+            "start": "2:1",
+            "end": "2:100"
+          }
+        ],
+        "uniqueVerseCount": 100,
+        "repeatedActs": [],
+        "assignedFulfilment": {
+          "ranges": [
+            {
+              "start": "2:1",
+              "end": "2:100"
+            }
+          ],
+          "matchedVerses": 100,
+          "targetVerses": 286,
+          "complete": null
+        },
+        "supplementalReading": [],
+        "dayCredit": null,
+        "creditState": "awaiting_policy",
+        "openPolicies": [
+          {
+            "code": "RULE_NOT_APPROVED",
+            "policy": "partial_credit",
+            "question": "Should partial reading earn fractional credit, and with which pinned word denominator?",
+            "ruleVersion": "founder-core-2026-09-28.v1"
+          }
+        ],
+        "assignmentIds": [
+          "as_47a0905ed0e978e17733648c772a81b6"
+        ],
+        "historicalLevels": [
+          {
+            "tier": "B",
+            "label": "B",
+            "colorToken": "level.B",
+            "patternToken": "level-pattern.B"
+          }
+        ],
+        "sourceActs": [
+          {
+            "id": "43483cbb-d044-537f-a8fa-3490fcaa6a28",
+            "revision": 2
+          }
+        ],
+        "elapsedTime": null,
+        "inputHash": "2e4ae97c321bf5ea96fba241f67e2bd34cfe3bf6b9764fe49861082fd051e1df",
+        "corrected": true,
+        "readerObservedTrace": [
+          {
+            "createdAt": "2026-10-01T02:00:00+00:00",
+            "credit": 0,
+            "discarded": false,
+            "explanation": "Observed ranges are a provisional suggestion. The member must confirm or replace them.",
+            "id": "d211043d-3357-58f6-a7e2-ee0412e913bf",
+            "memberId": "reader",
+            "observations": [
+              {
+                "kind": "exposed",
+                "ranges": [
+                  {
+                    "end": "2:286",
+                    "start": "2:1"
+                  }
+                ]
+              }
+            ],
+            "occurredAt": "2026-09-01T09:00:00+10:00",
+            "occurrenceDate": "2026-09-01",
+            "referenceVersion": "hafs-tanzil-1.0-20260928",
+            "revision": 1,
+            "state": "reader_suggestion",
+            "suggestedRanges": [
+              {
+                "end": "2:286",
+                "start": "2:1"
+              }
+            ],
+            "timezone": "Australia/Brisbane",
+            "updatedAt": "2026-10-01T02:00:00+00:00",
+            "utcOffsetMinutes": 600
+          }
+        ],
+        "khatmaMarks": []
+      },
+      {
+        "date": "2026-09-02",
+        "status": "no_entry",
+        "actualReadingStatus": "no_entry",
+        "uniqueCoverage": [],
+        "uniqueVerseCount": 0,
+        "repeatedActs": [],
+        "assignedFulfilment": {
+          "ranges": [],
+          "matchedVerses": 0,
+          "targetVerses": 286,
+          "complete": false
+        },
+        "supplementalReading": [],
+        "dayCredit": 0,
+        "creditState": "resolved",
+        "openPolicies": [],
+        "assignmentIds": [
+          "as_5e2bf97aa7fc3a292d54612316a5b1c3"
+        ],
+        "historicalLevels": [
+          {
+            "tier": "B",
+            "label": "B",
+            "colorToken": "level.B",
+            "patternToken": "level-pattern.B"
+          }
+        ],
+        "sourceActs": [],
+        "elapsedTime": null,
+        "inputHash": "c912586ec444726c8f3dff60b4f634613d46503ce3ed8be3e044f8db9e1ae38a",
+        "corrected": false,
+        "readerObservedTrace": [],
+        "khatmaMarks": []
+      },
+      {
+        "date": "2026-09-03",
+        "status": "no_entry",
+        "actualReadingStatus": "no_entry",
+        "uniqueCoverage": [],
+        "uniqueVerseCount": 0,
+        "repeatedActs": [],
+        "assignedFulfilment": {
+          "ranges": [],
+          "matchedVerses": 0,
+          "targetVerses": 286,
+          "complete": false
+        },
+        "supplementalReading": [],
+        "dayCredit": 0,
+        "creditState": "resolved",
+        "openPolicies": [],
+        "assignmentIds": [
+          "as_6ed7b7f60b5a11e8eea36c08ea35b729"
+        ],
+        "historicalLevels": [
+          {
+            "tier": "B",
+            "label": "B",
+            "colorToken": "level.B",
+            "patternToken": "level-pattern.B"
+          }
+        ],
+        "sourceActs": [],
+        "elapsedTime": null,
+        "inputHash": "6ea7bb22fc237efc5ba5e60dc83ed0e160ea885c9c11a1b1e7c51af9a258b498",
+        "corrected": false,
+        "readerObservedTrace": [],
+        "khatmaMarks": []
+      }
+    ]
+  }
+}

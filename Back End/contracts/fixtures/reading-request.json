@@ -1,0 +1,22 @@
+{
+  "schema": "ReadingCreate",
+  "contractVersion": "0.3.0",
+  "fixture": {
+    "mutationId": "19ab50e6-522c-51de-984c-cbdb2408202a",
+    "logicalActId": "26ad84bb-3454-5187-be71-a60c63fcfd32",
+    "occurrenceDate": "2026-09-01",
+    "occurredAt": "2026-09-01T09:00:00+10:00",
+    "timezone": "Australia/Brisbane",
+    "utcOffsetMinutes": 600,
+    "ranges": [
+      {
+        "start": "2:1",
+        "end": "2:286"
+      }
+    ],
+    "source": "manual_physical",
+    "assignmentId": "as_460359176a6d101ee8c4215bc56ede59",
+    "ruleVersion": "founder-core-2026-09-28.v1",
+    "referenceVersion": "hafs-tanzil-1.0-20260928"
+  }
+}

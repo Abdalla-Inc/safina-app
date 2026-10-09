@@ -1,0 +1,95 @@
+{
+  "schema": "WeeklyFeed",
+  "fixture": {
+    "items": [
+      {
+        "activityDays": 1,
+        "celebrationStartsAt": "2026-10-02T21:00:00+00:00",
+        "days": [
+          "2026-09-30"
+        ],
+        "eligible": true,
+        "endExclusive": "2026-10-03T21:00:00+00:00",
+        "facts": [
+          {
+            "count": 1,
+            "countSemantics": "distinct_completed_days; within-day explicit repeats do not add unapproved completions",
+            "kind": "surah_completion",
+            "proofRefs": [
+              "57e5c4bb9ee5d8d72196237c893d4bc57a6e94f07090c07ce926c842092689af"
+            ],
+            "surahId": 2
+          },
+          {
+            "additionalAssignedJuzIds": [],
+            "juzIds": [
+              2
+            ],
+            "kind": "juz_coverage",
+            "overlapsSurahCoverage": true,
+            "proofRefs": [
+              "57e5c4bb9ee5d8d72196237c893d4bc57a6e94f07090c07ce926c842092689af"
+            ],
+            "ranges": [
+              {
+                "end": "2:252",
+                "start": "2:142"
+              }
+            ],
+            "referenceVersion": "hafs-tanzil-1.0-20260928"
+          }
+        ],
+        "istighfarTotal": 0,
+        "levelSegments": [
+          {
+            "colorToken": "level.BI",
+            "effectiveFrom": "2026-09-30T12:00:00+00:00",
+            "effectiveTo": null,
+            "ruleVersion": "founder-community-2026-09-29.v2",
+            "tierId": "BI"
+          }
+        ],
+        "meaningfulAt": "2026-09-30T12:00:00+00:00",
+        "quranKhatmas": [],
+        "ranges": [
+          {
+            "end": "2:286",
+            "start": "2:1"
+          }
+        ],
+        "readingDays": 1,
+        "repeatPolicy": "Within-day repeated acts retained privately; additional completion counts await policy.",
+        "startAt": "2026-09-26T21:00:00+00:00",
+        "timeZone": "Asia/Riyadh",
+        "uniqueVerseCount": 286,
+        "weekEnd": "2026-10-03",
+        "weekStart": "2026-09-27",
+        "id": "weekly:eeb21de8-e819-4972-a004-c66e39338237:2026-09-27",
+        "member": {
+          "id": "eeb21de8-e819-4972-a004-c66e39338237",
+          "displayName": "Example BI",
+          "avatarUrl": null,
+          "avatarVersion": 0,
+          "countryCode": "SD"
+        },
+        "revision": 2,
+        "projectionState": "ready",
+        "sourceSequence": 9,
+        "status": "in_progress",
+        "reactions": [],
+        "heartCount": 0,
+        "viewerReaction": null,
+        "viewerReacted": false,
+        "reactionRevision": 0,
+        "visibility": "visible"
+      }
+    ],
+    "nextCursor": null,
+    "projectionRevision": 3,
+    "participantCount": 1,
+    "completeWirdMemberCount": null,
+    "period": "2026-09-27",
+    "timeZone": "Asia/Riyadh",
+    "status": "in_progress"
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "schema": "DailyFeed",
+  "fixture": {
+    "items": [
+      {
+        "assignedWirdComplete": false,
+        "assignmentDay": "2026-09-30",
+        "completeWird": false,
+        "completedComponents": [],
+        "completionState": "no_entry",
+        "corrected": true,
+        "day": "2026-09-30",
+        "eligible": true,
+        "facts": [
+          {
+            "complete": false,
+            "count": 50,
+            "kind": "istighfar_count",
+            "target": 100
+          }
+        ],
+        "istighfar": {
+          "complete": false,
+          "count": 50,
+          "day": "2026-09-30",
+          "occurredAt": "2026-09-30T12:00:00+00:00",
+          "revision": 1,
+          "target": 100,
+          "targetPinned": true,
+          "updatedAt": "2026-09-30T12:00:00+00:00"
+        },
+        "istighfarComplete": false,
+        "levelSegments": [
+          {
+            "colorToken": "level.B",
+            "effectiveFrom": "2026-09-30T12:00:00+00:00",
+            "label": "B",
+            "patternToken": "level-pattern.B",
+            "tier": "B"
+          }
+        ],
+        "meaningfulAt": "2026-09-30T12:00:00+00:00",
+        "proofRefs": [],
+        "ranges": [],
+        "sourceProofHash": "da7e52a3343fbe5bab9c4595aefa7986cb26738896a29f06bde080c7c6abedcf",
+        "timeZone": "Asia/Riyadh",
+        "uniqueVerseCount": 0,
+        "id": "daily:bbe88750-4af6-40c2-8ee4-d5702d380d92:2026-09-30",
+        "member": {
+          "id": "bbe88750-4af6-40c2-8ee4-d5702d380d92",
+          "displayName": "عضو اختبار باسم طويل بلا صورة شخصية",
+          "avatarUrl": null,
+          "avatarVersion": 0,
+          "countryCode": "AU"
+        },
+        "revision": 4,
+        "projectionState": "ready",
+        "sourceSequence": 5,
+        "reactions": [
+          {
+            "emoji": "👏",
+            "count": 1
+          }
+        ],
+        "heartCount": 0,
+        "viewerReaction": "👏",
+        "viewerReacted": false,
+        "reactionRevision": 1,
+        "visibility": "visible"
+      }
+    ],
+    "nextCursor": null,
+    "projectionRevision": 9,
+    "participantCount": null,
+    "completeWirdMemberCount": 0,
+    "period": "2026-09-30",
+    "timeZone": "Asia/Riyadh",
+    "status": "daily"
+  }
+}

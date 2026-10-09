@@ -1,0 +1,392 @@
+
+> safinat-al-nur-prototype@0.1.0 test
+> node --test tests/*.test.js
+
+TAP version 13
+# Subtest: local backend bridge rejects writes, unlisted paths and cross-origin requests before connecting
+ok 1 - local backend bridge rejects writes, unlisted paths and cross-origin requests before connecting
+  ---
+  duration_ms: 0.725667
+  type: 'test'
+  ...
+# Subtest: Mecca day and midnight are independent of the device timezone, including month/year rollover
+ok 2 - Mecca day and midnight are independent of the device timezone, including month/year rollover
+  ---
+  duration_ms: 0.583292
+  type: 'test'
+  ...
+# Subtest: each completed assigned task updates one daily entry, while only a full wird increments the people counter
+ok 3 - each completed assigned task updates one daily entry, while only a full wird increments the people counter
+  ---
+  duration_ms: 2.208
+  type: 'test'
+  ...
+# Subtest: correction, retraction and reopening revise the feed and its counter without stale completed claims
+ok 4 - correction, retraction and reopening revise the feed and its counter without stale completed claims
+  ---
+  duration_ms: 0.486417
+  type: 'test'
+  ...
+# Subtest: outside, backdated, unconfirmed and duplicate reading do not create extra community completion
+ok 5 - outside, backdated, unconfirmed and duplicate reading do not create extra community completion
+  ---
+  duration_ms: 1.214083
+  type: 'test'
+  ...
+# Subtest: historical corrections stay on their original day; current midnight starts a fresh feed
+ok 6 - historical corrections stay on their original day; current midnight starts a fresh feed
+  ---
+  duration_ms: 0.302458
+  type: 'test'
+  ...
+# Subtest: member/day aggregation is unique and ayah rotation uses complete canonical references
+ok 7 - member/day aggregation is unique and ayah rotation uses complete canonical references
+  ---
+  duration_ms: 0.708334
+  type: 'test'
+  ...
+# Subtest: a mutation unrelated to already-private completed tasks never backfills their first publication
+ok 8 - a mutation unrelated to already-private completed tasks never backfills their first publication
+  ---
+  duration_ms: 0.289375
+  type: 'test'
+  ...
+# Subtest: completion snapshots retain their level after a later profile change
+ok 9 - completion snapshots retain their level after a later profile change
+  ---
+  duration_ms: 0.286458
+  type: 'test'
+  ...
+# Subtest: each engine tier has a distinct, readable community accent
+ok 10 - each engine tier has a distinct, readable community accent
+  ---
+  duration_ms: 2.531208
+  type: 'test'
+  ...
+# Subtest: legacy post colors come from their assignment; unknown levels stay neutral
+ok 11 - legacy post colors come from their assignment; unknown levels stay neutral
+  ---
+  duration_ms: 0.223333
+  type: 'test'
+  ...
+# Subtest: samples cover all levels, stay explicitly fictional, and remain inside the Mecca day
+ok 12 - samples cover all levels, stay explicitly fictional, and remain inside the Mecca day
+  ---
+  duration_ms: 1.18025
+  type: 'test'
+  ...
+# Subtest: Saturday celebration uses Mecca midnight and Sunday-to-Saturday civil weeks across years
+ok 13 - Saturday celebration uses Mecca midnight and Sunday-to-Saturday civil weeks across years
+  ---
+  duration_ms: 1.189125
+  type: 'test'
+  ...
+# Subtest: partial reading participates without daily completion, future or outside-plan claims
+ok 14 - partial reading participates without daily completion, future or outside-plan claims
+  ---
+  duration_ms: 4.655833
+  type: 'test'
+  ...
+# Subtest: overlaps, duplicates and repeat flags do not invent additional complete readings
+ok 15 - overlaps, duplicates and repeat flags do not invent additional complete readings
+  ---
+  duration_ms: 0.375583
+  type: 'test'
+  ...
+# Subtest: surah coverage across days is one complete surah, never a Quran khatma
+ok 16 - surah coverage across days is one complete surah, never a Quran khatma
+  ---
+  duration_ms: 0.1845
+  type: 'test'
+  ...
+# Subtest: daily full readings count separately; correction/retraction recomputes or removes a week
+ok 17 - daily full readings count separately; correction/retraction recomputes or removes a week
+  ---
+  duration_ms: 0.461625
+  type: 'test'
+  ...
+# Subtest: archive is newest first, honors stored levels and preserves a mixed-tier week/day
+ok 18 - archive is newest first, honors stored levels and preserves a mixed-tier week/day
+  ---
+  duration_ms: 1.08325
+  type: 'test'
+  ...
+# Subtest: Saturday optional actual reading belongs to the week; it is never a required-day assertion
+ok 19 - Saturday optional actual reading belongs to the week; it is never a required-day assertion
+  ---
+  duration_ms: 0.279958
+  type: 'test'
+  ...
+# Subtest: sample history shows four ordered weeks and a level change, with all dates at or before today
+ok 20 - sample history shows four ordered weeks and a level change, with all dates at or before today
+  ---
+  duration_ms: 0.745375
+  type: 'test'
+  ...
+# Subtest: celebration verse references point to complete locally pinned Quran verses
+ok 21 - celebration verse references point to complete locally pinned Quran verses
+  ---
+  duration_ms: 0.445542
+  type: 'test'
+  ...
+# Subtest: account reading queues are isolated, deduplicated, and cleared without touching preview data
+ok 22 - account reading queues are isolated, deduplicated, and cleared without touching preview data
+  ---
+  duration_ms: 0.929167
+  type: 'test'
+  ...
+# Subtest: cookie requests keep CSRF in memory and use the same mutation when refreshing an expired session
+ok 23 - cookie requests keep CSRF in memory and use the same mutation when refreshing an expired session
+  ---
+  duration_ms: 0.912084
+  type: 'test'
+  ...
+# Subtest: responses from an old account cannot populate the next account
+ok 24 - responses from an old account cannot populate the next account
+  ---
+  duration_ms: 2.171583
+  type: 'test'
+  ...
+# Subtest: network failures do not report an unacknowledged mutation as saved
+ok 25 - network failures do not report an unacknowledged mutation as saved
+  ---
+  duration_ms: 0.186125
+  type: 'test'
+  ...
+# Subtest: occurrence retains a real instant and the original device offset independently of assignment day
+ok 26 - occurrence retains a real instant and the original device offset independently of assignment day
+  ---
+  duration_ms: 17.37175
+  type: 'test'
+  ...
+# Subtest: same-member session rotation does not invalidate an in-flight read
+ok 27 - same-member session rotation does not invalidate an in-flight read
+  ---
+  duration_ms: 0.157792
+  type: 'test'
+  ...
+# Subtest: founder can inspect every week without manufacturing progress
+ok 28 - founder can inspect every week without manufacturing progress
+  ---
+  duration_ms: 1.464958
+  type: 'test'
+  ...
+# Subtest: learner direct links must reject all locked weeks
+ok 29 - learner direct links must reject all locked weeks
+  ---
+  duration_ms: 0.119833
+  type: 'test'
+  ...
+# Subtest: completion requires every lesson AND submitted complete answers
+ok 30 - completion requires every lesson AND submitted complete answers
+  ---
+  duration_ms: 0.1955
+  type: 'test'
+  ...
+# Subtest: empty, whitespace and invalid multiple choice answers cannot unlock
+ok 31 - empty, whitespace and invalid multiple choice answers cannot unlock
+  ---
+  duration_ms: 0.072917
+  type: 'test'
+  ...
+# Subtest: completing week one unlocks only week two
+ok 32 - completing week one unlocks only week two
+  ---
+  duration_ms: 0.222959
+  type: 'test'
+  ...
+# Subtest: later founder completions do not bypass earlier prerequisites in learner mode
+ok 33 - later founder completions do not bypass earlier prerequisites in learner mode
+  ---
+  duration_ms: 0.08475
+  type: 'test'
+  ...
+# Subtest: undoing completion or editing submitted answers relocks subsequent weeks
+ok 34 - undoing completion or editing submitted answers relocks subsequent weeks
+  ---
+  duration_ms: 0.147875
+  type: 'test'
+  ...
+# Subtest: course progress and answers are isolated; single-class course opens immediately
+ok 35 - course progress and answers are isolated; single-class course opens immediately
+  ---
+  duration_ms: 0.087292
+  type: 'test'
+  ...
+# Subtest: resume returns final lesson for unfinished week questions
+ok 36 - resume returns final lesson for unfinished week questions
+  ---
+  duration_ms: 0.580667
+  type: 'test'
+  ...
+# Subtest: pinned Quran text remains byte-for-byte unchanged and structurally complete
+ok 37 - pinned Quran text remains byte-for-byte unchanged and structurally complete
+  ---
+  duration_ms: 4.358334
+  type: 'test'
+  ...
+# Subtest: range validation rejects reversed, missing, fractional and out-of-surah endpoints
+ok 38 - range validation rejects reversed, missing, fractional and out-of-surah endpoints
+  ---
+  duration_ms: 0.147625
+  type: 'test'
+  ...
+# Subtest: manual and reader overlap form a union, not extra progress
+ok 39 - manual and reader overlap form a union, not extra progress
+  ---
+  duration_ms: 1.2015
+  type: 'test'
+  ...
+# Subtest: an explicit repeat stays a separate act without multiplying unique coverage
+ok 40 - an explicit repeat stays a separate act without multiplying unique coverage
+  ---
+  duration_ms: 0.135916
+  type: 'test'
+  ...
+# Subtest: unconfirmed reader observation adds no reading or demo credit
+ok 41 - unconfirmed reader observation adds no reading or demo credit
+  ---
+  duration_ms: 0.223542
+  type: 'test'
+  ...
+# Subtest: partial completion remains unresolved, full approved BI gets only a demo one
+ok 42 - partial completion remains unresolved, full approved BI gets only a demo one
+  ---
+  duration_ms: 0.197959
+  type: 'test'
+  ...
+# Subtest: correction preserves revision lineage, reduces coverage and removes linked publication
+ok 43 - correction preserves revision lineage, reduces coverage and removes linked publication
+  ---
+  duration_ms: 0.537209
+  type: 'test'
+  ...
+# Subtest: retraction preserves history but removes actual coverage and linked post
+ok 44 - retraction preserves history but removes actual coverage and linked post
+  ---
+  duration_ms: 0.159959
+  type: 'test'
+  ...
+# Subtest: undo leaves later independent changes intact and does not republish
+ok 45 - undo leaves later independent changes intact and does not republish
+  ---
+  duration_ms: 0.398875
+  type: 'test'
+  ...
+# Subtest: an unresolved tier never invents a schedule or credit
+ok 46 - an unresolved tier never invents a schedule or credit
+  ---
+  duration_ms: 0.430584
+  type: 'test'
+  ...
+# Subtest: late entry never changes the fixed demo today count
+ok 47 - late entry never changes the fixed demo today count
+  ---
+  duration_ms: 0.156708
+  type: 'test'
+  ...
+# Subtest: library finds reviewed-example keywords in Arabic and English and supports empty results
+ok 48 - library finds reviewed-example keywords in Arabic and English and supports empty results
+  ---
+  duration_ms: 0.189583
+  type: 'test'
+  ...
+# Subtest: juz picker boundaries preserve canonical Baqarah intersections
+ok 49 - juz picker boundaries preserve canonical Baqarah intersections
+  ---
+  duration_ms: 0.169875
+  type: 'test'
+  ...
+# Subtest: backend contract snapshot confirms BI ranges and unresolved partial policy
+ok 50 - backend contract snapshot confirms BI ranges and unresolved partial policy
+  ---
+  duration_ms: 0.985416
+  type: 'test'
+  ...
+# Subtest: fixed Madani pages cover all 6236 ayahs exactly once, including multi-surah leaves
+ok 51 - fixed Madani pages cover all 6236 ayahs exactly once, including multi-surah leaves
+  ---
+  duration_ms: 28.634083
+  type: 'test'
+  ...
+# Subtest: all chapter and juz shortcuts resolve to the pinned edition
+ok 52 - all chapter and juz shortcuts resolve to the pinned edition
+  ---
+  duration_ms: 0.558333
+  type: 'test'
+  ...
+# Subtest: page and verse bounds reject invalid links; gestures distinguish horizontal turns from taps and scrolls
+ok 53 - page and verse bounds reject invalid links; gestures distinguish horizontal turns from taps and scrolls
+  ---
+  duration_ms: 0.120042
+  type: 'test'
+  ...
+# Subtest: all 604 locally bundled page images retain their downloaded bytes and dimensions
+ok 54 - all 604 locally bundled page images retain their downloaded bytes and dimensions
+  ---
+  duration_ms: 164.512458
+  type: 'test'
+  ...
+# Subtest: surah search supports Arabic numbers, diacritics and hamza variants
+ok 55 - surah search supports Arabic numbers, diacritics and hamza variants
+  ---
+  duration_ms: 2.961625
+  type: 'test'
+  ...
+# Subtest: reader bounds never duplicate or skip verses across default windows
+ok 56 - reader bounds never duplicate or skip verses across default windows
+  ---
+  duration_ms: 2.460208
+  type: 'test'
+  ...
+# Subtest: backend completed status is displayed as complete; unresolved and unknown remain distinct
+ok 57 - backend completed status is displayed as complete; unresolved and unknown remain distinct
+  ---
+  duration_ms: 0.173417
+  type: 'test'
+  ...
+# Subtest: backend read adapter bounds calendar, retains null ship and surfaces errors
+ok 58 - backend read adapter bounds calendar, retains null ship and surfaces errors
+  ---
+  duration_ms: 1.130709
+  type: 'test'
+  ...
+# Subtest: Today only exposes approved selected commitments, never extra surahs or invented juz assignments
+ok 59 - Today only exposes approved selected commitments, never extra surahs or invented juz assignments
+  ---
+  duration_ms: 1.105125
+  type: 'test'
+  ...
+# Subtest: crossing completes a task once; reopening retains earlier partial reading and unrelated data
+ok 60 - crossing completes a task once; reopening retains earlier partial reading and unrelated data
+  ---
+  duration_ms: 2.651375
+  type: 'test'
+  ...
+# Subtest: union of partial ranges can complete a capsule; reopening removes completion and invalidates related shared posts
+ok 61 - union of partial ranges can complete a capsule; reopening removes completion and invalidates related shared posts
+  ---
+  duration_ms: 0.344875
+  type: 'test'
+  ...
+# Subtest: partial progress validates assignment bounds, de-duplicates overlap, and creates no credit for unassigned reading
+ok 62 - partial progress validates assignment bounds, de-duplicates overlap, and creates no credit for unassigned reading
+  ---
+  duration_ms: 0.364917
+  type: 'test'
+  ...
+# Subtest: swipe threshold prevents short, wrong-direction and vertical gestures from completing or undoing
+ok 63 - swipe threshold prevents short, wrong-direction and vertical gestures from completing or undoing
+  ---
+  duration_ms: 0.102583
+  type: 'test'
+  ...
+1..63
+# tests 63
+# suites 0
+# pass 63
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 297.2925

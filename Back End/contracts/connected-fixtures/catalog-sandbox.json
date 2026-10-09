@@ -1,0 +1,22 @@
+{
+  "schema": "Catalog",
+  "fixture": {
+    "items": [
+      {
+        "id": "sandbox-workflow",
+        "title": "SANDBOX ONLY: workflow test, not teaching content",
+        "version": 1,
+        "format": "weekly",
+        "thumbnail": null,
+        "sandbox": true,
+        "access": "free",
+        "completedModules": 0,
+        "moduleCount": 2,
+        "complete": false,
+        "resumeLessonId": "lesson-1"
+      }
+    ],
+    "nextCursor": null,
+    "contentState": "published"
+  }
+}

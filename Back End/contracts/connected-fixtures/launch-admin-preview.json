@@ -1,0 +1,10 @@
+{
+  "schema": "AdminShipPreview",
+  "fixture": {
+    "revision": 1,
+    "enabled": true,
+    "buildStep": 30,
+    "health": 45,
+    "celebration": true
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "schema": "Capabilities",
+  "fixture": {
+    "version": "0.5.0",
+    "customReading": true,
+    "dailyIstighfar": true,
+    "countrySetup": true,
+    "emojiReactions": true,
+    "istighfarBounds": {
+      "goalMin": 1,
+      "countMin": 0,
+      "max": 1000000
+    },
+    "reactionPalette": [
+      "❤️",
+      "👏",
+      "🤲",
+      "👍",
+      "🔥"
+    ],
+    "shipLifecycle": "awaiting_policy"
+  }
+}

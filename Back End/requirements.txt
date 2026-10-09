@@ -1,0 +1,3 @@
+# Required only by the connected identity/avatar service; legacy ledger remains stdlib.
+cryptography==49.0.0
+Pillow==11.3.0

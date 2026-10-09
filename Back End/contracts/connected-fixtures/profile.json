@@ -1,0 +1,94 @@
+{
+  "schema": "Me",
+  "fixture": {
+    "id": "eeb21de8-e819-4972-a004-c66e39338237",
+    "avatarId": null,
+    "avatarVersion": 0,
+    "communityAcknowledgedAt": "2026-09-30T12:00:00+00:00",
+    "communityScopeVersion": "founder-community-2026-09-29.v2",
+    "communityVisible": true,
+    "countryCode": "SD",
+    "displayName": "Example BI",
+    "istighfarGoal": 100,
+    "largeText": false,
+    "locale": "ar",
+    "reducedMotion": false,
+    "setupStatus": "complete",
+    "capabilities": {
+      "version": "0.5.0",
+      "customReading": true,
+      "dailyIstighfar": true,
+      "countrySetup": true,
+      "emojiReactions": true,
+      "istighfarBounds": {
+        "goalMin": 1,
+        "countMin": 0,
+        "max": 1000000
+      },
+      "reactionPalette": [
+        "❤️",
+        "👏",
+        "🤲",
+        "👍",
+        "🔥"
+      ],
+      "shipLifecycle": "awaiting_policy"
+    },
+    "avatarUrl": null,
+    "revision": 1,
+    "status": "active",
+    "timezone": "Asia/Riyadh",
+    "email": "bi@fixtures.test",
+    "permissions": {
+      "founder": false,
+      "moderate": false
+    },
+    "commitment": {
+      "effective": {
+        "effectiveAt": "2026-09-30T12:00:00+00:00",
+        "id": "0303d21b-3694-447b-8a82-5710fd290fe8",
+        "initial": true,
+        "ruleVersion": "founder-community-2026-09-29.v2",
+        "tier": "BI",
+        "timezone": "Asia/Riyadh"
+      },
+      "pending": [],
+      "history": [
+        {
+          "effectiveAt": "2026-09-30T12:00:00+00:00",
+          "id": "0303d21b-3694-447b-8a82-5710fd290fe8",
+          "initial": true,
+          "ruleVersion": "founder-community-2026-09-29.v2",
+          "tier": "BI",
+          "timezone": "Asia/Riyadh",
+          "effectiveTo": null,
+          "status": "effective",
+          "colorToken": "level.BI"
+        }
+      ],
+      "availableTiers": [
+        "B",
+        "BI",
+        "BJ1",
+        "BJ2",
+        "BJ3",
+        "BJ4",
+        "BJ5"
+      ],
+      "allowedTransitions": {
+        "nonweekly": "same_day",
+        "weekly": "next_sunday",
+        "crossCadence": "awaiting_policy"
+      }
+    },
+    "featureFlags": {
+      "automaticCommunity": true,
+      "learning": true,
+      "readerPassiveCredit": false
+    },
+    "communityScope": {
+      "version": "founder-community-2026-09-29.v2",
+      "description": "تظهر قراءاتك المؤكّدة واستغفارك المسجّل لأعضاء المجتمع تلقائياً. يظهر بلدك المختار بجانب اسمك. يمكنك إخفاء المشاركة من الإعدادات."
+    }
+  }
+}

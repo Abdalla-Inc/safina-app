@@ -1,0 +1,181 @@
+{
+  "schema": "ShipProgress",
+  "contractVersion": "0.3.0",
+  "fixture": {
+    "visibility": "private",
+    "approvedCredits": 30,
+    "creditsPerShip": 30,
+    "periods": [
+      {
+        "month": "2026-09",
+        "approvedCredits": 30,
+        "completedShipsWithinPeriod": 1
+      }
+    ],
+    "completedShipsWithinPeriods": 1,
+    "currentShip": null,
+    "lifetimeShipCount": null,
+    "presentationStatus": "awaiting_policy",
+    "openPolicies": [
+      {
+        "code": "RULE_NOT_APPROVED",
+        "policy": "ship_carry",
+        "question": "Does unfinished construction continue across periods or remain a dated unfinished ship?",
+        "ruleVersion": "founder-core-2026-09-28.v1"
+      }
+    ],
+    "unresolvedDayCredits": [],
+    "ledger": [
+      {
+        "date": "2026-09-01",
+        "credit": 1,
+        "inputHash": "0c555d4b71b183023bf44b7d7b56d2e75070f8b061dc76580ed1b920a64fedfc"
+      },
+      {
+        "date": "2026-09-02",
+        "credit": 1,
+        "inputHash": "cb05ca01d7fe8c913e023ceac0be759d0815d3e429a14108f2da482be5e4a24d"
+      },
+      {
+        "date": "2026-09-03",
+        "credit": 1,
+        "inputHash": "05b6b8ef7f8fe78406bbf65ab8e2f07d1b3e4c4ee7bc0f2587856845499fd0e3"
+      },
+      {
+        "date": "2026-09-04",
+        "credit": 1,
+        "inputHash": "710463ed1bf861f0f35a8138e822928bb3d88890a5f0536405fbb56d5b9c23a8"
+      },
+      {
+        "date": "2026-09-05",
+        "credit": 1,
+        "inputHash": "80d4949ba110b60d548c1ae9859f93579e00bab50e1683f9dec2c5c0619df533"
+      },
+      {
+        "date": "2026-09-06",
+        "credit": 1,
+        "inputHash": "901ffadfe54f798e28c14cdbcdd3ec8acc79e252df90af5fb3b90d2ac3bf170c"
+      },
+      {
+        "date": "2026-09-07",
+        "credit": 1,
+        "inputHash": "f0a2156b1b44b0953ee611f2f65adb235bac57a38d1055004c14c07038238254"
+      },
+      {
+        "date": "2026-09-08",
+        "credit": 1,
+        "inputHash": "9f06d025bed171082fb846fee7bbc0e4bec68386d8eb0066cd1d10c6b81bffa2"
+      },
+      {
+        "date": "2026-09-09",
+        "credit": 1,
+        "inputHash": "e3ea96ae70d2c321f5688c55be7fe6933c3979ea2f1958606e605a1d009be39b"
+      },
+      {
+        "date": "2026-09-10",
+        "credit": 1,
+        "inputHash": "2523c5014fc1d17b9ebf442a7f3fc5f560d18b1c6305657eb9d995709407cdbc"
+      },
+      {
+        "date": "2026-09-11",
+        "credit": 1,
+        "inputHash": "60486fa6e458dbb10aed40414d8b73ad5465e0da7ab22de82a42a613dbd51a8a"
+      },
+      {
+        "date": "2026-09-12",
+        "credit": 1,
+        "inputHash": "60d9f0714ae8049d9399952a21f86d9a46203603818a0c6b30aa4d66c80d9ecc"
+      },
+      {
+        "date": "2026-09-13",
+        "credit": 1,
+        "inputHash": "c53230d94b735b29a1e9eb8d072c2f49289884f6ded9582708fbd3709beff9b2"
+      },
+      {
+        "date": "2026-09-14",
+        "credit": 1,
+        "inputHash": "ef81cbc146ee385b70da1ea1386c9a1ee56aeb10a5c0dc1992210b8a717290e4"
+      },
+      {
+        "date": "2026-09-15",
+        "credit": 1,
+        "inputHash": "0066829cd7ec2f223a5222ab7ae87590b4200601058f029fda58543abca61c6e"
+      },
+      {
+        "date": "2026-09-16",
+        "credit": 1,
+        "inputHash": "752bc48ff4a99db8d72b014fa444d0822b1fc626565d3e01e2a028f31ac5b8b6"
+      },
+      {
+        "date": "2026-09-17",
+        "credit": 1,
+        "inputHash": "53840c54ffe2a226475af9c0853799feec4a37af06478ddeb1c9051510e834e3"
+      },
+      {
+        "date": "2026-09-18",
+        "credit": 1,
+        "inputHash": "36c87712d33f04ca5da43f5092054b29b369b4b7a553bedb4a13046fe2bd3829"
+      },
+      {
+        "date": "2026-09-19",
+        "credit": 1,
+        "inputHash": "46065289761655894d5e4f83e45660f241d76a9a5140ab71a0a52a902bcfe21e"
+      },
+      {
+        "date": "2026-09-20",
+        "credit": 1,
+        "inputHash": "6839cbb886a7b8fc1ed918bcd91d954f3a7fbbc5beb22cb4b351e125d686fa8e"
+      },
+      {
+        "date": "2026-09-21",
+        "credit": 1,
+        "inputHash": "a68de168e88c2f4c9875c2e12ce5570429ad7cb0e3b728cdf2fb28d4a71f5f47"
+      },
+      {
+        "date": "2026-09-22",
+        "credit": 1,
+        "inputHash": "a51fb621557f6e67acc0487fabce7b3e9c026db2af586bc944912e7aff0fb077"
+      },
+      {
+        "date": "2026-09-23",
+        "credit": 1,
+        "inputHash": "cf6215544d2faabe754b9df7b43225ae993e4adaa14b6c66e13738817398c239"
+      },
+      {
+        "date": "2026-09-24",
+        "credit": 1,
+        "inputHash": "d244e9fba4cc7751dac2cd04854f35fa009834a2177fbf211016ced9b0998fc7"
+      },
+      {
+        "date": "2026-09-25",
+        "credit": 1,
+        "inputHash": "6a81ff2f5d0c2d355fe3507bab33b5a5368109bf3e919367aa3e53b6bfb0acc3"
+      },
+      {
+        "date": "2026-09-26",
+        "credit": 1,
+        "inputHash": "29ac8ea1b7616356bb317dbc419c8649d8a922f4f6ed021b57b405875001c62f"
+      },
+      {
+        "date": "2026-09-27",
+        "credit": 1,
+        "inputHash": "8c5c39660b452e23536a43b41348b25961bbd51cb85f18ecd74892d0e025ac82"
+      },
+      {
+        "date": "2026-09-28",
+        "credit": 1,
+        "inputHash": "e70c72dbd83cfd0c292256419fa1b2b1300b290831e2013413ac27f380ac9cb4"
+      },
+      {
+        "date": "2026-09-29",
+        "credit": 1,
+        "inputHash": "b1f84ea4fde4291ab85c2ad971eb2340269d2f50e599d6dbfa3fb5e1fa42f9ca"
+      },
+      {
+        "date": "2026-09-30",
+        "credit": 1,
+        "inputHash": "35b100de4cea707713fdd49af2048f1047821af36d9c604d94f781ff1cc1b434"
+      }
+    ]
+  }
+}

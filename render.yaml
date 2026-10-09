@@ -1,0 +1,29 @@
+# Requires a paid persistent disk. Review hosting charges before creating service.
+services:
+  - type: web
+    name: safina
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    plan: starter
+    numInstances: 1
+    healthCheckPath: /api/v1/health
+    disk:
+      name: safina-data
+      mountPath: /data
+      sizeGB: 1
+    envVars:
+      - key: SAFINA_AUTH_MODE
+        value: supabase
+      - key: SAFINA_APP_ORIGIN
+        sync: false
+      - key: SAFINA_SERVER_KEY
+        generateValue: true
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_ANON_KEY
+        sync: false
+      - key: SAFINA_SUPER_ADMIN_EMAIL
+        value: gubaraabdalla@gmail.com
+      - key: SAFINA_OPEN_REGISTRATION
+        value: '1'

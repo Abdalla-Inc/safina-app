@@ -1,0 +1,16 @@
+{
+  "schema": "Reaction",
+  "fixture": {
+    "id": "daily:bbe88750-4af6-40c2-8ee4-d5702d380d92:2026-09-30",
+    "heartCount": 0,
+    "viewerReacted": false,
+    "reactionRevision": 1,
+    "reactions": [
+      {
+        "emoji": "👏",
+        "count": 1
+      }
+    ],
+    "viewerReaction": "👏"
+  }
+}

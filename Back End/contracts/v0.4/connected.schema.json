@@ -1,0 +1,7425 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://safina.local/contracts/connected.schema.json",
+  "$defs": {
+    "Range": {
+      "type": "object",
+      "properties": {
+        "start": {
+          "type": "string",
+          "pattern": "^\\d{1,3}:\\d{1,3}$"
+        },
+        "end": {
+          "type": "string",
+          "pattern": "^\\d{1,3}:\\d{1,3}$"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "additionalProperties": false
+    },
+    "OpenPolicy": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "enum": [
+            "RULE_NOT_APPROVED",
+            "SCHEDULE_NOT_PUBLISHED"
+          ]
+        },
+        "policy": {
+          "type": "string"
+        },
+        "question": {
+          "type": "string"
+        },
+        "ruleVersion": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "code",
+        "policy",
+        "question",
+        "ruleVersion"
+      ],
+      "additionalProperties": false
+    },
+    "Cycle": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "cadence": {
+          "enum": [
+            "monthly",
+            "weekly"
+          ]
+        },
+        "start": {
+          "type": "string",
+          "format": "date"
+        },
+        "end": {
+          "type": "string",
+          "format": "date"
+        }
+      },
+      "required": [
+        "id",
+        "cadence",
+        "start",
+        "end"
+      ],
+      "additionalProperties": false
+    },
+    "Commitment": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "tier": {
+          "enum": [
+            "B",
+            "BI",
+            "BJ1",
+            "BJ2",
+            "BJ3",
+            "BJ4",
+            "BJ5"
+          ]
+        },
+        "effectiveAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "timezone": {
+          "type": "string"
+        },
+        "initial": {
+          "type": "boolean"
+        },
+        "previousId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "requestedAt": {
+          "type": "string"
+        },
+        "ruleVersion": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "tier",
+        "effectiveAt",
+        "timezone",
+        "initial"
+      ],
+      "additionalProperties": false
+    },
+    "AssignmentSnapshot": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "memberId": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string",
+          "format": "date"
+        },
+        "tier": {
+          "enum": [
+            "B",
+            "BI",
+            "BJ1",
+            "BJ2",
+            "BJ3",
+            "BJ4",
+            "BJ5"
+          ]
+        },
+        "tierLabel": {
+          "type": "string"
+        },
+        "colorToken": {
+          "type": "string"
+        },
+        "patternToken": {
+          "type": "string"
+        },
+        "cadence": {
+          "enum": [
+            "daily",
+            "monthly",
+            "weekly"
+          ]
+        },
+        "cycle": {
+          "$ref": "#/$defs/Cycle"
+        },
+        "timezone": {
+          "type": "string"
+        },
+        "commitmentId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "ruleVersion": {
+          "type": "string"
+        },
+        "referenceVersion": {
+          "type": "string"
+        },
+        "scheduleVersion": {
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "published",
+            "free_day",
+            "awaiting_policy"
+          ]
+        },
+        "freeDay": {
+          "type": "boolean"
+        },
+        "components": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "label": {
+                "type": "string"
+              },
+              "ranges": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/Range"
+                }
+              },
+              "reportMeaning": {
+                "enum": [
+                  "member_self_report"
+                ]
+              }
+            },
+            "required": [
+              "id",
+              "label",
+              "ranges",
+              "reportMeaning"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "ranges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Range"
+          }
+        },
+        "openPolicies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/OpenPolicy"
+          }
+        },
+        "assignmentDay": {
+          "type": "string",
+          "format": "date"
+        },
+        "programTimeZone": {
+          "type": "string"
+        },
+        "eligibleRanges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Range"
+          }
+        },
+        "programApplicability": {
+          "type": "string"
+        },
+        "restDayPolicy": {
+          "type": "object",
+          "properties": {
+            "version": {
+              "type": "string"
+            },
+            "saturdayRest": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "version",
+            "saturdayRest"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "id",
+        "memberId",
+        "date",
+        "tier",
+        "tierLabel",
+        "colorToken",
+        "patternToken",
+        "cadence",
+        "cycle",
+        "timezone",
+        "commitmentId",
+        "ruleVersion",
+        "referenceVersion",
+        "scheduleVersion",
+        "status",
+        "freeDay",
+        "components",
+        "ranges",
+        "openPolicies",
+        "assignmentDay",
+        "programTimeZone",
+        "eligibleRanges",
+        "programApplicability",
+        "restDayPolicy"
+      ],
+      "additionalProperties": false
+    },
+    "AssignmentSegment": {
+      "type": "object",
+      "properties": {
+        "assignmentId": {
+          "type": "string"
+        },
+        "commitmentId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "date": {
+          "type": "string",
+          "format": "date"
+        },
+        "effectiveAt": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "assignmentId",
+        "commitmentId",
+        "date",
+        "effectiveAt"
+      ],
+      "additionalProperties": false
+    },
+    "HistoricalLevel": {
+      "type": "object",
+      "properties": {
+        "tier": {
+          "enum": [
+            "B",
+            "BI",
+            "BJ1",
+            "BJ2",
+            "BJ3",
+            "BJ4",
+            "BJ5"
+          ]
+        },
+        "label": {
+          "type": "string"
+        },
+        "colorToken": {
+          "type": "string"
+        },
+        "patternToken": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "tier",
+        "label",
+        "colorToken",
+        "patternToken"
+      ],
+      "additionalProperties": false
+    },
+    "ActRevisionKey": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "id",
+        "revision"
+      ],
+      "additionalProperties": false
+    },
+    "ReaderTrace": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "memberId": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "occurrenceDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "occurredAt": {
+          "type": "string"
+        },
+        "timezone": {
+          "type": "string"
+        },
+        "utcOffsetMinutes": {
+          "type": "integer"
+        },
+        "referenceVersion": {
+          "type": "string"
+        },
+        "observations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "enum": [
+                  "exposed",
+                  "navigated",
+                  "page_opened",
+                  "audio_played"
+                ]
+              },
+              "ranges": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/Range"
+                }
+              }
+            },
+            "required": [
+              "kind",
+              "ranges"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "suggestedRanges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Range"
+          }
+        },
+        "state": {
+          "enum": [
+            "reader_suggestion"
+          ]
+        },
+        "discarded": {
+          "type": "boolean"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "credit": {
+          "enum": [
+            0
+          ]
+        },
+        "explanation": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "memberId",
+        "revision",
+        "occurrenceDate",
+        "occurredAt",
+        "timezone",
+        "utcOffsetMinutes",
+        "referenceVersion",
+        "observations",
+        "suggestedRanges",
+        "state",
+        "discarded",
+        "updatedAt",
+        "createdAt",
+        "credit",
+        "explanation"
+      ],
+      "additionalProperties": false
+    },
+    "ReadingAct": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "memberId": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "revisionOf": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "retracted": {
+          "type": "boolean"
+        },
+        "occurrenceDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "occurredAt": {
+          "type": "string"
+        },
+        "timezone": {
+          "type": "string"
+        },
+        "utcOffsetMinutes": {
+          "type": "integer"
+        },
+        "source": {
+          "enum": [
+            "manual",
+            "manual_physical",
+            "reader_confirmed",
+            "component_self_report"
+          ]
+        },
+        "assignmentId": {
+          "type": "string"
+        },
+        "ruleVersion": {
+          "type": "string"
+        },
+        "referenceVersion": {
+          "type": "string"
+        },
+        "ranges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Range"
+          }
+        },
+        "repeatOfActId": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "uuid"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "traceId": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "uuid"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "cycleId": {
+          "type": "string"
+        },
+        "freeDay": {
+          "type": "boolean"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "mutationId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "confirmationState": {
+          "enum": [
+            "member_confirmed"
+          ]
+        },
+        "revisionReason": {
+          "type": "string"
+        },
+        "assignmentDay": {
+          "type": "string",
+          "format": "date"
+        },
+        "communityDay": {
+          "type": "string",
+          "format": "date"
+        },
+        "componentId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "memberId",
+        "revision",
+        "revisionOf",
+        "retracted",
+        "occurrenceDate",
+        "occurredAt",
+        "timezone",
+        "utcOffsetMinutes",
+        "source",
+        "assignmentId",
+        "ruleVersion",
+        "referenceVersion",
+        "ranges",
+        "repeatOfActId",
+        "traceId",
+        "cycleId",
+        "freeDay",
+        "createdAt",
+        "updatedAt",
+        "mutationId",
+        "confirmationState"
+      ],
+      "additionalProperties": false
+    },
+    "ReadingRevision": {
+      "$ref": "#/$defs/ReadingAct"
+    },
+    "DayEvaluation": {
+      "type": "object",
+      "properties": {
+        "date": {
+          "type": "string",
+          "format": "date"
+        },
+        "status": {
+          "enum": [
+            "completed",
+            "partial",
+            "supplemental_only",
+            "no_entry",
+            "free_day",
+            "recorded_awaiting_policy",
+            "paused"
+          ]
+        },
+        "actualReadingStatus": {
+          "enum": [
+            "member_confirmed",
+            "no_entry"
+          ]
+        },
+        "uniqueCoverage": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Range"
+          }
+        },
+        "uniqueVerseCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "repeatedActs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "assignedFulfilment": {
+          "type": "object",
+          "properties": {
+            "ranges": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Range"
+              }
+            },
+            "matchedVerses": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "targetVerses": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "complete": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "ranges",
+            "matchedVerses",
+            "targetVerses",
+            "complete"
+          ],
+          "additionalProperties": false
+        },
+        "supplementalReading": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Range"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "dayCredit": {
+          "enum": [
+            0,
+            1,
+            null
+          ]
+        },
+        "creditState": {
+          "enum": [
+            "resolved",
+            "awaiting_policy"
+          ]
+        },
+        "openPolicies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/OpenPolicy"
+          }
+        },
+        "assignmentIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "historicalLevels": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/HistoricalLevel"
+          }
+        },
+        "sourceActs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ActRevisionKey"
+          }
+        },
+        "elapsedTime": {
+          "type": "null"
+        },
+        "inputHash": {
+          "type": "string"
+        },
+        "corrected": {
+          "type": "boolean"
+        },
+        "readerObservedTrace": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ReaderTrace"
+          }
+        }
+      },
+      "required": [
+        "date",
+        "status",
+        "actualReadingStatus",
+        "uniqueCoverage",
+        "uniqueVerseCount",
+        "repeatedActs",
+        "assignedFulfilment",
+        "supplementalReading",
+        "dayCredit",
+        "creditState",
+        "openPolicies",
+        "assignmentIds",
+        "historicalLevels",
+        "sourceActs",
+        "elapsedTime",
+        "inputHash",
+        "corrected",
+        "readerObservedTrace"
+      ],
+      "additionalProperties": false
+    },
+    "KhatmaRecord": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "cadence": {
+          "enum": [
+            "monthly",
+            "weekly"
+          ]
+        },
+        "start": {
+          "type": "string",
+          "format": "date"
+        },
+        "end": {
+          "type": "string",
+          "format": "date"
+        },
+        "status": {
+          "enum": [
+            "complete",
+            "incomplete",
+            "awaiting_policy"
+          ]
+        },
+        "uniqueCoverage": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Range"
+          }
+        },
+        "coveredVerses": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "totalVerses": {
+          "enum": [
+            6236
+          ]
+        },
+        "remainingRanges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Range"
+          }
+        },
+        "nextUnreadVerse": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "completedJuz": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 30
+          }
+        },
+        "proofHash": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "completionDate": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ordinal": {
+          "enum": [
+            1,
+            null
+          ]
+        },
+        "sourceActRevisions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ActRevisionKey"
+          }
+        },
+        "additionalKhatmas": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "enum": [
+                "awaiting_policy"
+              ]
+            },
+            "policy": {
+              "$ref": "#/$defs/OpenPolicy"
+            }
+          },
+          "required": [
+            "status",
+            "policy"
+          ],
+          "additionalProperties": false
+        },
+        "excludedFreeDayActs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "openPolicies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/OpenPolicy"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "cadence",
+        "start",
+        "end",
+        "status",
+        "uniqueCoverage",
+        "coveredVerses",
+        "totalVerses",
+        "remainingRanges",
+        "nextUnreadVerse",
+        "completedJuz",
+        "proofHash",
+        "completionDate",
+        "ordinal",
+        "sourceActRevisions",
+        "additionalKhatmas",
+        "excludedFreeDayActs",
+        "openPolicies"
+      ],
+      "additionalProperties": false
+    },
+    "Khatmas": {
+      "type": "object",
+      "properties": {
+        "visibility": {
+          "enum": [
+            "private"
+          ]
+        },
+        "referenceVersion": {
+          "type": "string"
+        },
+        "cycles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/KhatmaRecord"
+          }
+        }
+      },
+      "required": [
+        "visibility",
+        "referenceVersion",
+        "cycles"
+      ],
+      "additionalProperties": false
+    },
+    "ShipProgress": {
+      "type": "object",
+      "properties": {
+        "visibility": {
+          "enum": [
+            "private"
+          ]
+        },
+        "approvedCredits": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "creditsPerShip": {
+          "enum": [
+            30
+          ]
+        },
+        "periods": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "month": {
+                "type": "string"
+              },
+              "approvedCredits": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "completedShipsWithinPeriod": {
+                "type": "integer",
+                "minimum": 0
+              }
+            },
+            "required": [
+              "month",
+              "approvedCredits",
+              "completedShipsWithinPeriod"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "completedShipsWithinPeriods": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "currentShip": {
+          "type": "null"
+        },
+        "lifetimeShipCount": {
+          "type": "null"
+        },
+        "presentationStatus": {
+          "enum": [
+            "awaiting_policy"
+          ]
+        },
+        "openPolicies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/OpenPolicy"
+          }
+        },
+        "unresolvedDayCredits": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "date"
+          }
+        },
+        "ledger": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "date": {
+                "type": "string",
+                "format": "date"
+              },
+              "credit": {
+                "enum": [
+                  0,
+                  1,
+                  null
+                ]
+              },
+              "inputHash": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "date",
+              "credit",
+              "inputHash"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "visibility",
+        "approvedCredits",
+        "creditsPerShip",
+        "periods",
+        "completedShipsWithinPeriods",
+        "currentShip",
+        "lifetimeShipCount",
+        "presentationStatus",
+        "openPolicies",
+        "unresolvedDayCredits",
+        "ledger"
+      ],
+      "additionalProperties": false
+    },
+    "ShipLedger": {
+      "$ref": "#/$defs/ShipProgress"
+    },
+    "CalendarDay": {
+      "type": "object",
+      "properties": {
+        "date": {
+          "type": "string",
+          "format": "date"
+        },
+        "status": {
+          "enum": [
+            "completed",
+            "partial",
+            "supplemental_only",
+            "no_entry",
+            "free_day",
+            "recorded_awaiting_policy",
+            "paused"
+          ]
+        },
+        "actualReadingStatus": {
+          "enum": [
+            "member_confirmed",
+            "no_entry"
+          ]
+        },
+        "uniqueCoverage": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Range"
+          }
+        },
+        "uniqueVerseCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "repeatedActs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "assignedFulfilment": {
+          "type": "object",
+          "properties": {
+            "ranges": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Range"
+              }
+            },
+            "matchedVerses": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "targetVerses": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "complete": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "ranges",
+            "matchedVerses",
+            "targetVerses",
+            "complete"
+          ],
+          "additionalProperties": false
+        },
+        "supplementalReading": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Range"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "dayCredit": {
+          "enum": [
+            0,
+            1,
+            null
+          ]
+        },
+        "creditState": {
+          "enum": [
+            "resolved",
+            "awaiting_policy"
+          ]
+        },
+        "openPolicies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/OpenPolicy"
+          }
+        },
+        "assignmentIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "historicalLevels": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/HistoricalLevel"
+          }
+        },
+        "sourceActs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ActRevisionKey"
+          }
+        },
+        "elapsedTime": {
+          "type": "null"
+        },
+        "inputHash": {
+          "type": "string"
+        },
+        "corrected": {
+          "type": "boolean"
+        },
+        "readerObservedTrace": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ReaderTrace"
+          }
+        },
+        "khatmaMarks": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "date",
+        "status",
+        "actualReadingStatus",
+        "uniqueCoverage",
+        "uniqueVerseCount",
+        "repeatedActs",
+        "assignedFulfilment",
+        "supplementalReading",
+        "dayCredit",
+        "creditState",
+        "openPolicies",
+        "assignmentIds",
+        "historicalLevels",
+        "sourceActs",
+        "elapsedTime",
+        "inputHash",
+        "corrected",
+        "readerObservedTrace",
+        "khatmaMarks"
+      ],
+      "additionalProperties": false
+    },
+    "Calendar": {
+      "type": "object",
+      "properties": {
+        "visibility": {
+          "enum": [
+            "private"
+          ]
+        },
+        "days": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/CalendarDay"
+          }
+        }
+      },
+      "required": [
+        "visibility",
+        "days"
+      ],
+      "additionalProperties": false
+    },
+    "Provenance": {
+      "type": "object",
+      "properties": {
+        "primary": {
+          "type": "string"
+        },
+        "primaryVersion": {
+          "type": "string"
+        },
+        "primaryLicenseDeclared": {
+          "type": "string"
+        },
+        "primaryCopyright": {
+          "type": "string"
+        },
+        "primarySha256": {
+          "type": "string"
+        },
+        "crossCheck": {
+          "type": "string"
+        },
+        "crossCheckSha256": {
+          "type": "string"
+        },
+        "checkedAt": {
+          "type": "string",
+          "format": "date"
+        },
+        "matchingSurahs": {
+          "enum": [
+            114
+          ]
+        },
+        "matchingJuz": {
+          "enum": [
+            30
+          ]
+        },
+        "matchingPages": {
+          "enum": [
+            604
+          ]
+        },
+        "independenceLimit": {
+          "type": "string"
+        },
+        "textAvailable": {
+          "enum": [
+            false
+          ]
+        },
+        "wordMapAvailable": {
+          "enum": [
+            false
+          ]
+        }
+      },
+      "required": [
+        "primary",
+        "primaryVersion",
+        "primaryLicenseDeclared",
+        "primaryCopyright",
+        "primarySha256",
+        "crossCheck",
+        "crossCheckSha256",
+        "checkedAt",
+        "matchingSurahs",
+        "matchingJuz",
+        "matchingPages",
+        "independenceLimit",
+        "textAvailable",
+        "wordMapAvailable"
+      ],
+      "additionalProperties": false
+    },
+    "Today": {
+      "type": "object",
+      "properties": {
+        "assignment": {
+          "$ref": "#/$defs/AssignmentSnapshot"
+        },
+        "segments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/AssignmentSnapshot"
+          }
+        },
+        "evaluation": {
+          "$ref": "#/$defs/DayEvaluation"
+        },
+        "khatmaCoverage": {
+          "$ref": "#/$defs/KhatmaRecord"
+        },
+        "nextUnreadVerse": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "dataProvenance": {
+          "$ref": "#/$defs/Provenance"
+        },
+        "queuedChanges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Commitment"
+          }
+        },
+        "readerText": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "enum": [
+                "unavailable"
+              ]
+            },
+            "openPolicy": {
+              "$ref": "#/$defs/OpenPolicy"
+            }
+          },
+          "required": [
+            "status",
+            "openPolicy"
+          ],
+          "additionalProperties": false
+        },
+        "componentStates": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "label": {
+                "type": "string"
+              },
+              "ranges": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/Range"
+                }
+              },
+              "status": {
+                "enum": [
+                  "completed",
+                  "partial",
+                  "no_entry"
+                ]
+              },
+              "coveredRanges": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/Range"
+                }
+              },
+              "coveredVerseCount": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "targetVerseCount": {
+                "type": "integer",
+                "minimum": 0
+              }
+            },
+            "required": [
+              "id",
+              "label",
+              "ranges",
+              "status",
+              "coveredRanges",
+              "coveredVerseCount",
+              "targetVerseCount"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "serverTime": {
+          "type": "string"
+        },
+        "assignmentDay": {
+          "type": "string",
+          "format": "date"
+        },
+        "communityDay": {
+          "type": "string",
+          "format": "date"
+        },
+        "projectionRevision": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "assignment",
+        "segments",
+        "evaluation",
+        "khatmaCoverage",
+        "nextUnreadVerse",
+        "dataProvenance",
+        "queuedChanges",
+        "readerText",
+        "componentStates",
+        "serverTime",
+        "assignmentDay",
+        "communityDay",
+        "projectionRevision"
+      ],
+      "additionalProperties": false
+    },
+    "ReadingMutationResult": {
+      "type": "object",
+      "properties": {
+        "act": {
+          "$ref": "#/$defs/ReadingAct"
+        },
+        "evaluation": {
+          "$ref": "#/$defs/DayEvaluation"
+        },
+        "shipProgress": {
+          "$ref": "#/$defs/ShipProgress"
+        },
+        "explanation": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "act",
+        "evaluation",
+        "shipProgress"
+      ],
+      "additionalProperties": false
+    },
+    "TraceResult": {
+      "type": "object",
+      "properties": {
+        "trace": {
+          "$ref": "#/$defs/ReaderTrace"
+        },
+        "confirmedActIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      },
+      "required": [
+        "trace"
+      ],
+      "additionalProperties": false
+    },
+    "ProgramRule": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "confirmed",
+            "proposed",
+            "open",
+            "superseded"
+          ]
+        },
+        "text": {
+          "type": "string"
+        },
+        "question": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "sourceVersion": {
+          "type": "string"
+        },
+        "supersededBy": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "status",
+        "source",
+        "sourceVersion"
+      ],
+      "additionalProperties": false
+    },
+    "RuleRegistry": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "string"
+        },
+        "authority": {
+          "enum": [
+            "founder"
+          ]
+        },
+        "evidence": {
+          "type": "string"
+        },
+        "rules": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ProgramRule"
+          }
+        }
+      },
+      "required": [
+        "version",
+        "authority",
+        "evidence",
+        "rules"
+      ],
+      "additionalProperties": false
+    },
+    "MushafPageMap": {
+      "type": "object",
+      "properties": {
+        "edition": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "starts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "edition",
+        "version",
+        "starts"
+      ],
+      "additionalProperties": false
+    },
+    "QuranReferenceVersion": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "string"
+        },
+        "verseCounts": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "juzStarts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "pageMap": {
+          "$ref": "#/$defs/MushafPageMap"
+        },
+        "provenance": {
+          "$ref": "#/$defs/Provenance"
+        }
+      },
+      "required": [
+        "version",
+        "verseCounts",
+        "juzStarts",
+        "pageMap",
+        "provenance"
+      ],
+      "additionalProperties": false
+    },
+    "OfflineSnapshot": {
+      "type": "object",
+      "properties": {
+        "payload": {
+          "type": "object",
+          "properties": {
+            "version": {
+              "enum": [
+                1
+              ]
+            },
+            "memberId": {
+              "type": "string"
+            },
+            "assignment": {
+              "$ref": "#/$defs/AssignmentSnapshot"
+            },
+            "reference": {
+              "$ref": "#/$defs/QuranReferenceVersion"
+            },
+            "rules": {
+              "$ref": "#/$defs/RuleRegistry"
+            }
+          },
+          "required": [
+            "version",
+            "memberId",
+            "assignment",
+            "reference",
+            "rules"
+          ],
+          "additionalProperties": false
+        },
+        "algorithm": {
+          "enum": [
+            "HMAC-SHA256"
+          ]
+        },
+        "signature": {
+          "type": "string"
+        },
+        "verification": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "payload",
+        "algorithm",
+        "signature",
+        "verification"
+      ],
+      "additionalProperties": false
+    },
+    "Page": {
+      "type": "object",
+      "properties": {
+        "edition": {
+          "type": "string"
+        },
+        "mapVersion": {
+          "type": "string"
+        },
+        "page": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "referenceVersion": {
+          "type": "string"
+        },
+        "ranges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Range"
+          }
+        }
+      },
+      "required": [
+        "edition",
+        "mapVersion",
+        "page",
+        "referenceVersion",
+        "ranges"
+      ],
+      "additionalProperties": false
+    },
+    "Error": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "type": "string"
+            },
+            "message": {
+              "type": "string"
+            },
+            "policy": {
+              "type": "string"
+            },
+            "question": {
+              "type": "string"
+            },
+            "ruleVersion": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "code",
+            "message"
+          ],
+          "additionalProperties": true
+        }
+      },
+      "required": [
+        "error"
+      ],
+      "additionalProperties": false
+    },
+    "ReadingCreate": {
+      "type": "object",
+      "properties": {
+        "mutationId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "logicalActId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "occurrenceDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "occurredAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "timezone": {
+          "type": "string"
+        },
+        "utcOffsetMinutes": {
+          "type": "integer",
+          "minimum": -840,
+          "maximum": 840
+        },
+        "ranges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Range"
+          },
+          "minItems": 1,
+          "maxItems": 200
+        },
+        "source": {
+          "enum": [
+            "manual",
+            "manual_physical",
+            "reader_confirmed",
+            "component_self_report"
+          ]
+        },
+        "assignmentId": {
+          "type": "string"
+        },
+        "ruleVersion": {
+          "type": "string"
+        },
+        "referenceVersion": {
+          "type": "string"
+        },
+        "repeatOfActId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "traceId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "componentId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "mutationId",
+        "logicalActId",
+        "occurrenceDate",
+        "occurredAt",
+        "timezone",
+        "utcOffsetMinutes",
+        "ranges",
+        "source",
+        "assignmentId",
+        "ruleVersion",
+        "referenceVersion"
+      ],
+      "additionalProperties": false
+    },
+    "ReadingPatch": {
+      "type": "object",
+      "properties": {
+        "mutationId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expectedRevision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "reason": {
+          "type": "string"
+        },
+        "ranges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Range"
+          },
+          "minItems": 1
+        },
+        "ruleVersion": {
+          "type": "string"
+        },
+        "referenceVersion": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "mutationId",
+        "expectedRevision",
+        "reason",
+        "ranges",
+        "ruleVersion",
+        "referenceVersion"
+      ],
+      "additionalProperties": false
+    },
+    "Retract": {
+      "type": "object",
+      "properties": {
+        "mutationId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expectedRevision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "reason": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "mutationId",
+        "expectedRevision",
+        "reason"
+      ],
+      "additionalProperties": false
+    },
+    "CommitmentChangeRequest": {
+      "type": "object",
+      "properties": {
+        "mutationId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "tier": {
+          "enum": [
+            "B",
+            "BI",
+            "BJ1",
+            "BJ2",
+            "BJ3",
+            "BJ4",
+            "BJ5"
+          ]
+        },
+        "expectedCommitmentId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "ruleVersion": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "mutationId",
+        "tier",
+        "expectedCommitmentId",
+        "ruleVersion"
+      ],
+      "additionalProperties": false
+    },
+    "CommitmentChange": {
+      "type": "object",
+      "properties": {
+        "change": {
+          "$ref": "#/$defs/Commitment"
+        },
+        "creditPolicy": {
+          "$ref": "#/$defs/OpenPolicy"
+        }
+      },
+      "required": [
+        "change",
+        "creditPolicy"
+      ],
+      "additionalProperties": false
+    },
+    "TracePut": {
+      "type": "object",
+      "properties": {
+        "mutationId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expectedRevision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "occurrenceDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "occurredAt": {
+          "type": "string"
+        },
+        "timezone": {
+          "type": "string"
+        },
+        "utcOffsetMinutes": {
+          "type": "integer"
+        },
+        "observations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "enum": [
+                  "exposed",
+                  "navigated",
+                  "page_opened",
+                  "audio_played"
+                ]
+              },
+              "ranges": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/Range"
+                }
+              }
+            },
+            "required": [
+              "kind",
+              "ranges"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "referenceVersion": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "mutationId",
+        "expectedRevision",
+        "occurrenceDate",
+        "occurredAt",
+        "timezone",
+        "utcOffsetMinutes",
+        "observations",
+        "referenceVersion"
+      ],
+      "additionalProperties": false
+    },
+    "TraceDiscard": {
+      "type": "object",
+      "properties": {
+        "mutationId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expectedRevision": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "mutationId",
+        "expectedRevision"
+      ],
+      "additionalProperties": false
+    },
+    "MonthlySchedule": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "ruleVersion": {
+          "type": "string"
+        },
+        "referenceVersion": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string",
+          "format": "date"
+        },
+        "tier": {
+          "enum": [
+            "B",
+            "BI",
+            "BJ1",
+            "BJ2",
+            "BJ3",
+            "BJ4",
+            "BJ5"
+          ]
+        },
+        "ranges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Range"
+          }
+        },
+        "status": {
+          "enum": [
+            "published",
+            "free_day",
+            "awaiting_policy"
+          ]
+        },
+        "approvalSource": {
+          "type": "string"
+        },
+        "openPolicies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/OpenPolicy"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "ruleVersion",
+        "referenceVersion",
+        "date",
+        "tier",
+        "ranges",
+        "status",
+        "approvalSource",
+        "openPolicies"
+      ],
+      "additionalProperties": false
+    },
+    "WeeklyCycle": {
+      "$ref": "#/$defs/Cycle"
+    },
+    "ReminderPreference": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "localTime": {
+          "type": "string"
+        },
+        "timezone": {
+          "type": "string"
+        },
+        "deliveryStatus": {
+          "enum": [
+            "not_implemented"
+          ]
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "mutationId": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "required": [
+        "enabled",
+        "deliveryStatus"
+      ],
+      "additionalProperties": false
+    },
+    "ReminderPut": {
+      "type": "object",
+      "properties": {
+        "mutationId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "localTime": {
+          "type": "string"
+        },
+        "timezone": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "mutationId",
+        "enabled",
+        "localTime",
+        "timezone"
+      ],
+      "additionalProperties": false
+    },
+    "DhikrGoalRequest": {
+      "type": "object",
+      "properties": {
+        "mutationId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expectedRevision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "label": {
+          "type": "string"
+        },
+        "target": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "mutationId",
+        "id",
+        "expectedRevision",
+        "label",
+        "target"
+      ],
+      "additionalProperties": false
+    },
+    "DhikrCountRequest": {
+      "type": "object",
+      "properties": {
+        "mutationId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expectedRevision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "goalId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "date": {
+          "type": "string",
+          "format": "date"
+        },
+        "count": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "mutationId",
+        "id",
+        "expectedRevision",
+        "goalId",
+        "date",
+        "count"
+      ],
+      "additionalProperties": false
+    },
+    "DhikrGoal": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "label": {
+          "type": "string"
+        },
+        "target": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "memberId": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "readingCredit": {
+          "enum": [
+            0
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "target",
+        "revision",
+        "memberId",
+        "updatedAt",
+        "readingCredit"
+      ],
+      "additionalProperties": false
+    },
+    "DhikrCount": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "goalId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "date": {
+          "type": "string",
+          "format": "date"
+        },
+        "count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "memberId": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "readingCredit": {
+          "enum": [
+            0
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "goalId",
+        "date",
+        "count",
+        "revision",
+        "memberId",
+        "updatedAt",
+        "readingCredit"
+      ],
+      "additionalProperties": false
+    },
+    "Dhikr": {
+      "type": "object",
+      "properties": {
+        "goals": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/DhikrGoal"
+          }
+        },
+        "counts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/DhikrCount"
+          }
+        },
+        "readingCredit": {
+          "enum": [
+            0
+          ]
+        }
+      },
+      "required": [
+        "goals",
+        "counts",
+        "readingCredit"
+      ],
+      "additionalProperties": false
+    },
+    "DhikrResult": {
+      "type": "object",
+      "properties": {
+        "record": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/DhikrGoal"
+            },
+            {
+              "$ref": "#/$defs/DhikrCount"
+            }
+          ]
+        }
+      },
+      "required": [
+        "record"
+      ],
+      "additionalProperties": false
+    },
+    "Entitlements": {
+      "type": "object",
+      "properties": {
+        "freeCapabilities": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "ads": {
+          "enum": [
+            false
+          ]
+        },
+        "paidCapabilities": {
+          "type": "null"
+        },
+        "status": {
+          "enum": [
+            "awaiting_policy"
+          ]
+        },
+        "price": {
+          "type": "null"
+        }
+      },
+      "required": [
+        "freeCapabilities",
+        "ads",
+        "paidCapabilities",
+        "status",
+        "price"
+      ],
+      "additionalProperties": false
+    },
+    "VerifiedSnapshot": {
+      "type": "object",
+      "properties": {
+        "valid": {
+          "enum": [
+            true
+          ]
+        },
+        "assignmentId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "valid",
+        "assignmentId"
+      ],
+      "additionalProperties": false
+    },
+    "ActHistory": {
+      "type": "object",
+      "properties": {
+        "act": {
+          "$ref": "#/$defs/ReadingAct"
+        },
+        "revisions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ReadingAct"
+          }
+        }
+      },
+      "required": [
+        "act",
+        "revisions"
+      ],
+      "additionalProperties": false
+    },
+    "Event": {
+      "type": "object",
+      "properties": {
+        "sequence": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "member_id": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "entity_id": {
+          "type": "string"
+        },
+        "payload": {
+          "type": "object"
+        },
+        "created_at": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "sequence",
+        "id",
+        "member_id",
+        "kind",
+        "entity_id",
+        "payload",
+        "created_at"
+      ],
+      "additionalProperties": false
+    },
+    "Events": {
+      "type": "object",
+      "properties": {
+        "events": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Event"
+          }
+        },
+        "visibility": {
+          "enum": [
+            "private"
+          ]
+        }
+      },
+      "required": [
+        "events",
+        "visibility"
+      ],
+      "additionalProperties": false
+    },
+    "ClassroomCourseDraftInput": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "weeks": {
+          "enum": [
+            10
+          ]
+        },
+        "entitlementKey": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "title",
+        "weeks",
+        "entitlementKey"
+      ],
+      "additionalProperties": false
+    },
+    "ClassroomCourseDraft": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "status": {
+          "enum": [
+            "draft"
+          ]
+        },
+        "publicationStatus": {
+          "enum": [
+            "blocked"
+          ]
+        },
+        "data": {
+          "$ref": "#/$defs/ClassroomCourseDraftInput"
+        }
+      },
+      "required": [
+        "id",
+        "revision",
+        "status",
+        "publicationStatus",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "ClassroomCourse": {
+      "$ref": "#/$defs/ClassroomCourseDraft"
+    },
+    "ClassroomLessonDraftInput": {
+      "type": "object",
+      "properties": {
+        "courseId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "week": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10
+        },
+        "sequence": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "title": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "sourceVideo": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "type": "string"
+            },
+            "provider": {
+              "type": "string"
+            },
+            "rightsReviewId": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "url",
+            "provider",
+            "rightsReviewId"
+          ],
+          "additionalProperties": false
+        },
+        "prerequisiteIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "courseId",
+        "week",
+        "sequence",
+        "title",
+        "sourceVideo",
+        "prerequisiteIds"
+      ],
+      "additionalProperties": false
+    },
+    "ClassroomLessonDraft": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "status": {
+          "enum": [
+            "draft"
+          ]
+        },
+        "publicationStatus": {
+          "enum": [
+            "blocked"
+          ]
+        },
+        "data": {
+          "$ref": "#/$defs/ClassroomLessonDraftInput"
+        }
+      },
+      "required": [
+        "id",
+        "revision",
+        "status",
+        "publicationStatus",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "ClassroomLesson": {
+      "$ref": "#/$defs/ClassroomLessonDraft"
+    },
+    "LessonNotesDraftInput": {
+      "type": "object",
+      "properties": {
+        "lessonId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "authorId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "body": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "sourceVersion": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "lessonId",
+        "authorId",
+        "body",
+        "sourceVersion"
+      ],
+      "additionalProperties": false
+    },
+    "LessonNotesDraft": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "status": {
+          "enum": [
+            "draft"
+          ]
+        },
+        "publicationStatus": {
+          "enum": [
+            "blocked"
+          ]
+        },
+        "data": {
+          "$ref": "#/$defs/LessonNotesDraftInput"
+        }
+      },
+      "required": [
+        "id",
+        "revision",
+        "status",
+        "publicationStatus",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "LessonNotes": {
+      "$ref": "#/$defs/LessonNotesDraft"
+    },
+    "SavedNoteDraftInput": {
+      "type": "object",
+      "properties": {
+        "lessonId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "noteVersion": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "body": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "lessonId",
+        "noteVersion",
+        "body"
+      ],
+      "additionalProperties": false
+    },
+    "SavedNoteDraft": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "status": {
+          "enum": [
+            "draft"
+          ]
+        },
+        "publicationStatus": {
+          "enum": [
+            "blocked"
+          ]
+        },
+        "data": {
+          "$ref": "#/$defs/SavedNoteDraftInput"
+        }
+      },
+      "required": [
+        "id",
+        "revision",
+        "status",
+        "publicationStatus",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "SavedNote": {
+      "$ref": "#/$defs/SavedNoteDraft"
+    },
+    "QuizDraftInput": {
+      "type": "object",
+      "properties": {
+        "lessonId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "questions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "kind": {
+                "enum": [
+                  "multiple_choice",
+                  "written_response"
+                ]
+              },
+              "prompt": {
+                "type": "string"
+              },
+              "options": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "text": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "text"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "answerKey": {
+                "anyOf": [
+                  {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "id",
+              "kind",
+              "prompt",
+              "options",
+              "answerKey"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "gradingPolicyVersion": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "lessonId",
+        "questions",
+        "gradingPolicyVersion"
+      ],
+      "additionalProperties": false
+    },
+    "QuizDraft": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "status": {
+          "enum": [
+            "draft"
+          ]
+        },
+        "publicationStatus": {
+          "enum": [
+            "blocked"
+          ]
+        },
+        "data": {
+          "$ref": "#/$defs/QuizDraftInput"
+        }
+      },
+      "required": [
+        "id",
+        "revision",
+        "status",
+        "publicationStatus",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "Quiz": {
+      "$ref": "#/$defs/QuizDraft"
+    },
+    "WrittenResponseDraftInput": {
+      "type": "object",
+      "properties": {
+        "lessonId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "promptId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "body": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "lessonId",
+        "promptId",
+        "body"
+      ],
+      "additionalProperties": false
+    },
+    "WrittenResponseDraft": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "status": {
+          "enum": [
+            "draft"
+          ]
+        },
+        "publicationStatus": {
+          "enum": [
+            "blocked"
+          ]
+        },
+        "data": {
+          "$ref": "#/$defs/WrittenResponseDraftInput"
+        }
+      },
+      "required": [
+        "id",
+        "revision",
+        "status",
+        "publicationStatus",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "WrittenResponse": {
+      "$ref": "#/$defs/WrittenResponseDraft"
+    },
+    "ClassroomAssignmentDraftInput": {
+      "type": "object",
+      "properties": {
+        "lessonId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "instructions": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "submissionKind": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "lessonId",
+        "instructions",
+        "submissionKind"
+      ],
+      "additionalProperties": false
+    },
+    "ClassroomAssignmentDraft": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "status": {
+          "enum": [
+            "draft"
+          ]
+        },
+        "publicationStatus": {
+          "enum": [
+            "blocked"
+          ]
+        },
+        "data": {
+          "$ref": "#/$defs/ClassroomAssignmentDraftInput"
+        }
+      },
+      "required": [
+        "id",
+        "revision",
+        "status",
+        "publicationStatus",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "ClassroomAssignment": {
+      "$ref": "#/$defs/ClassroomAssignmentDraft"
+    },
+    "ClassroomFeedbackDraftInput": {
+      "type": "object",
+      "properties": {
+        "responseId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "authorId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "body": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "responseId",
+        "authorId",
+        "body"
+      ],
+      "additionalProperties": false
+    },
+    "ClassroomFeedbackDraft": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "status": {
+          "enum": [
+            "draft"
+          ]
+        },
+        "publicationStatus": {
+          "enum": [
+            "blocked"
+          ]
+        },
+        "data": {
+          "$ref": "#/$defs/ClassroomFeedbackDraftInput"
+        }
+      },
+      "required": [
+        "id",
+        "revision",
+        "status",
+        "publicationStatus",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "ClassroomFeedback": {
+      "$ref": "#/$defs/ClassroomFeedbackDraft"
+    },
+    "LessonProgressDraftInput": {
+      "type": "object",
+      "properties": {
+        "lessonId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "positionSeconds": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "completedComponents": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "lessonId",
+        "positionSeconds",
+        "completedComponents"
+      ],
+      "additionalProperties": false
+    },
+    "LessonProgressDraft": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "status": {
+          "enum": [
+            "draft"
+          ]
+        },
+        "publicationStatus": {
+          "enum": [
+            "blocked"
+          ]
+        },
+        "data": {
+          "$ref": "#/$defs/LessonProgressDraftInput"
+        }
+      },
+      "required": [
+        "id",
+        "revision",
+        "status",
+        "publicationStatus",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "LessonProgress": {
+      "$ref": "#/$defs/LessonProgressDraft"
+    },
+    "MediaResourceDraftInput": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "sourceUrl": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "provenance": {
+          "type": "object",
+          "properties": {
+            "provider": {
+              "type": "string"
+            },
+            "sourceId": {
+              "type": "string"
+            },
+            "retrievedAt": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "provider",
+            "sourceId",
+            "retrievedAt"
+          ],
+          "additionalProperties": false
+        },
+        "rights": {
+          "type": "object",
+          "properties": {
+            "host": {
+              "enum": [
+                "unreviewed",
+                "permitted",
+                "denied"
+              ]
+            },
+            "embed": {
+              "enum": [
+                "unreviewed",
+                "permitted",
+                "denied"
+              ]
+            },
+            "transcribe": {
+              "enum": [
+                "unreviewed",
+                "permitted",
+                "denied"
+              ]
+            },
+            "redistribute": {
+              "enum": [
+                "unreviewed",
+                "permitted",
+                "denied"
+              ]
+            }
+          },
+          "required": [
+            "host",
+            "embed",
+            "transcribe",
+            "redistribute"
+          ],
+          "additionalProperties": false
+        },
+        "transcript": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "version": {
+                  "type": "string"
+                },
+                "language": {
+                  "type": "string"
+                },
+                "segments": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "startSeconds": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "text": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "startSeconds",
+                      "text"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "required": [
+                "version",
+                "language",
+                "segments"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "review": {
+          "type": "object",
+          "properties": {
+            "reviewerId": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "reviewedAt": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "transcriptVersion": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "reviewerId",
+            "reviewedAt",
+            "transcriptVersion"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "title",
+        "sourceUrl",
+        "provenance",
+        "rights",
+        "transcript",
+        "tags",
+        "review"
+      ],
+      "additionalProperties": false
+    },
+    "MediaResourceDraft": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "status": {
+          "enum": [
+            "draft"
+          ]
+        },
+        "publicationStatus": {
+          "enum": [
+            "blocked"
+          ]
+        },
+        "data": {
+          "$ref": "#/$defs/MediaResourceDraftInput"
+        }
+      },
+      "required": [
+        "id",
+        "revision",
+        "status",
+        "publicationStatus",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "MediaResource": {
+      "$ref": "#/$defs/MediaResourceDraft"
+    },
+    "EntitlementDraftInput": {
+      "type": "object",
+      "properties": {
+        "capability": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "validFrom": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "validUntil": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "grantSource": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "policyVersion": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "capability",
+        "validFrom",
+        "validUntil",
+        "grantSource",
+        "policyVersion"
+      ],
+      "additionalProperties": false
+    },
+    "EntitlementDraft": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "status": {
+          "enum": [
+            "draft"
+          ]
+        },
+        "publicationStatus": {
+          "enum": [
+            "blocked"
+          ]
+        },
+        "data": {
+          "$ref": "#/$defs/EntitlementDraftInput"
+        }
+      },
+      "required": [
+        "id",
+        "revision",
+        "status",
+        "publicationStatus",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "Entitlement": {
+      "$ref": "#/$defs/EntitlementDraft"
+    },
+    "ReadingCircleDraftInput": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "moderationPolicyVersion": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "retentionPolicyVersion": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "chatEnabled": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name",
+        "moderationPolicyVersion",
+        "retentionPolicyVersion",
+        "chatEnabled"
+      ],
+      "additionalProperties": false
+    },
+    "ReadingCircleDraft": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "status": {
+          "enum": [
+            "draft"
+          ]
+        },
+        "publicationStatus": {
+          "enum": [
+            "blocked"
+          ]
+        },
+        "data": {
+          "$ref": "#/$defs/ReadingCircleDraftInput"
+        }
+      },
+      "required": [
+        "id",
+        "revision",
+        "status",
+        "publicationStatus",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "ReadingCircle": {
+      "$ref": "#/$defs/ReadingCircleDraft"
+    },
+    "CircleMembershipDraftInput": {
+      "type": "object",
+      "properties": {
+        "circleId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "memberId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "optInAt": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "revokedAt": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "circleId",
+        "memberId",
+        "optInAt",
+        "revokedAt"
+      ],
+      "additionalProperties": false
+    },
+    "CircleMembershipDraft": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "status": {
+          "enum": [
+            "draft"
+          ]
+        },
+        "publicationStatus": {
+          "enum": [
+            "blocked"
+          ]
+        },
+        "data": {
+          "$ref": "#/$defs/CircleMembershipDraftInput"
+        }
+      },
+      "required": [
+        "id",
+        "revision",
+        "status",
+        "publicationStatus",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "CircleMembership": {
+      "$ref": "#/$defs/CircleMembershipDraft"
+    },
+    "SharingConsentDraftInput": {
+      "type": "object",
+      "properties": {
+        "circleId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "memberId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "audience": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "detailLevel": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "authorizedAt": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "revokedAt": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "circleId",
+        "memberId",
+        "audience",
+        "detailLevel",
+        "authorizedAt",
+        "revokedAt"
+      ],
+      "additionalProperties": false
+    },
+    "SharingConsentDraft": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "status": {
+          "enum": [
+            "draft"
+          ]
+        },
+        "publicationStatus": {
+          "enum": [
+            "blocked"
+          ]
+        },
+        "data": {
+          "$ref": "#/$defs/SharingConsentDraftInput"
+        }
+      },
+      "required": [
+        "id",
+        "revision",
+        "status",
+        "publicationStatus",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "SharingConsent": {
+      "$ref": "#/$defs/SharingConsentDraft"
+    },
+    "GroupPublicationDraftInput": {
+      "type": "object",
+      "properties": {
+        "circleId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "actId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "actRevision": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "consentId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "publicationAuthorizationId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "correctionPolicyVersion": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "circleId",
+        "actId",
+        "actRevision",
+        "consentId",
+        "publicationAuthorizationId",
+        "correctionPolicyVersion"
+      ],
+      "additionalProperties": false
+    },
+    "GroupPublicationDraft": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "status": {
+          "enum": [
+            "draft"
+          ]
+        },
+        "publicationStatus": {
+          "enum": [
+            "blocked"
+          ]
+        },
+        "data": {
+          "$ref": "#/$defs/GroupPublicationDraftInput"
+        }
+      },
+      "required": [
+        "id",
+        "revision",
+        "status",
+        "publicationStatus",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "GroupPublication": {
+      "$ref": "#/$defs/GroupPublicationDraft"
+    },
+    "CircleReactionDraftInput": {
+      "type": "object",
+      "properties": {
+        "publicationId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "memberId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "reaction": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "publicationId",
+        "memberId",
+        "reaction"
+      ],
+      "additionalProperties": false
+    },
+    "CircleReactionDraft": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "status": {
+          "enum": [
+            "draft"
+          ]
+        },
+        "publicationStatus": {
+          "enum": [
+            "blocked"
+          ]
+        },
+        "data": {
+          "$ref": "#/$defs/CircleReactionDraftInput"
+        }
+      },
+      "required": [
+        "id",
+        "revision",
+        "status",
+        "publicationStatus",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "CircleReaction": {
+      "$ref": "#/$defs/CircleReactionDraft"
+    },
+    "ModerationEventDraftInput": {
+      "type": "object",
+      "properties": {
+        "circleId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "actorId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "action": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "circleId",
+        "actorId",
+        "action",
+        "reason"
+      ],
+      "additionalProperties": false
+    },
+    "ModerationEventDraft": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "status": {
+          "enum": [
+            "draft"
+          ]
+        },
+        "publicationStatus": {
+          "enum": [
+            "blocked"
+          ]
+        },
+        "data": {
+          "$ref": "#/$defs/ModerationEventDraftInput"
+        }
+      },
+      "required": [
+        "id",
+        "revision",
+        "status",
+        "publicationStatus",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "ModerationEvent": {
+      "$ref": "#/$defs/ModerationEventDraft"
+    },
+    "NotificationPreferenceDraftInput": {
+      "type": "object",
+      "properties": {
+        "circleId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "memberId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "enabled": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "circleId",
+        "memberId",
+        "enabled"
+      ],
+      "additionalProperties": false
+    },
+    "NotificationPreferenceDraft": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "status": {
+          "enum": [
+            "draft"
+          ]
+        },
+        "publicationStatus": {
+          "enum": [
+            "blocked"
+          ]
+        },
+        "data": {
+          "$ref": "#/$defs/NotificationPreferenceDraftInput"
+        }
+      },
+      "required": [
+        "id",
+        "revision",
+        "status",
+        "publicationStatus",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "NotificationPreference": {
+      "$ref": "#/$defs/NotificationPreferenceDraft"
+    },
+    "PauseDraftInput": {
+      "type": "object",
+      "properties": {
+        "startDate": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "endDate": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "policyVersion": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "startDate",
+        "endDate",
+        "policyVersion"
+      ],
+      "additionalProperties": false
+    },
+    "PauseDraft": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "status": {
+          "enum": [
+            "draft"
+          ]
+        },
+        "publicationStatus": {
+          "enum": [
+            "blocked"
+          ]
+        },
+        "data": {
+          "$ref": "#/$defs/PauseDraftInput"
+        }
+      },
+      "required": [
+        "id",
+        "revision",
+        "status",
+        "publicationStatus",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "Pause": {
+      "$ref": "#/$defs/PauseDraft"
+    },
+    "ListeningEventDraftInput": {
+      "type": "object",
+      "properties": {
+        "sourceEdition": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ranges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Range"
+          }
+        },
+        "occurredAt": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "sourceEdition",
+        "ranges",
+        "occurredAt"
+      ],
+      "additionalProperties": false
+    },
+    "ListeningEventDraft": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "status": {
+          "enum": [
+            "draft"
+          ]
+        },
+        "publicationStatus": {
+          "enum": [
+            "blocked"
+          ]
+        },
+        "data": {
+          "$ref": "#/$defs/ListeningEventDraftInput"
+        }
+      },
+      "required": [
+        "id",
+        "revision",
+        "status",
+        "publicationStatus",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "ListeningEvent": {
+      "$ref": "#/$defs/ListeningEventDraft"
+    },
+    "Session": {
+      "type": "object",
+      "properties": {
+        "memberId": {
+          "type": "string"
+        },
+        "csrfToken": {
+          "type": "string"
+        },
+        "expiresAt": {
+          "type": "string"
+        },
+        "mode": {
+          "enum": [
+            "sandbox",
+            "supabase"
+          ]
+        }
+      },
+      "required": [
+        "memberId",
+        "csrfToken",
+        "expiresAt",
+        "mode"
+      ],
+      "additionalProperties": false
+    },
+    "Register": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string",
+          "minLength": 12,
+          "maxLength": 256
+        },
+        "displayName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "tier": {
+          "enum": [
+            "B",
+            "BI",
+            "BJ1",
+            "BJ2",
+            "BJ3",
+            "BJ4",
+            "BJ5"
+          ]
+        },
+        "communityAcknowledged": {
+          "enum": [
+            true
+          ]
+        }
+      },
+      "required": [
+        "email",
+        "password",
+        "displayName",
+        "tier",
+        "communityAcknowledged"
+      ],
+      "additionalProperties": false
+    },
+    "Login": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "email",
+        "password"
+      ],
+      "additionalProperties": false
+    },
+    "Verify": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "email",
+        "code"
+      ],
+      "additionalProperties": false
+    },
+    "Recover": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "email"
+      ],
+      "additionalProperties": false
+    },
+    "Reset": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "email",
+        "code",
+        "password"
+      ],
+      "additionalProperties": false
+    },
+    "GoogleStart": {
+      "type": "object",
+      "properties": {
+        "displayName": {
+          "type": "string"
+        },
+        "tier": {
+          "type": "string"
+        },
+        "communityAcknowledged": {
+          "type": "boolean"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "AuthState": {
+      "type": "object",
+      "properties": {
+        "state": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "delivery": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "state"
+      ],
+      "additionalProperties": false
+    },
+    "EmptyBody": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "Redirect": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "url"
+      ],
+      "additionalProperties": false
+    },
+    "ProfilePatch": {
+      "type": "object",
+      "properties": {
+        "mutationId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expectedRevision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "displayName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "locale": {
+          "enum": [
+            "ar",
+            "en"
+          ]
+        },
+        "largeText": {
+          "type": "boolean"
+        },
+        "reducedMotion": {
+          "type": "boolean"
+        },
+        "communityVisible": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "mutationId",
+        "expectedRevision"
+      ],
+      "additionalProperties": false
+    },
+    "AvatarPut": {
+      "type": "object",
+      "properties": {
+        "mutationId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expectedRevision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "dataBase64": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "mutationId",
+        "expectedRevision",
+        "dataBase64"
+      ],
+      "additionalProperties": false
+    },
+    "RevisionMutation": {
+      "type": "object",
+      "properties": {
+        "mutationId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expectedRevision": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "mutationId",
+        "expectedRevision"
+      ],
+      "additionalProperties": false
+    },
+    "ComponentPut": {
+      "type": "object",
+      "properties": {
+        "mutationId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "assignmentId": {
+          "type": "string"
+        },
+        "expectedInputHash": {
+          "type": "string"
+        },
+        "completed": {
+          "type": "boolean"
+        },
+        "occurredAt": {
+          "type": "string"
+        },
+        "occurrenceDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "timezone": {
+          "type": "string"
+        },
+        "utcOffsetMinutes": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "mutationId",
+        "assignmentId",
+        "expectedInputHash",
+        "completed"
+      ],
+      "additionalProperties": false
+    },
+    "PartialPost": {
+      "type": "object",
+      "properties": {
+        "mutationId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "assignmentId": {
+          "type": "string"
+        },
+        "expectedInputHash": {
+          "type": "string"
+        },
+        "ranges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Range"
+          }
+        },
+        "occurredAt": {
+          "type": "string"
+        },
+        "occurrenceDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "timezone": {
+          "type": "string"
+        },
+        "utcOffsetMinutes": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "mutationId",
+        "assignmentId",
+        "expectedInputHash",
+        "ranges",
+        "occurredAt",
+        "occurrenceDate",
+        "timezone",
+        "utcOffsetMinutes"
+      ],
+      "additionalProperties": false
+    },
+    "ReadingResult": {
+      "type": "object",
+      "properties": {
+        "today": {
+          "$ref": "#/$defs/Today"
+        },
+        "shipProgress": {
+          "$ref": "#/$defs/ShipProgress"
+        },
+        "projectionRevision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "unchanged": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "today",
+        "projectionRevision"
+      ],
+      "additionalProperties": false
+    },
+    "Reader": {
+      "type": "object",
+      "properties": {
+        "edition": {
+          "type": "string"
+        },
+        "mapVersion": {
+          "type": "string"
+        },
+        "page": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 604
+        },
+        "bookmarks": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 604
+          }
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "edition",
+        "mapVersion",
+        "page",
+        "bookmarks",
+        "revision"
+      ],
+      "additionalProperties": false
+    },
+    "ReaderPut": {
+      "type": "object",
+      "properties": {
+        "mutationId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expectedRevision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "edition": {
+          "type": "string"
+        },
+        "mapVersion": {
+          "type": "string"
+        },
+        "page": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 604
+        },
+        "bookmarks": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 604
+          }
+        }
+      },
+      "required": [
+        "mutationId",
+        "expectedRevision",
+        "edition",
+        "mapVersion",
+        "page",
+        "bookmarks"
+      ],
+      "additionalProperties": false
+    },
+    "ReactionPut": {
+      "type": "object",
+      "properties": {
+        "mutationId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "reacted": {
+          "type": "boolean"
+        },
+        "expectedRevision": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "mutationId",
+        "reacted"
+      ],
+      "additionalProperties": false
+    },
+    "Reaction": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "heartCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "viewerReacted": {
+          "type": "boolean"
+        },
+        "reactionRevision": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "id",
+        "heartCount",
+        "viewerReacted",
+        "reactionRevision"
+      ],
+      "additionalProperties": false
+    },
+    "ReportPost": {
+      "type": "object",
+      "properties": {
+        "mutationId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "targetId": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "mutationId",
+        "targetId",
+        "reason"
+      ],
+      "additionalProperties": false
+    },
+    "ModerationPost": {
+      "type": "object",
+      "properties": {
+        "mutationId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "targetId": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "action": {
+          "enum": [
+            "hide",
+            "restore"
+          ]
+        }
+      },
+      "required": [
+        "mutationId",
+        "targetId",
+        "reason",
+        "action"
+      ],
+      "additionalProperties": false
+    },
+    "DeletionPost": {
+      "type": "object",
+      "properties": {
+        "mutationId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "confirmation": {
+          "enum": [
+            "DELETE"
+          ]
+        }
+      },
+      "required": [
+        "mutationId",
+        "confirmation"
+      ],
+      "additionalProperties": false
+    },
+    "ProgressPut": {
+      "type": "object",
+      "properties": {
+        "mutationId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expectedRevision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "courseVersion": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "positionSeconds": {
+          "type": "number",
+          "minimum": 0
+        },
+        "completed": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "mutationId",
+        "expectedRevision",
+        "courseVersion",
+        "positionSeconds",
+        "completed"
+      ],
+      "additionalProperties": false
+    },
+    "NotePut": {
+      "type": "object",
+      "properties": {
+        "mutationId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expectedRevision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "courseVersion": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "body": {
+          "type": "string",
+          "maxLength": 20000
+        }
+      },
+      "required": [
+        "mutationId",
+        "expectedRevision",
+        "courseVersion",
+        "body"
+      ],
+      "additionalProperties": false
+    },
+    "BookmarkPut": {
+      "type": "object",
+      "properties": {
+        "mutationId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expectedRevision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "courseVersion": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "saved": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "mutationId",
+        "expectedRevision",
+        "courseVersion",
+        "saved"
+      ],
+      "additionalProperties": false
+    },
+    "AnswersPut": {
+      "type": "object",
+      "properties": {
+        "mutationId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expectedRevision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "courseVersion": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "answers": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "maxLength": 20000
+          }
+        }
+      },
+      "required": [
+        "mutationId",
+        "expectedRevision",
+        "courseVersion",
+        "answers"
+      ],
+      "additionalProperties": false
+    },
+    "CommitmentView": {
+      "type": "object",
+      "properties": {
+        "effective": {
+          "$ref": "#/$defs/Commitment"
+        },
+        "pending": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "tier": {
+                "enum": [
+                  "B",
+                  "BI",
+                  "BJ1",
+                  "BJ2",
+                  "BJ3",
+                  "BJ4",
+                  "BJ5"
+                ]
+              },
+              "effectiveAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "timezone": {
+                "type": "string"
+              },
+              "initial": {
+                "type": "boolean"
+              },
+              "previousId": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "requestedAt": {
+                "type": "string"
+              },
+              "ruleVersion": {
+                "type": "string"
+              },
+              "effectiveTo": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "status": {
+                "type": "string"
+              },
+              "colorToken": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "tier",
+              "effectiveAt",
+              "timezone",
+              "initial",
+              "effectiveTo",
+              "status",
+              "colorToken"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "history": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "tier": {
+                "enum": [
+                  "B",
+                  "BI",
+                  "BJ1",
+                  "BJ2",
+                  "BJ3",
+                  "BJ4",
+                  "BJ5"
+                ]
+              },
+              "effectiveAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "timezone": {
+                "type": "string"
+              },
+              "initial": {
+                "type": "boolean"
+              },
+              "previousId": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "requestedAt": {
+                "type": "string"
+              },
+              "ruleVersion": {
+                "type": "string"
+              },
+              "effectiveTo": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "status": {
+                "type": "string"
+              },
+              "colorToken": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "tier",
+              "effectiveAt",
+              "timezone",
+              "initial",
+              "effectiveTo",
+              "status",
+              "colorToken"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "availableTiers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "allowedTransitions": {
+          "type": "object",
+          "properties": {
+            "nonweekly": {
+              "type": "string"
+            },
+            "weekly": {
+              "type": "string"
+            },
+            "crossCadence": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "nonweekly",
+            "weekly",
+            "crossCadence"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "effective",
+        "pending",
+        "history",
+        "availableTiers",
+        "allowedTransitions"
+      ],
+      "additionalProperties": false
+    },
+    "Me": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "avatarId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "avatarVersion": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "avatarUrl": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "locale": {
+          "type": "string"
+        },
+        "reducedMotion": {
+          "type": "boolean"
+        },
+        "largeText": {
+          "type": "boolean"
+        },
+        "communityVisible": {
+          "type": "boolean"
+        },
+        "communityAcknowledgedAt": {
+          "type": "string"
+        },
+        "communityScopeVersion": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "status": {
+          "type": "string"
+        },
+        "timezone": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "permissions": {
+          "type": "object",
+          "properties": {
+            "founder": {
+              "type": "boolean"
+            },
+            "moderate": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "founder",
+            "moderate"
+          ],
+          "additionalProperties": false
+        },
+        "commitment": {
+          "$ref": "#/$defs/CommitmentView"
+        },
+        "featureFlags": {
+          "type": "object",
+          "properties": {
+            "automaticCommunity": {
+              "type": "boolean"
+            },
+            "learning": {
+              "type": "boolean"
+            },
+            "readerPassiveCredit": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "automaticCommunity",
+            "learning",
+            "readerPassiveCredit"
+          ],
+          "additionalProperties": false
+        },
+        "communityScope": {
+          "type": "object",
+          "properties": {
+            "version": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "version",
+            "description"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "id",
+        "displayName",
+        "avatarId",
+        "avatarVersion",
+        "avatarUrl",
+        "locale",
+        "reducedMotion",
+        "largeText",
+        "communityVisible",
+        "communityAcknowledgedAt",
+        "communityScopeVersion",
+        "revision",
+        "status",
+        "timezone",
+        "email",
+        "permissions",
+        "commitment",
+        "featureFlags",
+        "communityScope"
+      ],
+      "additionalProperties": false
+    },
+    "Context": {
+      "type": "object",
+      "properties": {
+        "serverTime": {
+          "type": "string"
+        },
+        "day": {
+          "type": "string",
+          "format": "date"
+        },
+        "weekStart": {
+          "type": "string",
+          "format": "date"
+        },
+        "weekEnd": {
+          "type": "string",
+          "format": "date"
+        },
+        "timeZone": {
+          "type": "string"
+        },
+        "startAt": {
+          "type": "string"
+        },
+        "endExclusive": {
+          "type": "string"
+        },
+        "celebrationStartsAt": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "communityId": {
+          "type": "string"
+        },
+        "nextDayRollover": {
+          "type": "string"
+        },
+        "nextWeekRollover": {
+          "type": "string"
+        },
+        "restDay": {
+          "type": "boolean"
+        },
+        "restDayPolicy": {
+          "type": "object",
+          "properties": {
+            "version": {
+              "type": "string"
+            },
+            "appliesTo": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "version",
+            "appliesTo"
+          ],
+          "additionalProperties": false
+        },
+        "ayah": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string"
+            },
+            "references": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "text": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "textVersion": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "status",
+            "references",
+            "text",
+            "textVersion"
+          ],
+          "additionalProperties": false
+        },
+        "projectionRevision": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "serverTime",
+        "day",
+        "weekStart",
+        "weekEnd",
+        "timeZone",
+        "startAt",
+        "endExclusive",
+        "celebrationStartsAt",
+        "status",
+        "communityId",
+        "nextDayRollover",
+        "nextWeekRollover",
+        "restDay",
+        "restDayPolicy",
+        "ayah",
+        "projectionRevision"
+      ],
+      "additionalProperties": false
+    },
+    "DailyCard": {
+      "type": "object",
+      "properties": {
+        "day": {
+          "type": "string",
+          "format": "date"
+        },
+        "assignmentDay": {
+          "type": "string",
+          "format": "date"
+        },
+        "timeZone": {
+          "type": "string"
+        },
+        "ranges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Range"
+          }
+        },
+        "uniqueVerseCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "completedComponents": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "label": {
+                "type": "string"
+              },
+              "ranges": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/Range"
+                }
+              },
+              "reportMeaning": {
+                "enum": [
+                  "member_self_report"
+                ]
+              },
+              "referenceVersion": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "label",
+              "ranges",
+              "reportMeaning",
+              "referenceVersion"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "assignedWirdComplete": {
+          "type": "boolean"
+        },
+        "completionState": {
+          "type": "string"
+        },
+        "levelSegments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "tier": {
+                "enum": [
+                  "B",
+                  "BI",
+                  "BJ1",
+                  "BJ2",
+                  "BJ3",
+                  "BJ4",
+                  "BJ5"
+                ]
+              },
+              "label": {
+                "type": "string"
+              },
+              "colorToken": {
+                "type": "string"
+              },
+              "patternToken": {
+                "type": "string"
+              },
+              "effectiveFrom": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "tier",
+              "label",
+              "colorToken",
+              "patternToken",
+              "effectiveFrom"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "proofRefs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "actId": {
+                "type": "string"
+              },
+              "revision": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "assignmentId": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "actId",
+              "revision",
+              "assignmentId"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "sourceProofHash": {
+          "type": "string"
+        },
+        "meaningfulAt": {
+          "type": "string"
+        },
+        "corrected": {
+          "type": "boolean"
+        },
+        "eligible": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "member": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "displayName": {
+              "type": "string"
+            },
+            "avatarUrl": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "avatarVersion": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "required": [
+            "id",
+            "displayName",
+            "avatarUrl",
+            "avatarVersion"
+          ],
+          "additionalProperties": false
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "projectionState": {
+          "type": "string"
+        },
+        "sourceSequence": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "heartCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "viewerReacted": {
+          "type": "boolean"
+        },
+        "reactionRevision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "visibility": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "day",
+        "assignmentDay",
+        "timeZone",
+        "ranges",
+        "uniqueVerseCount",
+        "completedComponents",
+        "assignedWirdComplete",
+        "completionState",
+        "levelSegments",
+        "proofRefs",
+        "sourceProofHash",
+        "meaningfulAt",
+        "corrected",
+        "eligible",
+        "id",
+        "member",
+        "revision",
+        "projectionState",
+        "sourceSequence",
+        "heartCount",
+        "viewerReacted",
+        "reactionRevision",
+        "visibility"
+      ],
+      "additionalProperties": false
+    },
+    "WeeklyCard": {
+      "type": "object",
+      "properties": {
+        "weekStart": {
+          "type": "string",
+          "format": "date"
+        },
+        "weekEnd": {
+          "type": "string",
+          "format": "date"
+        },
+        "timeZone": {
+          "type": "string"
+        },
+        "startAt": {
+          "type": "string"
+        },
+        "endExclusive": {
+          "type": "string"
+        },
+        "celebrationStartsAt": {
+          "type": "string"
+        },
+        "readingDays": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "facts": {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "enum": [
+                      "surah_completion"
+                    ]
+                  },
+                  "surahId": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 114
+                  },
+                  "count": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "proofRefs": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "countSemantics": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "kind",
+                  "surahId",
+                  "count",
+                  "proofRefs",
+                  "countSemantics"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "enum": [
+                      "juz_coverage"
+                    ]
+                  },
+                  "juzIds": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer",
+                      "minimum": 0
+                    }
+                  },
+                  "additionalAssignedJuzIds": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer",
+                      "minimum": 0
+                    }
+                  },
+                  "referenceVersion": {
+                    "type": "string"
+                  },
+                  "ranges": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/$defs/Range"
+                    }
+                  },
+                  "overlapsSurahCoverage": {
+                    "type": "boolean"
+                  },
+                  "proofRefs": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": [
+                  "kind",
+                  "juzIds",
+                  "additionalAssignedJuzIds",
+                  "referenceVersion",
+                  "ranges",
+                  "overlapsSurahCoverage",
+                  "proofRefs"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "enum": [
+                      "partial_reading"
+                    ]
+                  },
+                  "ranges": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/$defs/Range"
+                    }
+                  },
+                  "uniqueVerseCount": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "proofRefs": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": [
+                  "kind",
+                  "ranges",
+                  "uniqueVerseCount",
+                  "proofRefs"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          }
+        },
+        "quranKhatmas": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "enum": [
+                  "quran_khatma"
+                ]
+              },
+              "cycleId": {
+                "type": "string"
+              },
+              "proofHash": {
+                "type": "string"
+              },
+              "completedOn": {
+                "type": "string",
+                "format": "date"
+              },
+              "referenceVersion": {
+                "type": "string"
+              },
+              "attribution": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "kind",
+              "cycleId",
+              "proofHash",
+              "completedOn",
+              "referenceVersion",
+              "attribution"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "levelSegments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "tierId": {
+                "type": "string"
+              },
+              "colorToken": {
+                "type": "string"
+              },
+              "effectiveFrom": {
+                "type": "string"
+              },
+              "effectiveTo": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "ruleVersion": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "tierId",
+              "colorToken",
+              "effectiveFrom",
+              "effectiveTo",
+              "ruleVersion"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "uniqueVerseCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "ranges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Range"
+          }
+        },
+        "meaningfulAt": {
+          "type": "string"
+        },
+        "days": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "date"
+          }
+        },
+        "eligible": {
+          "type": "boolean"
+        },
+        "repeatPolicy": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "member": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "displayName": {
+              "type": "string"
+            },
+            "avatarUrl": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "avatarVersion": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "required": [
+            "id",
+            "displayName",
+            "avatarUrl",
+            "avatarVersion"
+          ],
+          "additionalProperties": false
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "projectionState": {
+          "type": "string"
+        },
+        "sourceSequence": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "heartCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "viewerReacted": {
+          "type": "boolean"
+        },
+        "reactionRevision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "visibility": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "weekStart",
+        "weekEnd",
+        "timeZone",
+        "startAt",
+        "endExclusive",
+        "celebrationStartsAt",
+        "readingDays",
+        "facts",
+        "quranKhatmas",
+        "levelSegments",
+        "uniqueVerseCount",
+        "ranges",
+        "meaningfulAt",
+        "days",
+        "eligible",
+        "repeatPolicy",
+        "status",
+        "id",
+        "member",
+        "revision",
+        "projectionState",
+        "sourceSequence",
+        "heartCount",
+        "viewerReacted",
+        "reactionRevision",
+        "visibility"
+      ],
+      "additionalProperties": false
+    },
+    "DailyFeed": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/DailyCard"
+          }
+        },
+        "nextCursor": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "projectionRevision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "participantCount": {
+          "type": "null"
+        },
+        "completeWirdMemberCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "period": {
+          "type": "string",
+          "format": "date"
+        },
+        "timeZone": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "items",
+        "nextCursor",
+        "projectionRevision",
+        "participantCount",
+        "completeWirdMemberCount",
+        "period",
+        "timeZone",
+        "status"
+      ],
+      "additionalProperties": false
+    },
+    "WeeklyFeed": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/WeeklyCard"
+          }
+        },
+        "nextCursor": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "projectionRevision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "participantCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "completeWirdMemberCount": {
+          "type": "null"
+        },
+        "period": {
+          "type": "string",
+          "format": "date"
+        },
+        "timeZone": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "items",
+        "nextCursor",
+        "projectionRevision",
+        "participantCount",
+        "completeWirdMemberCount",
+        "period",
+        "timeZone",
+        "status"
+      ],
+      "additionalProperties": false
+    },
+    "OwnWeeks": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/WeeklyCard"
+          }
+        },
+        "nextBefore": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "projectionRevision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "visibility": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "items",
+        "nextBefore",
+        "projectionRevision",
+        "visibility"
+      ],
+      "additionalProperties": false
+    },
+    "OwnDaily": {
+      "type": "object",
+      "properties": {
+        "post": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/DailyCard"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "state": {
+          "type": "string"
+        },
+        "projectionRevision": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "post",
+        "state",
+        "projectionRevision"
+      ],
+      "additionalProperties": false
+    },
+    "OwnDays": {
+      "type": "object",
+      "properties": {
+        "weekStart": {
+          "type": "string",
+          "format": "date"
+        },
+        "days": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "day": {
+                "type": "string",
+                "format": "date"
+              },
+              "assignmentDay": {
+                "type": "string",
+                "format": "date"
+              },
+              "timeZone": {
+                "type": "string"
+              },
+              "ranges": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/Range"
+                }
+              },
+              "uniqueVerseCount": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "completedComponents": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "label": {
+                      "type": "string"
+                    },
+                    "ranges": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/$defs/Range"
+                      }
+                    },
+                    "reportMeaning": {
+                      "enum": [
+                        "member_self_report"
+                      ]
+                    },
+                    "referenceVersion": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "label",
+                    "ranges",
+                    "reportMeaning",
+                    "referenceVersion"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "assignedWirdComplete": {
+                "type": "boolean"
+              },
+              "completionState": {
+                "type": "string"
+              },
+              "levelSegments": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "tier": {
+                      "enum": [
+                        "B",
+                        "BI",
+                        "BJ1",
+                        "BJ2",
+                        "BJ3",
+                        "BJ4",
+                        "BJ5"
+                      ]
+                    },
+                    "label": {
+                      "type": "string"
+                    },
+                    "colorToken": {
+                      "type": "string"
+                    },
+                    "patternToken": {
+                      "type": "string"
+                    },
+                    "effectiveFrom": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "tier",
+                    "label",
+                    "colorToken",
+                    "patternToken",
+                    "effectiveFrom"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "proofRefs": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "actId": {
+                      "type": "string"
+                    },
+                    "revision": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "assignmentId": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "actId",
+                    "revision",
+                    "assignmentId"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "sourceProofHash": {
+                "type": "string"
+              },
+              "meaningfulAt": {
+                "type": "string"
+              },
+              "corrected": {
+                "type": "boolean"
+              },
+              "eligible": {
+                "type": "boolean"
+              },
+              "privateRevisionStates": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "revision": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "retracted": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "revision",
+                    "retracted"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "dailyPost": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/DailyCard"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "day",
+              "assignmentDay",
+              "timeZone",
+              "ranges",
+              "uniqueVerseCount",
+              "completedComponents",
+              "assignedWirdComplete",
+              "completionState",
+              "levelSegments",
+              "proofRefs",
+              "sourceProofHash",
+              "meaningfulAt",
+              "corrected",
+              "eligible",
+              "privateRevisionStates",
+              "dailyPost"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "visibility": {
+          "type": "string"
+        },
+        "projectionRevision": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "weekStart",
+        "days",
+        "visibility",
+        "projectionRevision"
+      ],
+      "additionalProperties": false
+    },
+    "Changes": {
+      "type": "object",
+      "properties": {
+        "changes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "cursor": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "kind": {
+                "type": "string"
+              },
+              "targetId": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "revision": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "card": {
+                "anyOf": [
+                  {
+                    "anyOf": [
+                      {
+                        "$ref": "#/$defs/DailyCard"
+                      },
+                      {
+                        "$ref": "#/$defs/WeeklyCard"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "cursor",
+              "kind",
+              "targetId",
+              "revision",
+              "card"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "cursor": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "projectionRevision": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "changes",
+        "cursor",
+        "projectionRevision"
+      ],
+      "additionalProperties": false
+    },
+    "ReadingList": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ReadingAct"
+          }
+        },
+        "visibility": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "items",
+        "visibility"
+      ],
+      "additionalProperties": false
+    },
+    "Course": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "version": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "format": {
+          "type": "string"
+        },
+        "thumbnail": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "sandbox": {
+          "type": "boolean"
+        },
+        "modules": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              },
+              "accessible": {
+                "type": "boolean"
+              },
+              "complete": {
+                "type": "boolean"
+              },
+              "lessons": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "required": {
+                      "type": "boolean"
+                    },
+                    "thumbnail": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "durationSeconds": {
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "progress": {
+                      "anyOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "revision": {
+                              "type": "integer",
+                              "minimum": 0
+                            },
+                            "courseVersion": {
+                              "type": "integer",
+                              "minimum": 0
+                            },
+                            "positionSeconds": {
+                              "type": "number",
+                              "minimum": 0
+                            },
+                            "completed": {
+                              "type": "boolean"
+                            },
+                            "body": {
+                              "type": "string"
+                            },
+                            "saved": {
+                              "type": "boolean"
+                            },
+                            "answers": {
+                              "type": "object",
+                              "additionalProperties": {
+                                "type": "string"
+                              }
+                            },
+                            "state": {
+                              "type": "string"
+                            },
+                            "submittedAt": {
+                              "anyOf": [
+                                {
+                                  "type": "string"
+                                },
+                                {
+                                  "type": "null"
+                                }
+                              ]
+                            },
+                            "grading": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "revision"
+                          ],
+                          "additionalProperties": false
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "title",
+                    "required",
+                    "thumbnail",
+                    "durationSeconds",
+                    "progress"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "questions": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "prompt": {
+                      "type": "string"
+                    },
+                    "required": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "prompt",
+                    "required"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "answers": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "revision": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "courseVersion": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "positionSeconds": {
+                        "type": "number",
+                        "minimum": 0
+                      },
+                      "completed": {
+                        "type": "boolean"
+                      },
+                      "body": {
+                        "type": "string"
+                      },
+                      "saved": {
+                        "type": "boolean"
+                      },
+                      "answers": {
+                        "type": "object",
+                        "additionalProperties": {
+                          "type": "string"
+                        }
+                      },
+                      "state": {
+                        "type": "string"
+                      },
+                      "submittedAt": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "grading": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "revision"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "id",
+              "title",
+              "accessible",
+              "complete",
+              "lessons",
+              "questions",
+              "answers"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "access": {
+          "type": "string"
+        },
+        "complete": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "version",
+        "format",
+        "thumbnail",
+        "sandbox",
+        "modules",
+        "access",
+        "complete"
+      ],
+      "additionalProperties": false
+    },
+    "Catalog": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              },
+              "version": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "format": {
+                "type": "string"
+              },
+              "thumbnail": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "sandbox": {
+                "type": "boolean"
+              },
+              "access": {
+                "type": "string"
+              },
+              "completedModules": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "moduleCount": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "complete": {
+                "type": "boolean"
+              },
+              "resumeLessonId": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "id",
+              "title",
+              "version",
+              "format",
+              "thumbnail",
+              "sandbox",
+              "access",
+              "completedModules",
+              "moduleCount",
+              "complete",
+              "resumeLessonId"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "nextCursor": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "contentState": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "items",
+        "nextCursor",
+        "contentState"
+      ],
+      "additionalProperties": false
+    },
+    "Lesson": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "thumbnail": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "durationSeconds": {
+          "type": "number",
+          "minimum": 0
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              },
+              "url": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "title",
+              "url"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "moduleId": {
+          "type": "string"
+        },
+        "courseId": {
+          "type": "string"
+        },
+        "courseVersion": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "playback": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string"
+            },
+            "url": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "expiresAt": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "status",
+            "url",
+            "expiresAt"
+          ],
+          "additionalProperties": false
+        },
+        "progress": {
+          "type": "object",
+          "properties": {
+            "revision": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "courseVersion": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "positionSeconds": {
+              "type": "number",
+              "minimum": 0
+            },
+            "completed": {
+              "type": "boolean"
+            },
+            "body": {
+              "type": "string"
+            },
+            "saved": {
+              "type": "boolean"
+            },
+            "answers": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "state": {
+              "type": "string"
+            },
+            "submittedAt": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "grading": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "revision"
+          ],
+          "additionalProperties": false
+        },
+        "note": {
+          "type": "object",
+          "properties": {
+            "revision": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "courseVersion": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "positionSeconds": {
+              "type": "number",
+              "minimum": 0
+            },
+            "completed": {
+              "type": "boolean"
+            },
+            "body": {
+              "type": "string"
+            },
+            "saved": {
+              "type": "boolean"
+            },
+            "answers": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "state": {
+              "type": "string"
+            },
+            "submittedAt": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "grading": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "revision"
+          ],
+          "additionalProperties": false
+        },
+        "bookmark": {
+          "type": "object",
+          "properties": {
+            "revision": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "courseVersion": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "positionSeconds": {
+              "type": "number",
+              "minimum": 0
+            },
+            "completed": {
+              "type": "boolean"
+            },
+            "body": {
+              "type": "string"
+            },
+            "saved": {
+              "type": "boolean"
+            },
+            "answers": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "state": {
+              "type": "string"
+            },
+            "submittedAt": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "grading": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "revision"
+          ],
+          "additionalProperties": false
+        },
+        "completionPolicy": {
+          "type": "string"
+        },
+        "sandbox": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "required",
+        "thumbnail",
+        "durationSeconds",
+        "resources",
+        "moduleId",
+        "courseId",
+        "courseVersion",
+        "playback",
+        "progress",
+        "note",
+        "bookmark",
+        "completionPolicy",
+        "sandbox"
+      ],
+      "additionalProperties": false
+    },
+    "LearningResult": {
+      "type": "object",
+      "properties": {
+        "record": {
+          "type": "object",
+          "properties": {
+            "revision": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "courseVersion": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "positionSeconds": {
+              "type": "number",
+              "minimum": 0
+            },
+            "completed": {
+              "type": "boolean"
+            },
+            "body": {
+              "type": "string"
+            },
+            "saved": {
+              "type": "boolean"
+            },
+            "answers": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "state": {
+              "type": "string"
+            },
+            "submittedAt": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "grading": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "revision"
+          ],
+          "additionalProperties": false
+        },
+        "course": {
+          "$ref": "#/$defs/Course"
+        },
+        "readingCredit": {
+          "enum": [
+            0
+          ]
+        }
+      },
+      "required": [
+        "record",
+        "course",
+        "readingCredit"
+      ],
+      "additionalProperties": false
+    },
+    "Library": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "version": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "title": {
+                "type": "string"
+              },
+              "tags": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "transcript": {
+                "type": "string"
+              },
+              "url": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "published": {
+                "type": "boolean"
+              },
+              "rightsReviewed": {
+                "type": "boolean"
+              },
+              "editorialReviewed": {
+                "type": "boolean"
+              },
+              "sandbox": {
+                "type": "boolean"
+              },
+              "courseId": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "version",
+              "title",
+              "tags",
+              "transcript",
+              "url",
+              "published",
+              "rightsReviewed",
+              "editorialReviewed",
+              "sandbox"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "nextCursor": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "contentState": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "items",
+        "nextCursor",
+        "contentState"
+      ],
+      "additionalProperties": false
+    },
+    "OperationalResult": {
+      "type": "object",
+      "description": "Operation-specific receipt; see CONNECTED_API_HANDOFF.md. Not a reading proof."
+    },
+    "Export": {
+      "type": "object",
+      "required": [
+        "schemaVersion",
+        "exportedAt",
+        "profile",
+        "events",
+        "reading",
+        "reader",
+        "learning",
+        "reactions",
+        "learningHistory",
+        "enrollments",
+        "reports"
+      ],
+      "properties": {
+        "schemaVersion": {
+          "enum": [
+            "0.4.0"
+          ]
+        },
+        "profile": {
+          "$ref": "#/$defs/Me"
+        },
+        "reader": {
+          "$ref": "#/$defs/Reader"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,363 @@
+{
+  "schema": "Export",
+  "fixture": {
+    "schemaVersion": "0.5.0",
+    "exportedAt": "2026-09-30T12:00:00+00:00",
+    "profile": {
+      "id": "eeb21de8-e819-4972-a004-c66e39338237",
+      "avatarId": null,
+      "avatarVersion": 0,
+      "communityAcknowledgedAt": "2026-09-30T12:00:00+00:00",
+      "communityScopeVersion": "founder-community-2026-09-29.v2",
+      "communityVisible": true,
+      "countryCode": "SD",
+      "displayName": "Example BI",
+      "istighfarGoal": 100,
+      "largeText": false,
+      "locale": "ar",
+      "reducedMotion": false,
+      "setupStatus": "complete",
+      "capabilities": {
+        "version": "0.5.0",
+        "customReading": true,
+        "dailyIstighfar": true,
+        "countrySetup": true,
+        "emojiReactions": true,
+        "istighfarBounds": {
+          "goalMin": 1,
+          "countMin": 0,
+          "max": 1000000
+        },
+        "reactionPalette": [
+          "❤️",
+          "👏",
+          "🤲",
+          "👍",
+          "🔥"
+        ],
+        "shipLifecycle": "awaiting_policy"
+      },
+      "avatarUrl": null,
+      "revision": 1,
+      "status": "active",
+      "timezone": "Asia/Riyadh",
+      "email": "bi@fixtures.test",
+      "permissions": {
+        "founder": false,
+        "moderate": false
+      },
+      "commitment": {
+        "effective": {
+          "effectiveAt": "2026-09-30T12:00:00+00:00",
+          "id": "0303d21b-3694-447b-8a82-5710fd290fe8",
+          "initial": true,
+          "ruleVersion": "founder-community-2026-09-29.v2",
+          "tier": "BI",
+          "timezone": "Asia/Riyadh"
+        },
+        "pending": [],
+        "history": [
+          {
+            "effectiveAt": "2026-09-30T12:00:00+00:00",
+            "id": "0303d21b-3694-447b-8a82-5710fd290fe8",
+            "initial": true,
+            "ruleVersion": "founder-community-2026-09-29.v2",
+            "tier": "BI",
+            "timezone": "Asia/Riyadh",
+            "effectiveTo": null,
+            "status": "effective",
+            "colorToken": "level.BI"
+          }
+        ],
+        "availableTiers": [
+          "B",
+          "BI",
+          "BJ1",
+          "BJ2",
+          "BJ3",
+          "BJ4",
+          "BJ5"
+        ],
+        "allowedTransitions": {
+          "nonweekly": "same_day",
+          "weekly": "next_sunday",
+          "crossCadence": "awaiting_policy"
+        }
+      },
+      "featureFlags": {
+        "automaticCommunity": true,
+        "learning": true,
+        "readerPassiveCredit": false
+      },
+      "communityScope": {
+        "version": "founder-community-2026-09-29.v2",
+        "description": "تظهر قراءاتك المؤكّدة واستغفارك المسجّل لأعضاء المجتمع تلقائياً. يظهر بلدك المختار بجانب اسمك. يمكنك إخفاء المشاركة من الإعدادات."
+      }
+    },
+    "events": [
+      {
+        "sequence": 2,
+        "id": "2a027e8e-e406-40f2-805e-65e98bd5c450",
+        "member_id": "eeb21de8-e819-4972-a004-c66e39338237",
+        "kind": "CommitmentSet",
+        "entity_id": "0303d21b-3694-447b-8a82-5710fd290fe8",
+        "payload": {
+          "effectiveAt": "2026-09-30T12:00:00+00:00",
+          "id": "0303d21b-3694-447b-8a82-5710fd290fe8",
+          "initial": true,
+          "ruleVersion": "founder-community-2026-09-29.v2",
+          "tier": "BI",
+          "timezone": "Asia/Riyadh"
+        },
+        "created_at": "2026-09-30T12:00:00+00:00"
+      },
+      {
+        "sequence": 8,
+        "id": "8035b54d-2cb4-4431-8653-cd7daf8c9ccc",
+        "member_id": "eeb21de8-e819-4972-a004-c66e39338237",
+        "kind": "ReadingRecorded",
+        "entity_id": "9e737682-e0b3-513c-900c-649bdd6f6939",
+        "payload": {
+          "assignmentDay": "2026-09-30",
+          "assignmentId": "as_1b9f02516c793096c12407809b0cc20f",
+          "communityDay": "2026-09-30",
+          "confirmationState": "member_confirmed",
+          "createdAt": "2026-09-30T12:00:00+00:00",
+          "cycleId": "monthly:2026-09-01",
+          "freeDay": false,
+          "id": "9e737682-e0b3-513c-900c-649bdd6f6939",
+          "memberId": "eeb21de8-e819-4972-a004-c66e39338237",
+          "mutationId": "b6a46100-7ebc-4b13-9665-683c6d8769eb",
+          "occurredAt": "2026-09-30T12:00:00+00:00",
+          "occurrenceDate": "2026-09-30",
+          "ranges": [
+            {
+              "end": "2:10",
+              "start": "2:1"
+            }
+          ],
+          "referenceVersion": "hafs-tanzil-1.0-20260928",
+          "repeatOfActId": null,
+          "retracted": false,
+          "revision": 1,
+          "revisionOf": null,
+          "ruleVersion": "founder-community-2026-09-29.v2",
+          "source": "manual_physical",
+          "timezone": "UTC",
+          "traceId": null,
+          "updatedAt": "2026-09-30T12:00:00+00:00",
+          "utcOffsetMinutes": 0
+        },
+        "created_at": "2026-09-30T12:00:00+00:00"
+      },
+      {
+        "sequence": 9,
+        "id": "99dfd53c-f02c-499b-8abf-0a58a0abdaaa",
+        "member_id": "eeb21de8-e819-4972-a004-c66e39338237",
+        "kind": "ReadingRecorded",
+        "entity_id": "645bae95-47a3-547d-884d-43ec875ee238",
+        "payload": {
+          "assignmentDay": "2026-09-30",
+          "assignmentId": "as_1b9f02516c793096c12407809b0cc20f",
+          "communityDay": "2026-09-30",
+          "confirmationState": "member_confirmed",
+          "createdAt": "2026-09-30T12:00:00+00:00",
+          "cycleId": "monthly:2026-09-01",
+          "freeDay": false,
+          "id": "645bae95-47a3-547d-884d-43ec875ee238",
+          "memberId": "eeb21de8-e819-4972-a004-c66e39338237",
+          "mutationId": "62ec1044-72f6-4c84-83fe-4392226cdfd6",
+          "occurredAt": "2026-09-30T12:00:00+00:00",
+          "occurrenceDate": "2026-09-30",
+          "ranges": [
+            {
+              "end": "2:286",
+              "start": "2:11"
+            }
+          ],
+          "referenceVersion": "hafs-tanzil-1.0-20260928",
+          "repeatOfActId": null,
+          "retracted": false,
+          "revision": 1,
+          "revisionOf": null,
+          "ruleVersion": "founder-community-2026-09-29.v2",
+          "source": "manual_physical",
+          "timezone": "UTC",
+          "traceId": null,
+          "updatedAt": "2026-09-30T12:00:00+00:00",
+          "utcOffsetMinutes": 0
+        },
+        "created_at": "2026-09-30T12:00:00+00:00"
+      }
+    ],
+    "reading": {
+      "days": [
+        {
+          "date": "2026-09-30",
+          "status": "partial",
+          "actualReadingStatus": "member_confirmed",
+          "uniqueCoverage": [
+            {
+              "start": "2:1",
+              "end": "2:286"
+            }
+          ],
+          "uniqueVerseCount": 286,
+          "repeatedActs": [],
+          "assignedFulfilment": {
+            "ranges": [
+              {
+                "start": "2:1",
+                "end": "2:286"
+              }
+            ],
+            "matchedVerses": 286,
+            "targetVerses": 486,
+            "complete": null
+          },
+          "supplementalReading": [],
+          "dayCredit": null,
+          "creditState": "awaiting_policy",
+          "openPolicies": [
+            {
+              "code": "RULE_NOT_APPROVED",
+              "policy": "partial_credit",
+              "question": "Should partial reading earn fractional credit, and with which pinned word denominator?",
+              "ruleVersion": "founder-core-2026-09-28.v1"
+            }
+          ],
+          "assignmentIds": [
+            "as_1b9f02516c793096c12407809b0cc20f"
+          ],
+          "historicalLevels": [
+            {
+              "tier": "BI",
+              "label": "BI",
+              "colorToken": "level.BI",
+              "patternToken": "level-pattern.BI"
+            }
+          ],
+          "sourceActs": [
+            {
+              "id": "9e737682-e0b3-513c-900c-649bdd6f6939",
+              "revision": 1
+            },
+            {
+              "id": "645bae95-47a3-547d-884d-43ec875ee238",
+              "revision": 1
+            }
+          ],
+          "elapsedTime": null,
+          "inputHash": "6f8ec3bd008e197c73af5d48fdb60d3f1eeeb7ef927e1e14c589ad93e1d8e894",
+          "corrected": false,
+          "readerObservedTrace": []
+        }
+      ],
+      "ship": {
+        "visibility": "private",
+        "approvedCredits": 0,
+        "creditsPerShip": 30,
+        "periods": [
+          {
+            "month": "2026-09",
+            "approvedCredits": 0,
+            "completedShipsWithinPeriod": 0
+          }
+        ],
+        "completedShipsWithinPeriods": 0,
+        "currentShip": null,
+        "lifetimeShipCount": null,
+        "presentationStatus": "awaiting_policy",
+        "openPolicies": [
+          {
+            "code": "RULE_NOT_APPROVED",
+            "policy": "ship_carry",
+            "question": "Does unfinished construction continue across periods or remain a dated unfinished ship?",
+            "ruleVersion": "founder-core-2026-09-28.v1"
+          }
+        ],
+        "unresolvedDayCredits": [
+          "2026-09-30"
+        ],
+        "ledger": [
+          {
+            "date": "2026-09-30",
+            "credit": null,
+            "inputHash": "6f8ec3bd008e197c73af5d48fdb60d3f1eeeb7ef927e1e14c589ad93e1d8e894"
+          }
+        ]
+      },
+      "khatmas": {
+        "visibility": "private",
+        "referenceVersion": "hafs-tanzil-1.0-20260928",
+        "cycles": [
+          {
+            "id": "monthly:2026-09-01",
+            "cadence": "monthly",
+            "start": "2026-09-01",
+            "end": "2026-09-30",
+            "status": "incomplete",
+            "uniqueCoverage": [
+              {
+                "start": "2:1",
+                "end": "2:286"
+              }
+            ],
+            "coveredVerses": 286,
+            "totalVerses": 6236,
+            "remainingRanges": [
+              {
+                "start": "1:1",
+                "end": "1:7"
+              },
+              {
+                "start": "3:1",
+                "end": "114:6"
+              }
+            ],
+            "nextUnreadVerse": "1:1",
+            "completedJuz": [
+              2
+            ],
+            "proofHash": null,
+            "completionDate": null,
+            "ordinal": null,
+            "sourceActRevisions": [
+              {
+                "id": "9e737682-e0b3-513c-900c-649bdd6f6939",
+                "revision": 1
+              },
+              {
+                "id": "645bae95-47a3-547d-884d-43ec875ee238",
+                "revision": 1
+              }
+            ],
+            "additionalKhatmas": {
+              "status": "awaiting_policy",
+              "policy": {
+                "code": "RULE_NOT_APPROVED",
+                "policy": "repeat_khatma",
+                "question": "How are explicit repeat acts attributed to multiple khatmas?",
+                "ruleVersion": "founder-core-2026-09-28.v1"
+              }
+            },
+            "excludedFreeDayActs": [],
+            "openPolicies": []
+          }
+        ]
+      }
+    },
+    "learningHistory": [],
+    "enrollments": [],
+    "reports": [],
+    "reader": {
+      "edition": "hafs-madani-604",
+      "mapVersion": "tanzil-pages-1.0",
+      "page": 1,
+      "bookmarks": [],
+      "revision": 0
+    },
+    "learning": [],
+    "reactions": []
+  }
+}

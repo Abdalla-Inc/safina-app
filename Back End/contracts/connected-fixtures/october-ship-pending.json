@@ -1,0 +1,22 @@
+{
+  "schema": "ShipVisual",
+  "fixture": {
+    "schemaVersion": "1.0.0-proposed",
+    "assetVersion": "0.5.0",
+    "vesselId": "f98e1580-3a70-51d6-8042-158819621a2a",
+    "revision": 0,
+    "generatedAt": "2026-10-01T12:00:00+00:00",
+    "lifecyclePolicyId": "founder-ship-lifecycle-2026-10-01.v1",
+    "status": "awaiting_policy",
+    "state": null,
+    "blockedReasons": [
+      "construction_day_basis",
+      "rest_day_settlement",
+      "member_timezone_assignment_mapping",
+      "late_correction_replay",
+      "existing_member_activation",
+      "zero_health_recovery",
+      "repair_timing"
+    ]
+  }
+}

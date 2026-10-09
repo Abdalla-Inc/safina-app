@@ -1,0 +1,203 @@
+{
+  "schema": "OwnDays",
+  "fixture": {
+    "weekStart": "2026-09-27",
+    "days": [
+      {
+        "day": "2026-09-30",
+        "facts": [
+          {
+            "kind": "assigned_completion",
+            "component": {
+              "id": "B",
+              "label": "B",
+              "ranges": [
+                {
+                  "start": "2:1",
+                  "end": "2:286"
+                }
+              ],
+              "reportMeaning": "member_self_report",
+              "referenceVersion": "hafs-tanzil-1.0-20260928"
+            }
+          }
+        ],
+        "istighfar": {
+          "day": "2026-09-30",
+          "count": 0,
+          "target": 100,
+          "complete": false,
+          "revision": 0,
+          "updatedAt": null,
+          "occurredAt": null,
+          "targetPinned": false
+        },
+        "istighfarComplete": false,
+        "completeWird": false,
+        "assignmentDay": "2026-09-30",
+        "timeZone": "Asia/Riyadh",
+        "ranges": [
+          {
+            "start": "2:1",
+            "end": "2:286"
+          }
+        ],
+        "uniqueVerseCount": 286,
+        "completedComponents": [
+          {
+            "id": "B",
+            "label": "B",
+            "ranges": [
+              {
+                "start": "2:1",
+                "end": "2:286"
+              }
+            ],
+            "reportMeaning": "member_self_report",
+            "referenceVersion": "hafs-tanzil-1.0-20260928"
+          }
+        ],
+        "assignedWirdComplete": false,
+        "completionState": "partial",
+        "levelSegments": [
+          {
+            "tier": "BI",
+            "label": "BI",
+            "colorToken": "level.BI",
+            "patternToken": "level-pattern.BI",
+            "effectiveFrom": "2026-09-30T12:00:00+00:00"
+          }
+        ],
+        "proofRefs": [
+          {
+            "actId": "9e737682-e0b3-513c-900c-649bdd6f6939",
+            "revision": 1,
+            "assignmentId": "as_1b9f02516c793096c12407809b0cc20f"
+          },
+          {
+            "actId": "645bae95-47a3-547d-884d-43ec875ee238",
+            "revision": 1,
+            "assignmentId": "as_1b9f02516c793096c12407809b0cc20f"
+          }
+        ],
+        "sourceProofHash": "57e5c4bb9ee5d8d72196237c893d4bc57a6e94f07090c07ce926c842092689af",
+        "meaningfulAt": "2026-09-30T12:00:00+00:00",
+        "corrected": false,
+        "eligible": true,
+        "privateRevisionStates": [
+          {
+            "id": "9e737682-e0b3-513c-900c-649bdd6f6939",
+            "revision": 1,
+            "retracted": false
+          },
+          {
+            "id": "645bae95-47a3-547d-884d-43ec875ee238",
+            "revision": 1,
+            "retracted": false
+          }
+        ],
+        "dailyPost": {
+          "assignedWirdComplete": false,
+          "assignmentDay": "2026-09-30",
+          "completeWird": false,
+          "completedComponents": [
+            {
+              "id": "B",
+              "label": "B",
+              "ranges": [
+                {
+                  "end": "2:286",
+                  "start": "2:1"
+                }
+              ],
+              "referenceVersion": "hafs-tanzil-1.0-20260928",
+              "reportMeaning": "member_self_report"
+            }
+          ],
+          "completionState": "partial",
+          "corrected": false,
+          "day": "2026-09-30",
+          "eligible": true,
+          "facts": [
+            {
+              "component": {
+                "id": "B",
+                "label": "B",
+                "ranges": [
+                  {
+                    "end": "2:286",
+                    "start": "2:1"
+                  }
+                ],
+                "referenceVersion": "hafs-tanzil-1.0-20260928",
+                "reportMeaning": "member_self_report"
+              },
+              "kind": "assigned_completion"
+            }
+          ],
+          "istighfar": {
+            "complete": false,
+            "count": 0,
+            "day": "2026-09-30",
+            "occurredAt": null,
+            "revision": 0,
+            "target": 100,
+            "targetPinned": false,
+            "updatedAt": null
+          },
+          "istighfarComplete": false,
+          "levelSegments": [
+            {
+              "colorToken": "level.BI",
+              "effectiveFrom": "2026-09-30T12:00:00+00:00",
+              "label": "BI",
+              "patternToken": "level-pattern.BI",
+              "tier": "BI"
+            }
+          ],
+          "meaningfulAt": "2026-09-30T12:00:00+00:00",
+          "proofRefs": [
+            {
+              "actId": "9e737682-e0b3-513c-900c-649bdd6f6939",
+              "assignmentId": "as_1b9f02516c793096c12407809b0cc20f",
+              "revision": 1
+            },
+            {
+              "actId": "645bae95-47a3-547d-884d-43ec875ee238",
+              "assignmentId": "as_1b9f02516c793096c12407809b0cc20f",
+              "revision": 1
+            }
+          ],
+          "ranges": [
+            {
+              "end": "2:286",
+              "start": "2:1"
+            }
+          ],
+          "sourceProofHash": "57e5c4bb9ee5d8d72196237c893d4bc57a6e94f07090c07ce926c842092689af",
+          "timeZone": "Asia/Riyadh",
+          "uniqueVerseCount": 286,
+          "id": "daily:eeb21de8-e819-4972-a004-c66e39338237:2026-09-30",
+          "member": {
+            "id": "eeb21de8-e819-4972-a004-c66e39338237",
+            "displayName": "Example BI",
+            "avatarUrl": null,
+            "avatarVersion": 0,
+            "countryCode": "SD"
+          },
+          "revision": 2,
+          "projectionState": "ready",
+          "sourceSequence": 9,
+          "reactions": [],
+          "heartCount": 0,
+          "viewerReaction": null,
+          "viewerReacted": false,
+          "reactionRevision": 0,
+          "visibility": "visible"
+        }
+      }
+    ],
+    "visibility": "private",
+    "projectionRevision": 3
+  }
+}

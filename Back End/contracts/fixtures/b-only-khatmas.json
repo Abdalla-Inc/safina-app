@@ -1,0 +1,208 @@
+{
+  "schema": "Khatmas",
+  "contractVersion": "0.3.0",
+  "fixture": {
+    "visibility": "private",
+    "referenceVersion": "hafs-tanzil-1.0-20260928",
+    "cycles": [
+      {
+        "id": "monthly:2026-09-01",
+        "cadence": "monthly",
+        "start": "2026-09-01",
+        "end": "2026-09-30",
+        "status": "incomplete",
+        "uniqueCoverage": [
+          {
+            "start": "2:1",
+            "end": "2:286"
+          }
+        ],
+        "coveredVerses": 286,
+        "totalVerses": 6236,
+        "remainingRanges": [
+          {
+            "start": "1:1",
+            "end": "1:7"
+          },
+          {
+            "start": "3:1",
+            "end": "114:6"
+          }
+        ],
+        "nextUnreadVerse": "1:1",
+        "completedJuz": [
+          2
+        ],
+        "proofHash": null,
+        "completionDate": null,
+        "ordinal": null,
+        "sourceActRevisions": [
+          {
+            "id": "66e6078d-e178-586b-9c5b-6b02aae68651",
+            "revision": 1
+          },
+          {
+            "id": "984dd730-4998-50f5-ab9c-cac744254ee5",
+            "revision": 1
+          },
+          {
+            "id": "436f811e-c4ed-5c54-bd97-a1e8921d5fc0",
+            "revision": 1
+          },
+          {
+            "id": "6bbc92b2-b608-53a5-a724-3558b2e160c9",
+            "revision": 1
+          },
+          {
+            "id": "f764143a-d1fc-5c35-9c73-dede82e6a3d3",
+            "revision": 1
+          },
+          {
+            "id": "210dbd01-ad6d-571b-90eb-e3752699152a",
+            "revision": 1
+          },
+          {
+            "id": "21da2de7-48e3-53cc-afb7-9aa0e368f4cc",
+            "revision": 1
+          },
+          {
+            "id": "78d6733c-487b-5989-8407-8fae4234801c",
+            "revision": 1
+          },
+          {
+            "id": "909e5562-9a55-523a-9041-336d12eb8093",
+            "revision": 1
+          },
+          {
+            "id": "4329b641-e947-5d61-8bc3-d1ec81ba8cc1",
+            "revision": 1
+          },
+          {
+            "id": "5a380280-d9ed-5fb8-a3eb-b823c1437b80",
+            "revision": 1
+          },
+          {
+            "id": "e588b85c-2ff0-5dbd-ad26-77fff67eeec6",
+            "revision": 1
+          },
+          {
+            "id": "cfc83aab-aceb-52c4-a807-ec888d06c9c4",
+            "revision": 1
+          },
+          {
+            "id": "f2aa5246-0b43-516f-8df7-a31ec67ec1c4",
+            "revision": 1
+          },
+          {
+            "id": "445e9aa9-d49d-5a32-bacd-72419b1cc106",
+            "revision": 1
+          },
+          {
+            "id": "e3f40b08-d121-5777-93cb-dc22d9eb34cc",
+            "revision": 1
+          },
+          {
+            "id": "99dbc89c-12eb-5ff0-8207-9821e6a43992",
+            "revision": 1
+          },
+          {
+            "id": "11397287-79e0-5a5a-a8d8-42fd78d6c6c5",
+            "revision": 1
+          },
+          {
+            "id": "c7c3d465-edaf-5d9c-9788-1912edb47fa9",
+            "revision": 1
+          },
+          {
+            "id": "6d3b3687-e06c-5db6-b0ba-0fb8cfea4cee",
+            "revision": 1
+          },
+          {
+            "id": "adf1c570-4864-5713-8265-6fa10b11dbfc",
+            "revision": 1
+          },
+          {
+            "id": "38871281-0469-55ed-befe-80182578c1d0",
+            "revision": 1
+          },
+          {
+            "id": "88f2922f-6963-5fda-9196-b08fe89a211f",
+            "revision": 1
+          },
+          {
+            "id": "e7967e1d-4a0d-53d6-a6aa-9f0bceab3fa4",
+            "revision": 1
+          },
+          {
+            "id": "f188e902-eeb0-5a22-898a-4ac6dc78b507",
+            "revision": 1
+          },
+          {
+            "id": "290d396b-c276-56c2-b444-373c42fe9303",
+            "revision": 1
+          },
+          {
+            "id": "53c4fe9e-9e7d-58af-bfda-8329451e71d8",
+            "revision": 1
+          },
+          {
+            "id": "42bafd47-0231-5c27-b10c-ca26e52d2e5d",
+            "revision": 1
+          },
+          {
+            "id": "cfa04f66-080a-564e-92d9-60b1caf862fb",
+            "revision": 1
+          },
+          {
+            "id": "570a7cad-9809-5215-aa69-81426f53f4d8",
+            "revision": 1
+          }
+        ],
+        "additionalKhatmas": {
+          "status": "awaiting_policy",
+          "policy": {
+            "code": "RULE_NOT_APPROVED",
+            "policy": "repeat_khatma",
+            "question": "How are explicit repeat acts attributed to multiple khatmas?",
+            "ruleVersion": "founder-core-2026-09-28.v1"
+          }
+        },
+        "excludedFreeDayActs": [],
+        "openPolicies": []
+      },
+      {
+        "id": "monthly:2026-10-01",
+        "cadence": "monthly",
+        "start": "2026-10-01",
+        "end": "2026-10-31",
+        "status": "incomplete",
+        "uniqueCoverage": [],
+        "coveredVerses": 0,
+        "totalVerses": 6236,
+        "remainingRanges": [
+          {
+            "start": "1:1",
+            "end": "114:6"
+          }
+        ],
+        "nextUnreadVerse": "1:1",
+        "completedJuz": [],
+        "proofHash": null,
+        "completionDate": null,
+        "ordinal": null,
+        "sourceActRevisions": [],
+        "additionalKhatmas": {
+          "status": "awaiting_policy",
+          "policy": {
+            "code": "RULE_NOT_APPROVED",
+            "policy": "repeat_khatma",
+            "question": "How are explicit repeat acts attributed to multiple khatmas?",
+            "ruleVersion": "founder-core-2026-09-28.v1"
+          }
+        },
+        "excludedFreeDayActs": [],
+        "openPolicies": []
+      }
+    ]
+  }
+}

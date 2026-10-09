@@ -1,0 +1,52 @@
+.profile-avatar {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #edf0e5;
+  color: #536947;
+  font-size: 17px;
+}
+.profile-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.profile-photo-editor {
+  margin: 12px 0 24px;
+}
+.profile-photo-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.profile-photo-actions .profile-avatar {
+  width: 56px;
+  height: 56px;
+}
+.profile-photo-actions button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 1px solid #d9e1ce;
+  border-radius: 20px;
+  color: #395534;
+  background: #f7f8f1;
+  font-size: 12px;
+}
+.profile-photo-actions .profile-photo-remove {
+  border: 0;
+  background: transparent;
+}
+.profile-photo-editor p {
+  font-size: 11px;
+  color: #637257;
+  margin: 9px 0 0;
+}

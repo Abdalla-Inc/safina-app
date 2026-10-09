@@ -1,0 +1,108 @@
+{
+  "schema": "WeeklyFeed",
+  "fixture": {
+    "items": [
+      {
+        "activityDays": 1,
+        "celebrationStartsAt": "2026-10-02T21:00:00+00:00",
+        "days": [
+          "2026-09-30"
+        ],
+        "eligible": true,
+        "endExclusive": "2026-10-03T21:00:00+00:00",
+        "facts": [
+          {
+            "count": 1,
+            "countSemantics": "distinct_completed_days; within-day explicit repeats do not add unapproved completions",
+            "kind": "surah_completion",
+            "proofRefs": [
+              "c9a547b4f531929a50d1436b44d07f2cac5f8b7ad38bf0d14118f50b474afca4"
+            ],
+            "surahId": 1
+          },
+          {
+            "additionalAssignedJuzIds": [],
+            "juzIds": [
+              1
+            ],
+            "kind": "juz_coverage",
+            "overlapsSurahCoverage": true,
+            "proofRefs": [
+              "c9a547b4f531929a50d1436b44d07f2cac5f8b7ad38bf0d14118f50b474afca4"
+            ],
+            "ranges": [
+              {
+                "end": "2:141",
+                "start": "1:1"
+              }
+            ],
+            "referenceVersion": "hafs-tanzil-1.0-20260928"
+          },
+          {
+            "kind": "partial_reading",
+            "proofRefs": [
+              "c9a547b4f531929a50d1436b44d07f2cac5f8b7ad38bf0d14118f50b474afca4"
+            ],
+            "ranges": [
+              {
+                "end": "2:141",
+                "start": "2:1"
+              }
+            ],
+            "uniqueVerseCount": 141
+          }
+        ],
+        "istighfarTotal": 50,
+        "levelSegments": [
+          {
+            "colorToken": "level.B",
+            "effectiveFrom": "2026-09-30T12:00:00+00:00",
+            "effectiveTo": null,
+            "ruleVersion": "founder-community-2026-09-29.v2",
+            "tierId": "B"
+          }
+        ],
+        "meaningfulAt": "2026-09-30T12:00:00+00:00",
+        "quranKhatmas": [],
+        "ranges": [
+          {
+            "end": "2:141",
+            "start": "1:1"
+          }
+        ],
+        "readingDays": 1,
+        "repeatPolicy": "Within-day repeated acts retained privately; additional completion counts await policy.",
+        "startAt": "2026-09-26T21:00:00+00:00",
+        "timeZone": "Asia/Riyadh",
+        "uniqueVerseCount": 148,
+        "weekEnd": "2026-10-03",
+        "weekStart": "2026-09-27",
+        "id": "weekly:bbe88750-4af6-40c2-8ee4-d5702d380d92:2026-09-27",
+        "member": {
+          "id": "bbe88750-4af6-40c2-8ee4-d5702d380d92",
+          "displayName": "عضو اختبار باسم طويل بلا صورة شخصية",
+          "avatarUrl": null,
+          "avatarVersion": 0,
+          "countryCode": "AU"
+        },
+        "revision": 2,
+        "projectionState": "ready",
+        "sourceSequence": 3,
+        "status": "in_progress",
+        "reactions": [],
+        "heartCount": 0,
+        "viewerReaction": null,
+        "viewerReacted": false,
+        "reactionRevision": 0,
+        "visibility": "visible"
+      }
+    ],
+    "nextCursor": null,
+    "projectionRevision": 4,
+    "participantCount": 1,
+    "completeWirdMemberCount": null,
+    "period": "2026-09-27",
+    "timeZone": "Asia/Riyadh",
+    "status": "in_progress"
+  }
+}

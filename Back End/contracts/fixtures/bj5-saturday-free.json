@@ -1,0 +1,185 @@
+{
+  "schema": "Today",
+  "contractVersion": "0.3.0",
+  "fixture": {
+    "assignment": {
+      "memberId": "BJ5",
+      "date": "2026-09-12",
+      "tier": "BJ5",
+      "tierLabel": "BJ5",
+      "colorToken": "level.BJ5",
+      "patternToken": "level-pattern.BJ5",
+      "cadence": "weekly",
+      "cycle": {
+        "id": "weekly:2026-09-06",
+        "cadence": "weekly",
+        "start": "2026-09-06",
+        "end": "2026-09-12"
+      },
+      "timezone": "Australia/Brisbane",
+      "commitmentId": "7fee9004-5e1b-52a7-8886-913cc1b813c0",
+      "ruleVersion": "founder-core-2026-09-28.v1",
+      "referenceVersion": "hafs-tanzil-1.0-20260928",
+      "scheduleVersion": "founder-core-2026-09-28.v1:confirmed-templates",
+      "status": "free_day",
+      "freeDay": true,
+      "components": [],
+      "ranges": [],
+      "openPolicies": [],
+      "id": "as_eeddb60d326318eb4f8eb424a6396c70"
+    },
+    "segments": [
+      {
+        "memberId": "BJ5",
+        "date": "2026-09-12",
+        "tier": "BJ5",
+        "tierLabel": "BJ5",
+        "colorToken": "level.BJ5",
+        "patternToken": "level-pattern.BJ5",
+        "cadence": "weekly",
+        "cycle": {
+          "id": "weekly:2026-09-06",
+          "cadence": "weekly",
+          "start": "2026-09-06",
+          "end": "2026-09-12"
+        },
+        "timezone": "Australia/Brisbane",
+        "commitmentId": "7fee9004-5e1b-52a7-8886-913cc1b813c0",
+        "ruleVersion": "founder-core-2026-09-28.v1",
+        "referenceVersion": "hafs-tanzil-1.0-20260928",
+        "scheduleVersion": "founder-core-2026-09-28.v1:confirmed-templates",
+        "status": "free_day",
+        "freeDay": true,
+        "components": [],
+        "ranges": [],
+        "openPolicies": [],
+        "id": "as_eeddb60d326318eb4f8eb424a6396c70"
+      }
+    ],
+    "evaluation": {
+      "date": "2026-09-12",
+      "status": "free_day",
+      "actualReadingStatus": "member_confirmed",
+      "uniqueCoverage": [
+        {
+          "start": "2:1",
+          "end": "2:286"
+        }
+      ],
+      "uniqueVerseCount": 286,
+      "repeatedActs": [],
+      "assignedFulfilment": {
+        "ranges": [],
+        "matchedVerses": 0,
+        "targetVerses": 0,
+        "complete": null
+      },
+      "supplementalReading": [
+        {
+          "start": "2:1",
+          "end": "2:286"
+        }
+      ],
+      "dayCredit": 0,
+      "creditState": "resolved",
+      "openPolicies": [],
+      "assignmentIds": [
+        "as_eeddb60d326318eb4f8eb424a6396c70"
+      ],
+      "historicalLevels": [
+        {
+          "tier": "BJ5",
+          "label": "BJ5",
+          "colorToken": "level.BJ5",
+          "patternToken": "level-pattern.BJ5"
+        }
+      ],
+      "sourceActs": [
+        {
+          "id": "ca5eab3c-7eb8-5cae-a266-6430d51e1d88",
+          "revision": 1
+        }
+      ],
+      "elapsedTime": null,
+      "inputHash": "c93005789a400d2c17ed60b18a0686b3a2b07e116a228650635369b70f9d2d30",
+      "corrected": false,
+      "readerObservedTrace": []
+    },
+    "khatmaCoverage": {
+      "id": "weekly:2026-09-06",
+      "cadence": "weekly",
+      "start": "2026-09-06",
+      "end": "2026-09-12",
+      "status": "incomplete",
+      "uniqueCoverage": [
+        {
+          "start": "2:1",
+          "end": "2:286"
+        }
+      ],
+      "coveredVerses": 286,
+      "totalVerses": 6236,
+      "remainingRanges": [
+        {
+          "start": "1:1",
+          "end": "1:7"
+        },
+        {
+          "start": "3:1",
+          "end": "114:6"
+        }
+      ],
+      "nextUnreadVerse": "1:1",
+      "completedJuz": [
+        2
+      ],
+      "proofHash": null,
+      "completionDate": null,
+      "ordinal": null,
+      "sourceActRevisions": [
+        {
+          "id": "ca5eab3c-7eb8-5cae-a266-6430d51e1d88",
+          "revision": 1
+        }
+      ],
+      "additionalKhatmas": {
+        "status": "awaiting_policy",
+        "policy": {
+          "code": "RULE_NOT_APPROVED",
+          "policy": "repeat_khatma",
+          "question": "How are explicit repeat acts attributed to multiple khatmas?",
+          "ruleVersion": "founder-core-2026-09-28.v1"
+        }
+      },
+      "excludedFreeDayActs": [],
+      "openPolicies": []
+    },
+    "nextUnreadVerse": "1:1",
+    "dataProvenance": {
+      "primary": "https://tanzil.net/res/text/metadata/quran-data.xml",
+      "primaryVersion": "1.0",
+      "primaryLicenseDeclared": "cc-by",
+      "primaryCopyright": "(C) 2008-2009 Tanzil.info",
+      "primarySha256": "8867c1d88191472adec9db694b3cd9f135b1a2ef580574d32cf888dcb22c5c7a",
+      "crossCheck": "https://api.alquran.cloud/v1/meta",
+      "crossCheckSha256": "9444749ea0b261054d4f744d4aec38286e666b25f1cf8aa78ce0a24f789caa5c",
+      "checkedAt": "2026-09-28",
+      "matchingSurahs": 114,
+      "matchingJuz": 30,
+      "matchingPages": 604,
+      "independenceLimit": "Separate published providers; underlying metadata may share Tanzil ancestry.",
+      "textAvailable": false,
+      "wordMapAvailable": false
+    },
+    "queuedChanges": [],
+    "readerText": {
+      "status": "unavailable",
+      "openPolicy": {
+        "code": "RULE_NOT_APPROVED",
+        "policy": "quran_assets",
+        "question": "Which text, word map, fonts and audio editions and rights are approved?",
+        "ruleVersion": "founder-core-2026-09-28.v1"
+      }
+    }
+  }
+}

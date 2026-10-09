@@ -1,0 +1,65 @@
+{
+  "administrativeInput": true,
+  "fixture": {
+    "id": "sandbox-workflow",
+    "version": 1,
+    "title": "SANDBOX ONLY: workflow test, not teaching content",
+    "format": "weekly",
+    "thumbnail": null,
+    "free": true,
+    "sandbox": true,
+    "published": true,
+    "rightsReviewed": true,
+    "editorialReviewed": true,
+    "modules": [
+      {
+        "id": "week-1",
+        "title": "Test week 1",
+        "lessons": [
+          {
+            "id": "lesson-1",
+            "title": "Test interaction only",
+            "required": true,
+            "thumbnail": null,
+            "durationSeconds": 0,
+            "video": null,
+            "resources": [],
+            "completionPolicy": "member_confirmation",
+            "completionPolicyApproved": true
+          }
+        ],
+        "questions": [
+          {
+            "id": "test-question",
+            "prompt": "Test answer persistence only",
+            "required": true
+          }
+        ]
+      },
+      {
+        "id": "week-2",
+        "title": "Test week 2",
+        "lessons": [
+          {
+            "id": "lesson-2",
+            "title": "Test interaction only",
+            "required": true,
+            "thumbnail": null,
+            "durationSeconds": 0,
+            "video": null,
+            "resources": [],
+            "completionPolicy": "member_confirmation",
+            "completionPolicyApproved": true
+          }
+        ],
+        "questions": [
+          {
+            "id": "test-question",
+            "prompt": "Test answer persistence only",
+            "required": true
+          }
+        ]
+      }
+    ]
+  }
+}

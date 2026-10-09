@@ -1,0 +1,16 @@
+{
+  "schema": "CustomPost",
+  "fixture": {
+    "mutationId": "cfb4ed00-08f2-4ab4-b8d7-a6f4c8f70ecb",
+    "referenceVersion": "hafs-tanzil-1.0-20260928",
+    "selection": {
+      "kind": "juz",
+      "from": 1,
+      "to": 1
+    },
+    "occurredAt": "2026-09-30T12:00:00+00:00",
+    "occurrenceDate": "2026-09-30",
+    "timezone": "UTC",
+    "utcOffsetMinutes": 0
+  }
+}

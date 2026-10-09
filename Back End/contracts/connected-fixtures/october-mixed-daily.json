@@ -1,0 +1,112 @@
+{
+  "schema": "DailyFeed",
+  "fixture": {
+    "items": [
+      {
+        "assignedWirdComplete": false,
+        "assignmentDay": "2026-09-30",
+        "completeWird": false,
+        "completedComponents": [],
+        "completionState": "partial",
+        "corrected": false,
+        "day": "2026-09-30",
+        "eligible": true,
+        "facts": [
+          {
+            "actId": "73480c6b-c32e-56b0-8672-c55f67928eed",
+            "corrected": false,
+            "day": "2026-09-30",
+            "groupId": "73480c6b-c32e-56b0-8672-c55f67928eed",
+            "kind": "custom_reading",
+            "ranges": [
+              {
+                "end": "1:7",
+                "start": "1:1"
+              },
+              {
+                "end": "2:141",
+                "start": "2:1"
+              }
+            ],
+            "referenceVersion": "hafs-tanzil-1.0-20260928",
+            "retracted": false,
+            "revision": 1,
+            "selection": {
+              "from": 1,
+              "kind": "juz",
+              "to": 1
+            },
+            "selectionIntact": true
+          },
+          {
+            "complete": false,
+            "count": 50,
+            "kind": "istighfar_count",
+            "target": 100
+          }
+        ],
+        "istighfar": {
+          "complete": false,
+          "count": 50,
+          "day": "2026-09-30",
+          "occurredAt": "2026-09-30T12:00:00+00:00",
+          "revision": 1,
+          "target": 100,
+          "targetPinned": true,
+          "updatedAt": "2026-09-30T12:00:00+00:00"
+        },
+        "istighfarComplete": false,
+        "levelSegments": [
+          {
+            "colorToken": "level.B",
+            "effectiveFrom": "2026-09-30T12:00:00+00:00",
+            "label": "B",
+            "patternToken": "level-pattern.B",
+            "tier": "B"
+          }
+        ],
+        "meaningfulAt": "2026-09-30T12:00:00+00:00",
+        "proofRefs": [
+          {
+            "actId": "73480c6b-c32e-56b0-8672-c55f67928eed",
+            "assignmentId": "as_0bd7f9c4847ad2fcf87ab83e39cd9324",
+            "revision": 1
+          }
+        ],
+        "ranges": [
+          {
+            "end": "2:141",
+            "start": "1:1"
+          }
+        ],
+        "sourceProofHash": "c9a547b4f531929a50d1436b44d07f2cac5f8b7ad38bf0d14118f50b474afca4",
+        "timeZone": "Asia/Riyadh",
+        "uniqueVerseCount": 148,
+        "id": "daily:bbe88750-4af6-40c2-8ee4-d5702d380d92:2026-09-30",
+        "member": {
+          "id": "bbe88750-4af6-40c2-8ee4-d5702d380d92",
+          "displayName": "عضو اختبار باسم طويل بلا صورة شخصية",
+          "avatarUrl": null,
+          "avatarVersion": 0,
+          "countryCode": "AU"
+        },
+        "revision": 2,
+        "projectionState": "ready",
+        "sourceSequence": 3,
+        "reactions": [],
+        "heartCount": 0,
+        "viewerReaction": null,
+        "viewerReacted": false,
+        "reactionRevision": 0,
+        "visibility": "visible"
+      }
+    ],
+    "nextCursor": null,
+    "projectionRevision": 4,
+    "participantCount": null,
+    "completeWirdMemberCount": 0,
+    "period": "2026-09-30",
+    "timeZone": "Asia/Riyadh",
+    "status": "daily"
+  }
+}

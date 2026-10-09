@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "1.0.0-proposed",
+  "assetVersion": "0.5.0",
+  "lifecyclePolicyId": "founder-ship-lifecycle-2026-10-01.v1",
+  "vesselId": "synthetic-vessel-001",
+  "revision": 1,
+  "generatedAt": "2026-10-01T00:00:00Z",
+  "status": "ready",
+  "blockedReasons": [],
+  "state": {
+    "phase": "maintenance",
+    "buildStep": 30,
+    "health": 15,
+    "maintenanceTimezone": "Australia/Brisbane",
+    "lastSettledMaintenanceDate": "2026-09-30",
+    "nextSettlementAt": "2026-10-01T14:00:00Z"
+  }
+}

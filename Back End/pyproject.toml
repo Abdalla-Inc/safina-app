@@ -1,0 +1,9 @@
+[project]
+name = "safinat-al-nur-backend"
+version = "0.3.0"
+description = "Local, event-backed reading and commitment service"
+requires-python = ">=3.9"
+dependencies = []
+
+[tool.safina]
+contract-version = "0.3.0"

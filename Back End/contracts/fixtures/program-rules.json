@@ -1,0 +1,255 @@
+{
+  "schema": "RuleRegistry",
+  "contractVersion": "0.3.0",
+  "fixture": {
+    "version": "founder-core-2026-09-28.v1",
+    "authority": "founder",
+    "evidence": "supplied master request; no fabricated approval timestamp",
+    "rules": [
+      {
+        "id": "overlap",
+        "status": "confirmed",
+        "text": "Actual coverage is a union; labels never create another recitation.",
+        "source": "docs/BACKEND_REQUEST_2026-09-28.md",
+        "sourceVersion": "2026-09-28"
+      },
+      {
+        "id": "daily",
+        "status": "confirmed",
+        "text": "B and BI have exact daily surah assignments.",
+        "source": "docs/BACKEND_REQUEST_2026-09-28.md",
+        "sourceVersion": "2026-09-28"
+      },
+      {
+        "id": "bj1",
+        "status": "confirmed",
+        "text": "BJ1 is synchronized by calendar day in approved non-February months.",
+        "source": "docs/BACKEND_REQUEST_2026-09-28.md",
+        "sourceVersion": "2026-09-28"
+      },
+      {
+        "id": "bj2_day_one",
+        "status": "confirmed",
+        "text": "BJ2 day one is fulfilled by B alone.",
+        "source": "docs/BACKEND_REQUEST_2026-09-28.md",
+        "sourceVersion": "2026-09-28"
+      },
+      {
+        "id": "monthly_free",
+        "status": "confirmed",
+        "text": "Monthly group day 31 is free; day 1 starts a new cycle.",
+        "source": "docs/BACKEND_REQUEST_2026-09-28.md",
+        "sourceVersion": "2026-09-28"
+      },
+      {
+        "id": "weekly_reset",
+        "status": "confirmed",
+        "text": "Sunday starts a new cycle, retaining incomplete prior coverage.",
+        "source": "docs/BACKEND_REQUEST_2026-09-28.md",
+        "sourceVersion": "2026-09-28"
+      },
+      {
+        "id": "weekly_pace",
+        "status": "confirmed",
+        "text": "BJ5 can cover 30 juz in six days; BJ4 needs two extra beyond 4×7.",
+        "source": "docs/BACKEND_REQUEST_2026-09-28.md",
+        "sourceVersion": "2026-09-28"
+      },
+      {
+        "id": "changes",
+        "status": "confirmed",
+        "text": "Monthly changes same day; weekly changes next Sunday.",
+        "source": "docs/BACKEND_REQUEST_2026-09-28.md",
+        "sourceVersion": "2026-09-28"
+      },
+      {
+        "id": "full_credit",
+        "status": "confirmed",
+        "text": "An approved complete personal day earns one credit, capped at one.",
+        "source": "docs/BACKEND_REQUEST_2026-09-28.md",
+        "sourceVersion": "2026-09-28"
+      },
+      {
+        "id": "ship_threshold",
+        "status": "confirmed",
+        "text": "Thirty approved credits complete one ship; carry/presentation remains open.",
+        "source": "docs/BACKEND_REQUEST_2026-09-28.md",
+        "sourceVersion": "2026-09-28"
+      },
+      {
+        "id": "khatma",
+        "status": "confirmed",
+        "text": "A khatma needs complete actual canonical coverage within a cycle.",
+        "source": "docs/BACKEND_REQUEST_2026-09-28.md",
+        "sourceVersion": "2026-09-28"
+      },
+      {
+        "id": "privacy",
+        "status": "confirmed",
+        "text": "Reading and calendar are private; publication requires separate consent.",
+        "source": "docs/BACKEND_REQUEST_2026-09-28.md",
+        "sourceVersion": "2026-09-28"
+      },
+      {
+        "id": "reader",
+        "status": "confirmed",
+        "text": "Observed reader traces and listening never prove actual reading.",
+        "source": "docs/BACKEND_REQUEST_2026-09-28.md",
+        "sourceVersion": "2026-09-28"
+      },
+      {
+        "id": "dhikr",
+        "status": "confirmed",
+        "text": "Dhikr goals and actual counts never confer reading credit.",
+        "source": "docs/BACKEND_REQUEST_2026-09-28.md",
+        "sourceVersion": "2026-09-28"
+      },
+      {
+        "id": "february_grid",
+        "status": "open",
+        "question": "Which February dates carry the remaining portions?",
+        "source": "docs/BACKEND_REQUEST_2026-09-28.md",
+        "sourceVersion": "2026-09-28"
+      },
+      {
+        "id": "monthly_continuation",
+        "status": "open",
+        "question": "Which exact verse ranges follow the BJ2 day-one B fixture and define BJ3?",
+        "source": "docs/BACKEND_REQUEST_2026-09-28.md",
+        "sourceVersion": "2026-09-28"
+      },
+      {
+        "id": "weekly_day_credit",
+        "status": "open",
+        "question": "What approved personal daily target earns a full credit for flexible weekly reading?",
+        "source": "docs/BACKEND_REQUEST_2026-09-28.md",
+        "sourceVersion": "2026-09-28"
+      },
+      {
+        "id": "same_day_credit",
+        "status": "open",
+        "question": "How should old and new monthly assignment segments combine for one day credit?",
+        "source": "docs/BACKEND_REQUEST_2026-09-28.md",
+        "sourceVersion": "2026-09-28"
+      },
+      {
+        "id": "cross_cadence",
+        "status": "open",
+        "question": "When does a monthly/daily to weekly or weekly to monthly/daily change take effect?",
+        "source": "docs/BACKEND_REQUEST_2026-09-28.md",
+        "sourceVersion": "2026-09-28"
+      },
+      {
+        "id": "partial_credit",
+        "status": "proposed",
+        "question": "Should partial reading earn fractional credit, and with which pinned word denominator?",
+        "source": "docs/BACKEND_REQUEST_2026-09-28.md",
+        "sourceVersion": "2026-09-28"
+      },
+      {
+        "id": "ship_carry",
+        "status": "proposed",
+        "question": "Does unfinished construction continue across periods or remain a dated unfinished ship?",
+        "source": "docs/BACKEND_REQUEST_2026-09-28.md",
+        "sourceVersion": "2026-09-28"
+      },
+      {
+        "id": "pause_travel",
+        "status": "open",
+        "question": "What are the pause and travel/timezone cutoffs?",
+        "source": "docs/BACKEND_REQUEST_2026-09-28.md",
+        "sourceVersion": "2026-09-28"
+      },
+      {
+        "id": "repeat_khatma",
+        "status": "open",
+        "question": "How are explicit repeat acts attributed to multiple khatmas?",
+        "source": "docs/BACKEND_REQUEST_2026-09-28.md",
+        "sourceVersion": "2026-09-28"
+      },
+      {
+        "id": "free_day_khatma",
+        "status": "open",
+        "question": "May monthly day-31 catch-up establish a khatma in the ending cycle?",
+        "source": "docs/BACKEND_REQUEST_2026-09-28.md",
+        "sourceVersion": "2026-09-28"
+      },
+      {
+        "id": "group_policy",
+        "status": "open",
+        "question": "What sharing, moderation, correction/retraction and retention rules are approved?",
+        "source": "docs/BACKEND_REQUEST_2026-09-28.md",
+        "sourceVersion": "2026-09-28"
+      },
+      {
+        "id": "quran_assets",
+        "status": "open",
+        "question": "Which text, word map, fonts and audio editions and rights are approved?",
+        "source": "docs/BACKEND_REQUEST_2026-09-28.md",
+        "sourceVersion": "2026-09-28"
+      },
+      {
+        "id": "classroom_policy",
+        "status": "open",
+        "question": "Which curriculum, grading and entitlement rules are approved?",
+        "source": "docs/BACKEND_REQUEST_2026-09-28.md",
+        "sourceVersion": "2026-09-28"
+      },
+      {
+        "id": "library_rights",
+        "status": "open",
+        "question": "Which source rights and reviewed transcripts may be published and searched?",
+        "source": "docs/BACKEND_REQUEST_2026-09-28.md",
+        "sourceVersion": "2026-09-28"
+      },
+      {
+        "id": "additive_B",
+        "status": "superseded",
+        "text": "Mandatory second B for overlapping juz",
+        "source": "HABIT_ENGINE_SPEC.md / ENGINE_TEST_MATRIX.md",
+        "sourceVersion": "v0.1/v0.2",
+        "supersededBy": "2026-09-28 backend request"
+      },
+      {
+        "id": "ship_25",
+        "status": "superseded",
+        "text": "25-credit ship",
+        "source": "HABIT_ENGINE_SPEC.md / ENGINE_TEST_MATRIX.md",
+        "sourceVersion": "v0.1/v0.2",
+        "supersededBy": "2026-09-28 backend request"
+      },
+      {
+        "id": "all_monthly",
+        "status": "superseded",
+        "text": "Monthly cycles at every tier",
+        "source": "HABIT_ENGINE_SPEC.md / ENGINE_TEST_MATRIX.md",
+        "sourceVersion": "v0.1/v0.2",
+        "supersededBy": "2026-09-28 backend request"
+      },
+      {
+        "id": "next_day",
+        "status": "superseded",
+        "text": "Next-day-only monthly level changes",
+        "source": "HABIT_ENGINE_SPEC.md / ENGINE_TEST_MATRIX.md",
+        "sourceVersion": "v0.1/v0.2",
+        "supersededBy": "2026-09-28 backend request"
+      },
+      {
+        "id": "blocking_build",
+        "status": "superseded",
+        "text": "Wait for all open rules before implementing independent core",
+        "source": "HABIT_ENGINE_SPEC.md / ENGINE_TEST_MATRIX.md",
+        "sourceVersion": "v0.1/v0.2",
+        "supersededBy": "2026-09-28 backend request"
+      },
+      {
+        "id": "proposed_fraction_in_code",
+        "status": "superseded",
+        "text": "Spec pseudocode credit=r is a proposal, not an approved reward",
+        "source": "HABIT_ENGINE_SPEC.md / ENGINE_TEST_MATRIX.md",
+        "sourceVersion": "v0.1/v0.2",
+        "supersededBy": "2026-09-28 backend request"
+      }
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+.DS_Store
+**/node_modules/
+**/dist/
+**/.venv/
+**/__pycache__/
+*.pyc
+**/local/
+*.sqlite3*
+*.sqlite*
+*.db
+*.db-*
+.env
+.env.*
+!.env.example
+!**/.env.example
+*.key
+*.pem
+*.log
+**/test-results/
+**/playwright-report/
+/Safina Animation/
+/Safina Ship Handoff*/
+/Safina Ship Handoff*.zip
+
+**/.codex/
+**/.agents/

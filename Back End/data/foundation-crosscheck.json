@@ -1,0 +1,16 @@
+{
+  "checkedAt": "2026-09-28",
+  "provider": "Quran Foundation",
+  "chapterUrl": "https://api.quran.com/api/v4/chapters?language=en",
+  "juzUrl": "https://api.quran.com/api/v4/juzs",
+  "matchingChapterCounts": 114,
+  "matchingJuzRanges": 30,
+  "responseJuzRows": 60,
+  "duplicateRows": "Duplicate juz-number rows were each validated; never counted as additional juz.",
+  "responseHashes": {
+    "chapters": "ff6ef5aadcc7710271179c0f9c1519c89ae613b11c8ba3265873c6c4fc6aed0b",
+    "juzs": "756f55e24c8c6efb1f0cb05245848b58a7b79540026e34bb84ffa5949380ef49"
+  },
+  "rights": "Read-only factual boundary cross-check; API content/text/audio is not bundled.",
+  "independenceLimit": "Separate provider check, not a claim of independently derived religious source data."
+}

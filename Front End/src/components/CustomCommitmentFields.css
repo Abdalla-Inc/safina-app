@@ -1,0 +1,152 @@
+.custom-plan-fields {
+  border: 1px solid #dce4d7;
+  border-radius: 20px;
+  padding: 18px;
+  display: grid;
+  gap: 14px;
+  min-width: 0;
+}
+.custom-plan-fields legend {
+  padding-inline: 8px;
+  font-weight: 600;
+  font-size: 15px;
+}
+.custom-plan-period {
+  display: flex;
+  gap: 5px;
+  background: #edf1e7;
+  border-radius: 24px;
+  padding: 4px;
+}
+.custom-plan-period button {
+  flex: 1;
+  min-height: 44px;
+  border: 0;
+  border-radius: 20px;
+  background: transparent;
+  color: #455e4b;
+}
+.custom-plan-period button[aria-pressed="true"] {
+  background: #fff;
+  box-shadow: 0 2px 8px #234d3010;
+}
+.custom-plan-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  max-height: 260px;
+  overflow-y: auto;
+  gap: 7px;
+  padding: 3px;
+}
+.custom-plan-grid button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 46px;
+  border: 1px solid #e0e5da;
+  border-radius: 12px;
+  background: #fff;
+  color: #405740;
+  padding: 6px;
+  font-size: 12px;
+}
+.custom-plan-grid button small {
+  font-size: 10px;
+  opacity: 0.75;
+}
+.custom-plan-grid button[aria-pressed="true"] {
+  background: #245a4c;
+  border-color: #245a4c;
+  color: white;
+}
+.custom-plan-range {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+}
+.custom-plan-range input {
+  width: 100%;
+  min-width: 0;
+}
+.custom-plan-range label {
+  font-size: 12px;
+}
+.custom-plan-ranges summary {
+  cursor: pointer;
+  min-height: 44px;
+  padding-top: 10px;
+  font-size: 13px;
+}
+.custom-plan-fields .quiet-note {
+  margin: 0;
+  font-size: 12px;
+}
+.custom-plan-fields .field small {
+  font-weight: normal;
+  color: #647264;
+}
+.admin-preview-panel {
+  border: 1px solid #dddccb;
+  padding: 16px;
+  border-radius: 20px;
+  margin-bottom: 18px;
+  background: #f4f4eb;
+}
+.admin-preview-panel summary {
+  cursor: pointer;
+  font-size: 14px;
+  min-height: 32px;
+}
+.admin-preview-controls {
+  display: grid;
+  gap: 16px;
+  margin-top: 14px;
+}
+.admin-preview-controls label {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.admin-preview-controls label:has(input[type="range"]) {
+  display: grid;
+  grid-template-columns: 1fr auto;
+}
+.admin-preview-controls input[type="range"] {
+  grid-column: 1 / -1;
+  width: 100%;
+  min-height: 32px;
+  direction: ltr;
+  accent-color: #255c4d;
+}
+.admin-preview-controls .btn {
+  min-height: 44px;
+}
+.custom-plan-progress {
+  margin-block: 14px;
+  border: 1px solid #dae5d5;
+  border-radius: 22px;
+  padding: 20px;
+  background: #f3f6ee;
+}
+.custom-plan-progress header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.custom-plan-progress h2 {
+  font-size: 16px;
+  margin: 0;
+}
+.custom-plan-progress progress {
+  width: 100%;
+  height: 8px;
+  accent-color: #28614e;
+}
+.custom-plan-progress p {
+  font-size: 13px;
+  color: #657164;
+}

@@ -1,0 +1,1433 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Safinat Al-Nur local backend",
+    "version": "0.3.0",
+    "description": "Confirmed core and explicit unresolved states. Local integration only."
+  },
+  "servers": [
+    {
+      "url": "http://127.0.0.1:8765"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "memberBearer": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "paths": {
+    "/program-rules": {
+      "get": {
+        "operationId": "get_program_rules",
+        "summary": "/program-rules",
+        "security": [
+          {
+            "memberBearer": []
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Member-scoped response. Null credit is unresolved, never zero.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema.json#/$defs/RuleRegistry"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Structured error: auth, validation, conflict, policy gate or unavailable service.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "x-permissions": "Authenticated member owns every returned or mutated private record.",
+        "x-offline": "Cache immutable snapshots privately; provisional entries sync to server. No client-awarded credit.",
+        "x-idempotency": "Read-only; response reflects current server ledger."
+      }
+    },
+    "/today": {
+      "get": {
+        "operationId": "get_today",
+        "summary": "/today",
+        "security": [
+          {
+            "memberBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "date",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Member-scoped response. Null credit is unresolved, never zero.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema.json#/$defs/Today"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Structured error: auth, validation, conflict, policy gate or unavailable service.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "x-permissions": "Authenticated member owns every returned or mutated private record.",
+        "x-offline": "Cache immutable snapshots privately; provisional entries sync to server. No client-awarded credit.",
+        "x-idempotency": "Read-only; response reflects current server ledger."
+      }
+    },
+    "/calendar": {
+      "get": {
+        "operationId": "get_calendar",
+        "summary": "/calendar",
+        "security": [
+          {
+            "memberBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "start",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Member-scoped response. Null credit is unresolved, never zero.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema.json#/$defs/Calendar"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Structured error: auth, validation, conflict, policy gate or unavailable service.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "x-permissions": "Authenticated member owns every returned or mutated private record.",
+        "x-offline": "Cache immutable snapshots privately; provisional entries sync to server. No client-awarded credit.",
+        "x-idempotency": "Read-only; response reflects current server ledger."
+      }
+    },
+    "/day-evaluation": {
+      "get": {
+        "operationId": "get_day_evaluation",
+        "summary": "/day-evaluation",
+        "security": [
+          {
+            "memberBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "date",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Member-scoped response. Null credit is unresolved, never zero.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema.json#/$defs/DayEvaluation"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Structured error: auth, validation, conflict, policy gate or unavailable service.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "x-permissions": "Authenticated member owns every returned or mutated private record.",
+        "x-offline": "Cache immutable snapshots privately; provisional entries sync to server. No client-awarded credit.",
+        "x-idempotency": "Read-only; response reflects current server ledger."
+      }
+    },
+    "/ship-progress": {
+      "get": {
+        "operationId": "get_ship_progress",
+        "summary": "/ship-progress",
+        "security": [
+          {
+            "memberBearer": []
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Member-scoped response. Null credit is unresolved, never zero.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema.json#/$defs/ShipProgress"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Structured error: auth, validation, conflict, policy gate or unavailable service.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "x-permissions": "Authenticated member owns every returned or mutated private record.",
+        "x-offline": "Cache immutable snapshots privately; provisional entries sync to server. No client-awarded credit.",
+        "x-idempotency": "Read-only; response reflects current server ledger."
+      }
+    },
+    "/khatmas": {
+      "get": {
+        "operationId": "get_khatmas",
+        "summary": "/khatmas",
+        "security": [
+          {
+            "memberBearer": []
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Member-scoped response. Null credit is unresolved, never zero.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema.json#/$defs/Khatmas"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Structured error: auth, validation, conflict, policy gate or unavailable service.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "x-permissions": "Authenticated member owns every returned or mutated private record.",
+        "x-offline": "Cache immutable snapshots privately; provisional entries sync to server. No client-awarded credit.",
+        "x-idempotency": "Read-only; response reflects current server ledger."
+      }
+    },
+    "/reading-acts": {
+      "post": {
+        "operationId": "post_reading_acts",
+        "summary": "/reading-acts",
+        "security": [
+          {
+            "memberBearer": []
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Member-scoped response. Null credit is unresolved, never zero.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema.json#/$defs/ReadingMutationResult"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Structured error: auth, validation, conflict, policy gate or unavailable service.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "x-permissions": "Authenticated member owns every returned or mutated private record.",
+        "x-offline": "Cache immutable snapshots privately; provisional entries sync to server. No client-awarded credit.",
+        "x-idempotency": "Mutation UUID returns original receipt; reused UUID/different body conflicts.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "./schema.json#/$defs/ReadingCreate"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reading-acts/{id}": {
+      "get": {
+        "operationId": "get_reading_acts_id",
+        "summary": "/reading-acts/{id}",
+        "security": [
+          {
+            "memberBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Member-scoped response. Null credit is unresolved, never zero.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema.json#/$defs/ActHistory"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Structured error: auth, validation, conflict, policy gate or unavailable service.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "x-permissions": "Authenticated member owns every returned or mutated private record.",
+        "x-offline": "Cache immutable snapshots privately; provisional entries sync to server. No client-awarded credit.",
+        "x-idempotency": "Read-only; response reflects current server ledger."
+      },
+      "patch": {
+        "operationId": "patch_reading_acts_id",
+        "summary": "/reading-acts/{id}",
+        "security": [
+          {
+            "memberBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Member-scoped response. Null credit is unresolved, never zero.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema.json#/$defs/ReadingMutationResult"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Structured error: auth, validation, conflict, policy gate or unavailable service.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "x-permissions": "Authenticated member owns every returned or mutated private record.",
+        "x-offline": "Cache immutable snapshots privately; provisional entries sync to server. No client-awarded credit.",
+        "x-idempotency": "Mutation UUID returns original receipt; reused UUID/different body conflicts.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "./schema.json#/$defs/ReadingPatch"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reading-acts/{id}/retract": {
+      "post": {
+        "operationId": "post_reading_acts_id_retract",
+        "summary": "/reading-acts/{id}/retract",
+        "security": [
+          {
+            "memberBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Member-scoped response. Null credit is unresolved, never zero.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema.json#/$defs/ReadingMutationResult"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Structured error: auth, validation, conflict, policy gate or unavailable service.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "x-permissions": "Authenticated member owns every returned or mutated private record.",
+        "x-offline": "Cache immutable snapshots privately; provisional entries sync to server. No client-awarded credit.",
+        "x-idempotency": "Mutation UUID returns original receipt; reused UUID/different body conflicts.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "./schema.json#/$defs/Retract"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/commitment-changes": {
+      "post": {
+        "operationId": "post_commitment_changes",
+        "summary": "/commitment-changes",
+        "security": [
+          {
+            "memberBearer": []
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Member-scoped response. Null credit is unresolved, never zero.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema.json#/$defs/CommitmentChange"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Structured error: auth, validation, conflict, policy gate or unavailable service.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "x-permissions": "Authenticated member owns every returned or mutated private record.",
+        "x-offline": "Cache immutable snapshots privately; provisional entries sync to server. No client-awarded credit.",
+        "x-idempotency": "Mutation UUID returns original receipt; reused UUID/different body conflicts.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "./schema.json#/$defs/CommitmentChangeRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reading-sessions/{id}/trace": {
+      "get": {
+        "operationId": "get_reading_sessions_id_trace",
+        "summary": "/reading-sessions/{id}/trace",
+        "security": [
+          {
+            "memberBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Member-scoped response. Null credit is unresolved, never zero.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema.json#/$defs/TraceResult"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Structured error: auth, validation, conflict, policy gate or unavailable service.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "x-permissions": "Authenticated member owns every returned or mutated private record.",
+        "x-offline": "Cache immutable snapshots privately; provisional entries sync to server. No client-awarded credit.",
+        "x-idempotency": "Read-only; response reflects current server ledger."
+      },
+      "put": {
+        "operationId": "put_reading_sessions_id_trace",
+        "summary": "/reading-sessions/{id}/trace",
+        "security": [
+          {
+            "memberBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Member-scoped response. Null credit is unresolved, never zero.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema.json#/$defs/TraceResult"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Structured error: auth, validation, conflict, policy gate or unavailable service.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "x-permissions": "Authenticated member owns every returned or mutated private record.",
+        "x-offline": "Cache immutable snapshots privately; provisional entries sync to server. No client-awarded credit.",
+        "x-idempotency": "Mutation UUID returns original receipt; reused UUID/different body conflicts.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "./schema.json#/$defs/TracePut"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reading-sessions/{id}/discard": {
+      "post": {
+        "operationId": "post_reading_sessions_id_discard",
+        "summary": "/reading-sessions/{id}/discard",
+        "security": [
+          {
+            "memberBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Member-scoped response. Null credit is unresolved, never zero.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema.json#/$defs/TraceResult"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Structured error: auth, validation, conflict, policy gate or unavailable service.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "x-permissions": "Authenticated member owns every returned or mutated private record.",
+        "x-offline": "Cache immutable snapshots privately; provisional entries sync to server. No client-awarded credit.",
+        "x-idempotency": "Mutation UUID returns original receipt; reused UUID/different body conflicts.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "./schema.json#/$defs/TraceDiscard"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/offline-snapshot": {
+      "get": {
+        "operationId": "get_offline_snapshot",
+        "summary": "/offline-snapshot",
+        "security": [
+          {
+            "memberBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "date",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Member-scoped response. Null credit is unresolved, never zero.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema.json#/$defs/OfflineSnapshot"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Structured error: auth, validation, conflict, policy gate or unavailable service.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "x-permissions": "Authenticated member owns every returned or mutated private record.",
+        "x-offline": "Cache immutable snapshots privately; provisional entries sync to server. No client-awarded credit.",
+        "x-idempotency": "Read-only; response reflects current server ledger."
+      }
+    },
+    "/offline-snapshot/verify": {
+      "post": {
+        "operationId": "post_offline_snapshot_verify",
+        "summary": "/offline-snapshot/verify",
+        "security": [
+          {
+            "memberBearer": []
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Member-scoped response. Null credit is unresolved, never zero.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema.json#/$defs/VerifiedSnapshot"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Structured error: auth, validation, conflict, policy gate or unavailable service.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "x-permissions": "Authenticated member owns every returned or mutated private record.",
+        "x-offline": "Cache immutable snapshots privately; provisional entries sync to server. No client-awarded credit.",
+        "x-idempotency": "Read-only; response reflects current server ledger.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "./schema.json#/$defs/OfflineSnapshot"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/quran/reference": {
+      "get": {
+        "operationId": "get_quran_reference",
+        "summary": "/quran/reference",
+        "security": [
+          {
+            "memberBearer": []
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Member-scoped response. Null credit is unresolved, never zero.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema.json#/$defs/QuranReferenceVersion"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Structured error: auth, validation, conflict, policy gate or unavailable service.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "x-permissions": "Authenticated member owns every returned or mutated private record.",
+        "x-offline": "Cache immutable snapshots privately; provisional entries sync to server. No client-awarded credit.",
+        "x-idempotency": "Read-only; response reflects current server ledger."
+      }
+    },
+    "/quran/page": {
+      "get": {
+        "operationId": "get_quran_page",
+        "summary": "/quran/page",
+        "security": [
+          {
+            "memberBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "edition",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mapVersion",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Member-scoped response. Null credit is unresolved, never zero.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema.json#/$defs/Page"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Structured error: auth, validation, conflict, policy gate or unavailable service.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "x-permissions": "Authenticated member owns every returned or mutated private record.",
+        "x-offline": "Cache immutable snapshots privately; provisional entries sync to server. No client-awarded credit.",
+        "x-idempotency": "Read-only; response reflects current server ledger."
+      }
+    },
+    "/dhikr": {
+      "get": {
+        "operationId": "get_dhikr",
+        "summary": "/dhikr",
+        "security": [
+          {
+            "memberBearer": []
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Member-scoped response. Null credit is unresolved, never zero.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema.json#/$defs/Dhikr"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Structured error: auth, validation, conflict, policy gate or unavailable service.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "x-permissions": "Authenticated member owns every returned or mutated private record.",
+        "x-offline": "Cache immutable snapshots privately; provisional entries sync to server. No client-awarded credit.",
+        "x-idempotency": "Read-only; response reflects current server ledger."
+      }
+    },
+    "/dhikr/goals": {
+      "post": {
+        "operationId": "post_dhikr_goals",
+        "summary": "/dhikr/goals",
+        "security": [
+          {
+            "memberBearer": []
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Member-scoped response. Null credit is unresolved, never zero.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema.json#/$defs/DhikrResult"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Structured error: auth, validation, conflict, policy gate or unavailable service.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "x-permissions": "Authenticated member owns every returned or mutated private record.",
+        "x-offline": "Cache immutable snapshots privately; provisional entries sync to server. No client-awarded credit.",
+        "x-idempotency": "Mutation UUID returns original receipt; reused UUID/different body conflicts.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "./schema.json#/$defs/DhikrGoalRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dhikr/counts": {
+      "post": {
+        "operationId": "post_dhikr_counts",
+        "summary": "/dhikr/counts",
+        "security": [
+          {
+            "memberBearer": []
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Member-scoped response. Null credit is unresolved, never zero.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema.json#/$defs/DhikrResult"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Structured error: auth, validation, conflict, policy gate or unavailable service.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "x-permissions": "Authenticated member owns every returned or mutated private record.",
+        "x-offline": "Cache immutable snapshots privately; provisional entries sync to server. No client-awarded credit.",
+        "x-idempotency": "Mutation UUID returns original receipt; reused UUID/different body conflicts.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "./schema.json#/$defs/DhikrCountRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reminder-preference": {
+      "get": {
+        "operationId": "get_reminder_preference",
+        "summary": "/reminder-preference",
+        "security": [
+          {
+            "memberBearer": []
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Member-scoped response. Null credit is unresolved, never zero.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema.json#/$defs/ReminderPreference"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Structured error: auth, validation, conflict, policy gate or unavailable service.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "x-permissions": "Authenticated member owns every returned or mutated private record.",
+        "x-offline": "Cache immutable snapshots privately; provisional entries sync to server. No client-awarded credit.",
+        "x-idempotency": "Read-only; response reflects current server ledger."
+      },
+      "put": {
+        "operationId": "put_reminder_preference",
+        "summary": "/reminder-preference",
+        "security": [
+          {
+            "memberBearer": []
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Member-scoped response. Null credit is unresolved, never zero.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema.json#/$defs/ReminderPreference"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Structured error: auth, validation, conflict, policy gate or unavailable service.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "x-permissions": "Authenticated member owns every returned or mutated private record.",
+        "x-offline": "Cache immutable snapshots privately; provisional entries sync to server. No client-awarded credit.",
+        "x-idempotency": "Mutation UUID returns original receipt; reused UUID/different body conflicts.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "./schema.json#/$defs/ReminderPut"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/events": {
+      "get": {
+        "operationId": "get_events",
+        "summary": "/events",
+        "security": [
+          {
+            "memberBearer": []
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Member-scoped response. Null credit is unresolved, never zero.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema.json#/$defs/Events"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Structured error: auth, validation, conflict, policy gate or unavailable service.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "x-permissions": "Authenticated member owns every returned or mutated private record.",
+        "x-offline": "Cache immutable snapshots privately; provisional entries sync to server. No client-awarded credit.",
+        "x-idempotency": "Read-only; response reflects current server ledger."
+      }
+    },
+    "/entitlements": {
+      "get": {
+        "operationId": "get_entitlements",
+        "summary": "/entitlements",
+        "security": [
+          {
+            "memberBearer": []
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Member-scoped response. Null credit is unresolved, never zero.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema.json#/$defs/Entitlements"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Structured error: auth, validation, conflict, policy gate or unavailable service.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "x-permissions": "Authenticated member owns every returned or mutated private record.",
+        "x-offline": "Cache immutable snapshots privately; provisional entries sync to server. No client-awarded credit.",
+        "x-idempotency": "Read-only; response reflects current server ledger."
+      }
+    },
+    "/groups": {
+      "get": {
+        "summary": "Blocked until founder-approved policy: group_policy",
+        "security": [
+          {
+            "memberBearer": []
+          }
+        ],
+        "responses": {
+          "409": {
+            "description": "RULE_NOT_APPROVED; no mutation or publication occurs.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "x-policy-gate": "group_policy"
+      }
+    },
+    "/groups/publications": {
+      "post": {
+        "summary": "Blocked until founder-approved policy: group_policy",
+        "security": [
+          {
+            "memberBearer": []
+          }
+        ],
+        "responses": {
+          "409": {
+            "description": "RULE_NOT_APPROVED; no mutation or publication occurs.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "x-policy-gate": "group_policy",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/groups/consents": {
+      "post": {
+        "summary": "Blocked until founder-approved policy: group_policy",
+        "security": [
+          {
+            "memberBearer": []
+          }
+        ],
+        "responses": {
+          "409": {
+            "description": "RULE_NOT_APPROVED; no mutation or publication occurs.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "x-policy-gate": "group_policy",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/groups/memberships": {
+      "post": {
+        "summary": "Blocked until founder-approved policy: group_policy",
+        "security": [
+          {
+            "memberBearer": []
+          }
+        ],
+        "responses": {
+          "409": {
+            "description": "RULE_NOT_APPROVED; no mutation or publication occurs.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "x-policy-gate": "group_policy",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pauses": {
+      "post": {
+        "summary": "Blocked until founder-approved policy: pause_travel",
+        "security": [
+          {
+            "memberBearer": []
+          }
+        ],
+        "responses": {
+          "409": {
+            "description": "RULE_NOT_APPROVED; no mutation or publication occurs.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "x-policy-gate": "pause_travel",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/classroom": {
+      "get": {
+        "summary": "Blocked until founder-approved policy: classroom_policy",
+        "security": [
+          {
+            "memberBearer": []
+          }
+        ],
+        "responses": {
+          "409": {
+            "description": "RULE_NOT_APPROVED; no mutation or publication occurs.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "x-policy-gate": "classroom_policy"
+      }
+    },
+    "/classroom/grade": {
+      "post": {
+        "summary": "Blocked until founder-approved policy: classroom_policy",
+        "security": [
+          {
+            "memberBearer": []
+          }
+        ],
+        "responses": {
+          "409": {
+            "description": "RULE_NOT_APPROVED; no mutation or publication occurs.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "x-policy-gate": "classroom_policy",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/library/search": {
+      "get": {
+        "summary": "Blocked until founder-approved policy: library_rights",
+        "security": [
+          {
+            "memberBearer": []
+          }
+        ],
+        "responses": {
+          "409": {
+            "description": "RULE_NOT_APPROVED; no mutation or publication occurs.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "x-policy-gate": "library_rights"
+      }
+    },
+    "/quran/text": {
+      "get": {
+        "summary": "Blocked until founder-approved policy: quran_assets",
+        "security": [
+          {
+            "memberBearer": []
+          }
+        ],
+        "responses": {
+          "409": {
+            "description": "RULE_NOT_APPROVED; no mutation or publication occurs.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema.json#/$defs/Error"
+                }
+              }
+            }
+          }
+        },
+        "x-policy-gate": "quran_assets"
+      }
+    },
+    "/health": {
+      "get": {
+        "summary": "Local process health; no member data",
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Local service is running."
+          }
+        }
+      }
+    }
+  }
+}

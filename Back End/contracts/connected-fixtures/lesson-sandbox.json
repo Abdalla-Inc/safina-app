@@ -1,0 +1,31 @@
+{
+  "schema": "Lesson",
+  "fixture": {
+    "id": "lesson-1",
+    "title": "Test interaction only",
+    "required": true,
+    "thumbnail": null,
+    "durationSeconds": 0,
+    "resources": [],
+    "moduleId": "week-1",
+    "courseId": "sandbox-workflow",
+    "courseVersion": 1,
+    "captions": [],
+    "playback": {
+      "status": "no_video_supplied",
+      "url": null,
+      "expiresAt": null
+    },
+    "progress": {
+      "revision": 0
+    },
+    "note": {
+      "revision": 0
+    },
+    "bookmark": {
+      "revision": 0
+    },
+    "completionPolicy": "member_confirmation",
+    "sandbox": true
+  }
+}

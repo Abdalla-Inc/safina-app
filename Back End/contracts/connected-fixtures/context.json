@@ -1,0 +1,40 @@
+{
+  "schema": "Context",
+  "fixture": {
+    "serverTime": "2026-09-30T12:00:00+00:00",
+    "day": "2026-09-30",
+    "weekStart": "2026-09-27",
+    "weekEnd": "2026-10-03",
+    "timeZone": "Asia/Riyadh",
+    "startAt": "2026-09-26T21:00:00+00:00",
+    "endExclusive": "2026-10-03T21:00:00+00:00",
+    "celebrationStartsAt": "2026-10-02T21:00:00+00:00",
+    "status": "in_progress",
+    "communityId": "safina-app",
+    "nextDayRollover": "2026-09-30T21:00:00+00:00",
+    "nextWeekRollover": "2026-10-03T21:00:00+00:00",
+    "restDay": false,
+    "restDayPolicy": {
+      "version": "founder-community-2026-09-29.v2",
+      "appliesTo": [
+        "B",
+        "BI",
+        "BJ1",
+        "BJ2",
+        "BJ3",
+        "BJ4",
+        "BJ5"
+      ]
+    },
+    "ayah": {
+      "status": "awaiting_asset_approval",
+      "references": [
+        "53:39",
+        "76:22"
+      ],
+      "text": null,
+      "textVersion": null
+    },
+    "projectionRevision": 0
+  }
+}
